@@ -17,7 +17,7 @@ export function SiteNav() {
   return (
     <header className="site-nav">
       <div className="container nav-inner">
-        <Link href="/" className="wordmark" aria-label="BasketWise home">
+        <Link href="/" className="wordmark" aria-label="BasketWise home" prefetch={false}>
           BasketWise <span>CSE 426</span>
         </Link>
         <div className="nav-cluster">
@@ -30,6 +30,7 @@ export function SiteNav() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
+                      prefetch={false}
                       aria-current={active ? "page" : undefined}
                     >
                       {link.label}

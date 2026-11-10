@@ -17,16 +17,16 @@ export function SiteFooter() {
           <h2>Pages</h2>
           <ul>
             <li>
-              <Link href="/recommend">Recommender</Link>
+              <Link href="/recommend" prefetch={false}>Recommender</Link>
             </li>
             <li>
-              <Link href="/rules">Rule explorer</Link>
+              <Link href="/rules" prefetch={false}>Rule explorer</Link>
             </li>
             <li>
-              <Link href="/insights">Insights</Link>
+              <Link href="/insights" prefetch={false}>Insights</Link>
             </li>
             <li>
-              <Link href="/notebook">Methodology</Link>
+              <Link href="/notebook" prefetch={false}>Methodology</Link>
             </li>
           </ul>
         </div>

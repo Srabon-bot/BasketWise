@@ -61,10 +61,10 @@ export function HomeClient() {
               Grocery baskets, mined for what sells together.
             </p>
             <div className="hero-actions">
-              <Link href="/recommend" className="btn btn--primary">
+              <Link href="/recommend" className="btn btn--primary" prefetch={false}>
                 Find a recommendation
               </Link>
-              <Link href="/notebook" className="btn">
+              <Link href="/notebook" className="btn" prefetch={false}>
                 Read the notebook
               </Link>
             </div>
@@ -112,7 +112,7 @@ export function HomeClient() {
                 <p className="sheet-label">
                   The recommendation file is not available yet.
                 </p>
-                <Link href="/recommend" className="btn btn--small">
+                <Link href="/recommend" className="btn btn--small" prefetch={false}>
                   Open the recommender
                 </Link>
               </div>
@@ -209,7 +209,7 @@ export function HomeClient() {
               notebook writes.
             </p>
             <div className="hero-actions">
-              <Link href="/notebook" className="btn">
+              <Link href="/notebook" className="btn" prefetch={false}>
                 Read the methodology
               </Link>
             </div>
@@ -250,7 +250,7 @@ export function HomeClient() {
       <section className="close-band">
         <div className="container close-inner">
           <h2>Pick an item. See what leaves with it.</h2>
-          <Link href="/recommend" className="btn btn--primary">
+          <Link href="/recommend" className="btn btn--primary" prefetch={false}>
             Open the recommender
           </Link>
         </div>

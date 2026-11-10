@@ -16,7 +16,9 @@ export function DataBanner() {
         <span>
           This site is showing the synthetic stand-in, not the Kaggle file.
         </span>
-        <Link href="/notebook#data-source">How to run the real data</Link>
+        <Link href="/notebook#data-source" prefetch={false}>
+          How to run the real data
+        </Link>
       </div>
     </div>
   );
