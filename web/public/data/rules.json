@@ -1,0 +1,6239 @@
+[
+  {
+    "antecedents": [
+      "spices"
+    ],
+    "consequents": [
+      "chicken"
+    ],
+    "support": 0.0115,
+    "confidence": 0.7377,
+    "lift": 23.1079
+  },
+  {
+    "antecedents": [
+      "chicken"
+    ],
+    "consequents": [
+      "spices"
+    ],
+    "support": 0.0115,
+    "confidence": 0.36,
+    "lift": 23.1079
+  },
+  {
+    "antecedents": [
+      "sugar"
+    ],
+    "consequents": [
+      "coffee"
+    ],
+    "support": 0.0161,
+    "confidence": 0.506,
+    "lift": 13.8555
+  },
+  {
+    "antecedents": [
+      "coffee"
+    ],
+    "consequents": [
+      "sugar"
+    ],
+    "support": 0.0161,
+    "confidence": 0.4406,
+    "lift": 13.8555
+  },
+  {
+    "antecedents": [
+      "soda",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "chips",
+      "other vegetables"
+    ],
+    "support": 0.0112,
+    "confidence": 0.2794,
+    "lift": 10.0816
+  },
+  {
+    "antecedents": [
+      "chips",
+      "other vegetables"
+    ],
+    "consequents": [
+      "soda",
+      "tropical fruit"
+    ],
+    "support": 0.0112,
+    "confidence": 0.4055,
+    "lift": 10.0816
+  },
+  {
+    "antecedents": [
+      "chips",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "other vegetables",
+      "soda"
+    ],
+    "support": 0.0112,
+    "confidence": 0.7154,
+    "lift": 9.7269
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "tropical fruit"
+    ],
+    "support": 0.0112,
+    "confidence": 0.1528,
+    "lift": 9.7269
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "whole milk"
+    ],
+    "support": 0.0137,
+    "confidence": 0.3715,
+    "lift": 8.659
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread",
+      "soda"
+    ],
+    "support": 0.0137,
+    "confidence": 0.3185,
+    "lift": 8.659
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0147,
+    "confidence": 0.935,
+    "lift": 8.0992
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips",
+      "whipped/sour cream"
+    ],
+    "support": 0.0147,
+    "confidence": 0.1272,
+    "lift": 8.0992
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "chips",
+      "whole milk"
+    ],
+    "support": 0.0147,
+    "confidence": 0.3453,
+    "lift": 8.0488
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda",
+      "whipped/sour cream"
+    ],
+    "support": 0.0147,
+    "confidence": 0.3423,
+    "lift": 8.0488
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "chips"
+    ],
+    "consequents": [
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0137,
+    "confidence": 0.8917,
+    "lift": 7.7242
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread",
+      "chips"
+    ],
+    "support": 0.0137,
+    "confidence": 0.1184,
+    "lift": 7.7242
+  },
+  {
+    "antecedents": [
+      "domestic eggs"
+    ],
+    "consequents": [
+      "white bread",
+      "whole milk"
+    ],
+    "support": 0.0126,
+    "confidence": 0.2698,
+    "lift": 7.5445
+  },
+  {
+    "antecedents": [
+      "white bread",
+      "whole milk"
+    ],
+    "consequents": [
+      "domestic eggs"
+    ],
+    "support": 0.0126,
+    "confidence": 0.3536,
+    "lift": 7.5445
+  },
+  {
+    "antecedents": [
+      "domestic eggs",
+      "whole milk"
+    ],
+    "consequents": [
+      "white bread"
+    ],
+    "support": 0.0126,
+    "confidence": 0.4267,
+    "lift": 7.4925
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "domestic eggs",
+      "whole milk"
+    ],
+    "support": 0.0126,
+    "confidence": 0.222,
+    "lift": 7.4925
+  },
+  {
+    "antecedents": [
+      "chips",
+      "yogurt"
+    ],
+    "consequents": [
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.022,
+    "confidence": 0.839,
+    "lift": 7.2681
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips",
+      "yogurt"
+    ],
+    "support": 0.022,
+    "confidence": 0.1903,
+    "lift": 7.2681
+  },
+  {
+    "antecedents": [
+      "domestic eggs"
+    ],
+    "consequents": [
+      "white bread"
+    ],
+    "support": 0.0193,
+    "confidence": 0.4114,
+    "lift": 7.2243
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "domestic eggs"
+    ],
+    "support": 0.0193,
+    "confidence": 0.3386,
+    "lift": 7.2243
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda",
+      "yogurt"
+    ],
+    "support": 0.022,
+    "confidence": 0.5119,
+    "lift": 7.1077
+  },
+  {
+    "antecedents": [
+      "soda",
+      "yogurt"
+    ],
+    "consequents": [
+      "chips",
+      "whole milk"
+    ],
+    "support": 0.022,
+    "confidence": 0.305,
+    "lift": 7.1077
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "white bread",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2439,
+    "lift": 6.8214
+  },
+  {
+    "antecedents": [
+      "white bread",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0115,
+    "confidence": 0.3214,
+    "lift": 6.8214
+  },
+  {
+    "antecedents": [
+      "soda",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "chips",
+      "whole milk"
+    ],
+    "support": 0.0112,
+    "confidence": 0.2794,
+    "lift": 6.511
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda",
+      "tropical fruit"
+    ],
+    "support": 0.0112,
+    "confidence": 0.2619,
+    "lift": 6.511
+  },
+  {
+    "antecedents": [
+      "chips",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0112,
+    "confidence": 0.7154,
+    "lift": 6.1976
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "brown bread",
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0137,
+    "confidence": 0.205,
+    "lift": 6.1739
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0137,
+    "confidence": 0.4115,
+    "lift": 6.1739
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables"
+    ],
+    "support": 0.0167,
+    "confidence": 0.3097,
+    "lift": 6.171
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "support": 0.0167,
+    "confidence": 0.3333,
+    "lift": 6.171
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "yogurt"
+    ],
+    "support": 0.0119,
+    "confidence": 0.1615,
+    "lift": 6.1677
+  },
+  {
+    "antecedents": [
+      "chips",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "soda"
+    ],
+    "support": 0.0119,
+    "confidence": 0.4537,
+    "lift": 6.1677
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "bottled water",
+      "yogurt"
+    ],
+    "support": 0.0157,
+    "confidence": 0.2802,
+    "lift": 6.1288
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "yogurt"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "whole milk"
+    ],
+    "support": 0.0157,
+    "confidence": 0.3436,
+    "lift": 6.1288
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables"
+    ],
+    "support": 0.0116,
+    "confidence": 0.3064,
+    "lift": 6.1053
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0116,
+    "confidence": 0.2316,
+    "lift": 6.1053
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "white bread"
+    ],
+    "support": 0.0172,
+    "confidence": 0.1403,
+    "lift": 6.1052
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "white bread"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0172,
+    "confidence": 0.75,
+    "lift": 6.1052
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "soda"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0149,
+    "confidence": 0.4062,
+    "lift": 6.0945
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "brown bread",
+      "soda"
+    ],
+    "support": 0.0149,
+    "confidence": 0.2241,
+    "lift": 6.0945
+  },
+  {
+    "antecedents": [
+      "white bread",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.4762,
+    "lift": 6.0932
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "white bread",
+      "yogurt"
+    ],
+    "support": 0.0115,
+    "confidence": 0.1471,
+    "lift": 6.0932
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "soda"
+    ],
+    "support": 0.0192,
+    "confidence": 0.4464,
+    "lift": 6.0694
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "whole milk"
+    ],
+    "support": 0.0192,
+    "confidence": 0.2604,
+    "lift": 6.0694
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips",
+      "other vegetables"
+    ],
+    "support": 0.0192,
+    "confidence": 0.1659,
+    "lift": 5.988
+  },
+  {
+    "antecedents": [
+      "chips",
+      "other vegetables"
+    ],
+    "consequents": [
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0192,
+    "confidence": 0.6912,
+    "lift": 5.988
+  },
+  {
+    "antecedents": [
+      "chips",
+      "other vegetables"
+    ],
+    "consequents": [
+      "soda",
+      "yogurt"
+    ],
+    "support": 0.0119,
+    "confidence": 0.4286,
+    "lift": 5.9506
+  },
+  {
+    "antecedents": [
+      "soda",
+      "yogurt"
+    ],
+    "consequents": [
+      "chips",
+      "other vegetables"
+    ],
+    "support": 0.0119,
+    "confidence": 0.1649,
+    "lift": 5.9506
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "support": 0.0116,
+    "confidence": 0.3193,
+    "lift": 5.9112
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables",
+      "whole milk"
+    ],
+    "support": 0.0116,
+    "confidence": 0.2151,
+    "lift": 5.9112
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "soda",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0112,
+    "confidence": 0.1686,
+    "lift": 5.8936
+  },
+  {
+    "antecedents": [
+      "soda",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0112,
+    "confidence": 0.3929,
+    "lift": 5.8936
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0139,
+    "confidence": 0.1537,
+    "lift": 5.8728
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.5317,
+    "lift": 5.8728
+  },
+  {
+    "antecedents": [
+      "butter",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0167,
+    "confidence": 0.5622,
+    "lift": 5.8704
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "tropical fruit"
+    ],
+    "support": 0.0167,
+    "confidence": 0.1747,
+    "lift": 5.8704
+  },
+  {
+    "antecedents": [
+      "chips",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0125,
+    "confidence": 0.6759,
+    "lift": 5.8547
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips",
+      "rolls/buns"
+    ],
+    "support": 0.0125,
+    "confidence": 0.1084,
+    "lift": 5.8547
+  },
+  {
+    "antecedents": [
+      "butter",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0116,
+    "confidence": 0.3906,
+    "lift": 5.8256
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "tropical fruit"
+    ],
+    "support": 0.0116,
+    "confidence": 0.1733,
+    "lift": 5.8256
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0139,
+    "confidence": 0.8651,
+    "lift": 5.825
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "other vegetables",
+      "soda",
+      "yogurt"
+    ],
+    "support": 0.0119,
+    "confidence": 0.1782,
+    "lift": 5.7179
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "soda",
+      "yogurt"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0119,
+    "confidence": 0.3811,
+    "lift": 5.7179
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "support": 0.017,
+    "confidence": 0.3144,
+    "lift": 5.6996
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "support": 0.017,
+    "confidence": 0.3079,
+    "lift": 5.6996
+  },
+  {
+    "antecedents": [
+      "butter",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0116,
+    "confidence": 0.5449,
+    "lift": 5.6896
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0116,
+    "confidence": 0.1213,
+    "lift": 5.6896
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "soda"
+    ],
+    "support": 0.0125,
+    "confidence": 0.2917,
+    "lift": 5.6119
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "whole milk"
+    ],
+    "support": 0.0125,
+    "confidence": 0.2408,
+    "lift": 5.6119
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0192,
+    "confidence": 0.3741,
+    "lift": 5.6117
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "other vegetables",
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0192,
+    "confidence": 0.2874,
+    "lift": 5.6117
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "whole milk"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "yogurt"
+    ],
+    "support": 0.0157,
+    "confidence": 0.2067,
+    "lift": 5.6015
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "yogurt"
+    ],
+    "consequents": [
+      "bottled water",
+      "whole milk"
+    ],
+    "support": 0.0157,
+    "confidence": 0.4256,
+    "lift": 5.6015
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.017,
+    "confidence": 0.5363,
+    "lift": 5.5996
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "sausage",
+      "tropical fruit"
+    ],
+    "support": 0.017,
+    "confidence": 0.1773,
+    "lift": 5.5996
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "soda",
+      "tropical fruit"
+    ],
+    "support": 0.0149,
+    "confidence": 0.2241,
+    "lift": 5.5721
+  },
+  {
+    "antecedents": [
+      "soda",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0149,
+    "confidence": 0.3714,
+    "lift": 5.5721
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whipped/sour cream",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0121,
+    "confidence": 0.4318,
+    "lift": 5.5254
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whipped/sour cream",
+      "yogurt"
+    ],
+    "support": 0.0121,
+    "confidence": 0.1552,
+    "lift": 5.5254
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "other vegetables",
+      "soda",
+      "tropical fruit"
+    ],
+    "support": 0.0112,
+    "confidence": 0.1686,
+    "lift": 5.5007
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "soda",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0112,
+    "confidence": 0.3667,
+    "lift": 5.5007
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "support": 0.0115,
+    "confidence": 0.303,
+    "lift": 5.4931
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2083,
+    "lift": 5.4931
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "root vegetables"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables"
+    ],
+    "support": 0.0137,
+    "confidence": 0.2751,
+    "lift": 5.481
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "root vegetables"
+    ],
+    "support": 0.0137,
+    "confidence": 0.2723,
+    "lift": 5.481
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "soda",
+      "whipped/sour cream",
+      "whole milk"
+    ],
+    "support": 0.0147,
+    "confidence": 0.2203,
+    "lift": 5.4769
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whipped/sour cream",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0147,
+    "confidence": 0.3651,
+    "lift": 5.4769
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "root vegetables"
+    ],
+    "support": 0.0137,
+    "confidence": 0.1427,
+    "lift": 5.4766
+  },
+  {
+    "antecedents": [
+      "butter",
+      "root vegetables"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0137,
+    "confidence": 0.5245,
+    "lift": 5.4766
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "other vegetables",
+      "soda"
+    ],
+    "support": 0.0268,
+    "confidence": 0.4023,
+    "lift": 5.4694
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "soda"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0268,
+    "confidence": 0.3646,
+    "lift": 5.4694
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "other vegetables",
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2128,
+    "lift": 5.4273
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2932,
+    "lift": 5.4273
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.3629,
+    "lift": 5.4131
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "sausage",
+      "tropical fruit"
+    ],
+    "support": 0.0115,
+    "confidence": 0.1714,
+    "lift": 5.4131
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0115,
+    "confidence": 0.5143,
+    "lift": 5.3698
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "sausage",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.12,
+    "lift": 5.3698
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0412,
+    "confidence": 0.6188,
+    "lift": 5.3602
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0412,
+    "confidence": 0.3573,
+    "lift": 5.3602
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0174,
+    "confidence": 0.7907,
+    "lift": 5.3241
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread",
+      "butter"
+    ],
+    "support": 0.0174,
+    "confidence": 0.1169,
+    "lift": 5.3241
+  },
+  {
+    "antecedents": [
+      "chips",
+      "other vegetables",
+      "yogurt"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0119,
+    "confidence": 0.9894,
+    "lift": 5.3139
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "soda",
+      "yogurt"
+    ],
+    "support": 0.0254,
+    "confidence": 0.3812,
+    "lift": 5.2932
+  },
+  {
+    "antecedents": [
+      "soda",
+      "yogurt"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0254,
+    "confidence": 0.3528,
+    "lift": 5.2932
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0149,
+    "confidence": 0.3514,
+    "lift": 5.2709
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "soda",
+      "whipped/sour cream"
+    ],
+    "support": 0.0149,
+    "confidence": 0.2241,
+    "lift": 5.2709
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "soda",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.022,
+    "confidence": 0.3295,
+    "lift": 5.266
+  },
+  {
+    "antecedents": [
+      "soda",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.022,
+    "confidence": 0.351,
+    "lift": 5.266
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "chips"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0149,
+    "confidence": 0.975,
+    "lift": 5.2368
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0163,
+    "confidence": 0.4089,
+    "lift": 5.2328
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0163,
+    "confidence": 0.2092,
+    "lift": 5.2328
+  },
+  {
+    "antecedents": [
+      "chips",
+      "other vegetables",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0192,
+    "confidence": 0.974,
+    "lift": 5.2315
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "other vegetables",
+      "whole milk"
+    ],
+    "support": 0.0192,
+    "confidence": 0.1029,
+    "lift": 5.2315
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "chips",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0137,
+    "confidence": 0.9727,
+    "lift": 5.2246
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "root vegetables",
+      "soda"
+    ],
+    "support": 0.0139,
+    "confidence": 0.2088,
+    "lift": 5.2243
+  },
+  {
+    "antecedents": [
+      "root vegetables",
+      "soda"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0139,
+    "confidence": 0.3482,
+    "lift": 5.2243
+  },
+  {
+    "antecedents": [
+      "chips",
+      "yogurt"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0254,
+    "confidence": 0.9707,
+    "lift": 5.2139
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "yogurt"
+    ],
+    "support": 0.0254,
+    "confidence": 0.1365,
+    "lift": 5.2139
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whipped/sour cream"
+    ],
+    "support": 0.0121,
+    "confidence": 0.2844,
+    "lift": 5.2042
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0121,
+    "confidence": 0.222,
+    "lift": 5.2042
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whipped/sour cream",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0121,
+    "confidence": 0.7724,
+    "lift": 5.2006
+  },
+  {
+    "antecedents": [
+      "chips",
+      "other vegetables"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0268,
+    "confidence": 0.9677,
+    "lift": 5.1978
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "other vegetables"
+    ],
+    "support": 0.0268,
+    "confidence": 0.144,
+    "lift": 5.1978
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whipped/sour cream",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0147,
+    "confidence": 0.9664,
+    "lift": 5.1905
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.022,
+    "confidence": 0.9663,
+    "lift": 5.19
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.022,
+    "confidence": 0.118,
+    "lift": 5.19
+  },
+  {
+    "antecedents": [
+      "chips",
+      "root vegetables"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0139,
+    "confidence": 0.9646,
+    "lift": 5.1809
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0125,
+    "confidence": 0.1877,
+    "lift": 5.1767
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0125,
+    "confidence": 0.3451,
+    "lift": 5.1767
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0121,
+    "confidence": 0.4204,
+    "lift": 5.1758
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "whipped/sour cream"
+    ],
+    "support": 0.0121,
+    "confidence": 0.1494,
+    "lift": 5.1758
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0163,
+    "confidence": 0.3469,
+    "lift": 5.1742
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0163,
+    "confidence": 0.2438,
+    "lift": 5.1742
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0412,
+    "confidence": 0.9613,
+    "lift": 5.1632
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "chips",
+      "whole milk"
+    ],
+    "support": 0.0412,
+    "confidence": 0.2215,
+    "lift": 5.1632
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0139,
+    "confidence": 0.2954,
+    "lift": 5.1405
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.2422,
+    "lift": 5.1405
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0637,
+    "confidence": 0.9559,
+    "lift": 5.1344
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0637,
+    "confidence": 0.3422,
+    "lift": 5.1344
+  },
+  {
+    "antecedents": [
+      "chips",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0149,
+    "confidence": 0.9512,
+    "lift": 5.1091
+  },
+  {
+    "antecedents": [
+      "chips",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0149,
+    "confidence": 0.9512,
+    "lift": 5.1091
+  },
+  {
+    "antecedents": [
+      "chips",
+      "other vegetables",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0112,
+    "confidence": 0.9462,
+    "lift": 5.0823
+  },
+  {
+    "antecedents": [
+      "chips",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0112,
+    "confidence": 0.9462,
+    "lift": 5.0823
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0352,
+    "confidence": 0.748,
+    "lift": 5.0364
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0352,
+    "confidence": 0.2373,
+    "lift": 5.0364
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whipped/sour cream",
+      "whole milk"
+    ],
+    "support": 0.0121,
+    "confidence": 0.2575,
+    "lift": 5.0152
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whipped/sour cream",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0121,
+    "confidence": 0.2363,
+    "lift": 5.0152
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables",
+      "yogurt"
+    ],
+    "support": 0.0163,
+    "confidence": 0.1101,
+    "lift": 5.0109
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0163,
+    "confidence": 0.7442,
+    "lift": 5.0109
+  },
+  {
+    "antecedents": [
+      "chips",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0172,
+    "confidence": 0.931,
+    "lift": 5.0006
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0352,
+    "confidence": 0.451,
+    "lift": 4.9811
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0352,
+    "confidence": 0.3893,
+    "lift": 4.9811
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "soda"
+    ],
+    "consequents": [
+      "chips"
+    ],
+    "support": 0.0172,
+    "confidence": 0.3317,
+    "lift": 4.9761
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "soda"
+    ],
+    "support": 0.0172,
+    "confidence": 0.2586,
+    "lift": 4.9761
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0212,
+    "confidence": 0.3879,
+    "lift": 4.9628
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whipped/sour cream"
+    ],
+    "support": 0.0212,
+    "confidence": 0.2712,
+    "lift": 4.9628
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0163,
+    "confidence": 0.4491,
+    "lift": 4.9606
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables",
+      "whole milk"
+    ],
+    "support": 0.0163,
+    "confidence": 0.1805,
+    "lift": 4.9606
+  },
+  {
+    "antecedents": [
+      "root vegetables",
+      "sausage"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.013,
+    "confidence": 0.4744,
+    "lift": 4.9536
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "root vegetables",
+      "sausage"
+    ],
+    "support": 0.013,
+    "confidence": 0.136,
+    "lift": 4.9536
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "white bread"
+    ],
+    "support": 0.0133,
+    "confidence": 0.2818,
+    "lift": 4.9487
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0133,
+    "confidence": 0.2332,
+    "lift": 4.9487
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "whipped/sour cream"
+    ],
+    "support": 0.0212,
+    "confidence": 0.1427,
+    "lift": 4.9458
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0212,
+    "confidence": 0.7345,
+    "lift": 4.9458
+  },
+  {
+    "antecedents": [
+      "chips",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0125,
+    "confidence": 0.9159,
+    "lift": 4.9193
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whipped/sour cream",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0121,
+    "confidence": 0.4419,
+    "lift": 4.8804
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "whipped/sour cream",
+      "whole milk"
+    ],
+    "support": 0.0121,
+    "confidence": 0.134,
+    "lift": 4.8804
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0139,
+    "confidence": 0.3811,
+    "lift": 4.8767
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.1781,
+    "lift": 4.8767
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whipped/sour cream"
+    ],
+    "support": 0.0123,
+    "confidence": 0.2602,
+    "lift": 4.7601
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0123,
+    "confidence": 0.2243,
+    "lift": 4.7601
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "root vegetables"
+    ],
+    "consequents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "support": 0.013,
+    "confidence": 0.2622,
+    "lift": 4.7532
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "root vegetables"
+    ],
+    "support": 0.013,
+    "confidence": 0.2361,
+    "lift": 4.7532
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2018,
+    "lift": 4.7313
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "white bread"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2695,
+    "lift": 4.7313
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0174,
+    "confidence": 0.3676,
+    "lift": 4.7033
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread",
+      "rolls/buns"
+    ],
+    "support": 0.0174,
+    "confidence": 0.2222,
+    "lift": 4.7033
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.6977,
+    "lift": 4.6978
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0123,
+    "confidence": 0.4248,
+    "lift": 4.6917
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "whipped/sour cream"
+    ],
+    "support": 0.0123,
+    "confidence": 0.1354,
+    "lift": 4.6917
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "other vegetables"
+    ],
+    "consequents": [
+      "bottled water",
+      "whole milk"
+    ],
+    "support": 0.0125,
+    "confidence": 0.3538,
+    "lift": 4.6564
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "whole milk"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "other vegetables"
+    ],
+    "support": 0.0125,
+    "confidence": 0.1647,
+    "lift": 4.6564
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0115,
+    "confidence": 0.439,
+    "lift": 4.584
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.12,
+    "lift": 4.584
+  },
+  {
+    "antecedents": [
+      "white bread",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0115,
+    "confidence": 0.5521,
+    "lift": 4.4947
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "white bread",
+      "yogurt"
+    ],
+    "support": 0.0133,
+    "confidence": 0.1081,
+    "lift": 4.4793
+  },
+  {
+    "antecedents": [
+      "white bread",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0133,
+    "confidence": 0.5503,
+    "lift": 4.4793
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0157,
+    "confidence": 0.3994,
+    "lift": 4.4676
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "bottled water",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0157,
+    "confidence": 0.1757,
+    "lift": 4.4676
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0152,
+    "confidence": 0.3802,
+    "lift": 4.4503
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0152,
+    "confidence": 0.1779,
+    "lift": 4.4503
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "other vegetables"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.0192,
+    "confidence": 0.5415,
+    "lift": 4.3763
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "other vegetables"
+    ],
+    "support": 0.0192,
+    "confidence": 0.1548,
+    "lift": 4.3763
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0157,
+    "confidence": 0.3955,
+    "lift": 4.3683
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "sausage"
+    ],
+    "support": 0.0157,
+    "confidence": 0.1735,
+    "lift": 4.3683
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "sausage",
+      "whipped/sour cream"
+    ],
+    "support": 0.0194,
+    "confidence": 0.1307,
+    "lift": 4.3368
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0194,
+    "confidence": 0.6441,
+    "lift": 4.3368
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2894,
+    "lift": 4.3166
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "sausage"
+    ],
+    "support": 0.0115,
+    "confidence": 0.1714,
+    "lift": 4.3166
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.3505,
+    "lift": 4.3155
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "sausage"
+    ],
+    "support": 0.0139,
+    "confidence": 0.1714,
+    "lift": 4.3155
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "bottled water",
+      "yogurt"
+    ],
+    "support": 0.0176,
+    "confidence": 0.1971,
+    "lift": 4.3124
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "yogurt"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0176,
+    "confidence": 0.3855,
+    "lift": 4.3124
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0301,
+    "confidence": 0.5291,
+    "lift": 4.3074
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "white bread"
+    ],
+    "support": 0.0301,
+    "confidence": 0.2453,
+    "lift": 4.3074
+  },
+  {
+    "antecedents": [
+      "white bread",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0189,
+    "confidence": 0.5286,
+    "lift": 4.3027
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "white bread",
+      "whole milk"
+    ],
+    "support": 0.0189,
+    "confidence": 0.1538,
+    "lift": 4.3027
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0152,
+    "confidence": 0.3876,
+    "lift": 4.2813
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0152,
+    "confidence": 0.1678,
+    "lift": 4.2813
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "other vegetables",
+      "whole milk"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.0125,
+    "confidence": 0.5269,
+    "lift": 4.258
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "other vegetables",
+      "whole milk"
+    ],
+    "support": 0.0125,
+    "confidence": 0.1011,
+    "lift": 4.258
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.013,
+    "confidence": 0.3806,
+    "lift": 4.2578
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "bottled water",
+      "rolls/buns"
+    ],
+    "support": 0.013,
+    "confidence": 0.1457,
+    "lift": 4.2578
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0189,
+    "confidence": 0.3318,
+    "lift": 4.2461
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "white bread"
+    ],
+    "support": 0.0189,
+    "confidence": 0.2418,
+    "lift": 4.2461
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0171,
+    "confidence": 0.3622,
+    "lift": 4.2393
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread",
+      "rolls/buns"
+    ],
+    "support": 0.0171,
+    "confidence": 0.2003,
+    "lift": 4.2393
+  },
+  {
+    "antecedents": [
+      "butter",
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0139,
+    "confidence": 0.3621,
+    "lift": 4.2389
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.1629,
+    "lift": 4.2389
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "other vegetables"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "whole milk"
+    ],
+    "support": 0.0125,
+    "confidence": 0.2356,
+    "lift": 4.2023
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "bottled water",
+      "other vegetables"
+    ],
+    "support": 0.0125,
+    "confidence": 0.2232,
+    "lift": 4.2023
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0323,
+    "confidence": 0.3782,
+    "lift": 4.177
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0323,
+    "confidence": 0.3568,
+    "lift": 4.177
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "whole milk"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0283,
+    "confidence": 0.3731,
+    "lift": 4.174
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "bottled water",
+      "whole milk"
+    ],
+    "support": 0.0283,
+    "confidence": 0.3171,
+    "lift": 4.174
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0152,
+    "confidence": 0.2793,
+    "lift": 4.1667
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "sausage",
+      "yogurt"
+    ],
+    "support": 0.0152,
+    "confidence": 0.2267,
+    "lift": 4.1667
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0194,
+    "confidence": 0.3551,
+    "lift": 4.1571
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whipped/sour cream"
+    ],
+    "support": 0.0194,
+    "confidence": 0.2272,
+    "lift": 4.1571
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0139,
+    "confidence": 0.2559,
+    "lift": 4.1314
+  },
+  {
+    "antecedents": [
+      "butter",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "sausage",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.2247,
+    "lift": 4.1314
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0171,
+    "confidence": 0.6119,
+    "lift": 4.12
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread",
+      "sausage"
+    ],
+    "support": 0.0171,
+    "confidence": 0.1152,
+    "lift": 4.12
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0243,
+    "confidence": 0.6109,
+    "lift": 4.1137
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "sausage"
+    ],
+    "support": 0.0243,
+    "confidence": 0.1634,
+    "lift": 4.1137
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0156,
+    "confidence": 0.3923,
+    "lift": 4.096
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "sausage"
+    ],
+    "support": 0.0156,
+    "confidence": 0.1627,
+    "lift": 4.096
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "sausage",
+      "yogurt"
+    ],
+    "support": 0.0152,
+    "confidence": 0.1023,
+    "lift": 4.0882
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "sausage",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0152,
+    "confidence": 0.6071,
+    "lift": 4.0882
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.0283,
+    "confidence": 0.5057,
+    "lift": 4.0868
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "whole milk"
+    ],
+    "support": 0.0283,
+    "confidence": 0.2291,
+    "lift": 4.0868
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.0448,
+    "confidence": 0.5014,
+    "lift": 4.0523
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0448,
+    "confidence": 0.3622,
+    "lift": 4.0523
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0157,
+    "confidence": 0.9762,
+    "lift": 4.0426
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "other vegetables"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0192,
+    "confidence": 0.3606,
+    "lift": 4.0338
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "bottled water",
+      "other vegetables"
+    ],
+    "support": 0.0192,
+    "confidence": 0.2143,
+    "lift": 4.0338
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0139,
+    "confidence": 0.9732,
+    "lift": 4.0303
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0163,
+    "confidence": 0.3257,
+    "lift": 4.0103
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables"
+    ],
+    "support": 0.0163,
+    "confidence": 0.2013,
+    "lift": 4.0103
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0163,
+    "confidence": 0.3832,
+    "lift": 4.0015
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0163,
+    "confidence": 0.1707,
+    "lift": 4.0015
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0323,
+    "confidence": 0.5939,
+    "lift": 3.999
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "sausage",
+      "yogurt"
+    ],
+    "support": 0.0323,
+    "confidence": 0.2175,
+    "lift": 3.999
+  },
+  {
+    "antecedents": [
+      "butter",
+      "soda"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0158,
+    "confidence": 0.5933,
+    "lift": 3.995
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "soda"
+    ],
+    "support": 0.0158,
+    "confidence": 0.1066,
+    "lift": 3.995
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.229,
+    "lift": 3.9852
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2,
+    "lift": 3.9852
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "sausage"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.3103,
+    "lift": 3.9711
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "sausage"
+    ],
+    "support": 0.0115,
+    "confidence": 0.1471,
+    "lift": 3.9711
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0166,
+    "confidence": 0.3073,
+    "lift": 3.9325
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "support": 0.0166,
+    "confidence": 0.2124,
+    "lift": 3.9325
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "rolls/buns"
+    ],
+    "support": 0.013,
+    "confidence": 0.1053,
+    "lift": 3.9253
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.013,
+    "confidence": 0.4857,
+    "lift": 3.9253
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0156,
+    "confidence": 0.9457,
+    "lift": 3.9165
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0374,
+    "confidence": 0.9421,
+    "lift": 3.9015
+  },
+  {
+    "antecedents": [
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "sausage"
+    ],
+    "support": 0.0374,
+    "confidence": 0.1549,
+    "lift": 3.9015
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "soda"
+    ],
+    "support": 0.0158,
+    "confidence": 0.2026,
+    "lift": 3.8985
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "soda"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0158,
+    "confidence": 0.3047,
+    "lift": 3.8985
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0157,
+    "confidence": 0.1269,
+    "lift": 3.8981
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.0157,
+    "confidence": 0.4824,
+    "lift": 3.8981
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0175,
+    "confidence": 0.3713,
+    "lift": 3.8766
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0175,
+    "confidence": 0.1827,
+    "lift": 3.8766
+  },
+  {
+    "antecedents": [
+      "citrus fruit",
+      "yogurt"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.0176,
+    "confidence": 0.4775,
+    "lift": 3.859
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "citrus fruit",
+      "yogurt"
+    ],
+    "support": 0.0176,
+    "confidence": 0.1424,
+    "lift": 3.859
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0175,
+    "confidence": 0.3486,
+    "lift": 3.8503
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables"
+    ],
+    "support": 0.0175,
+    "confidence": 0.1932,
+    "lift": 3.8503
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "other vegetables",
+      "whole milk"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0125,
+    "confidence": 0.3439,
+    "lift": 3.8468
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "bottled water",
+      "other vegetables",
+      "whole milk"
+    ],
+    "support": 0.0125,
+    "confidence": 0.14,
+    "lift": 3.8468
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0115,
+    "confidence": 0.9278,
+    "lift": 3.8423
+  },
+  {
+    "antecedents": [
+      "butter",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0243,
+    "confidence": 0.9268,
+    "lift": 3.8382
+  },
+  {
+    "antecedents": [
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0243,
+    "confidence": 0.1005,
+    "lift": 3.8382
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0286,
+    "confidence": 0.57,
+    "lift": 3.8379
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables"
+    ],
+    "support": 0.0286,
+    "confidence": 0.1926,
+    "lift": 3.8379
+  },
+  {
+    "antecedents": [
+      "butter",
+      "root vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0148,
+    "confidence": 0.5686,
+    "lift": 3.8288
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0286,
+    "confidence": 0.2987,
+    "lift": 3.8217
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0286,
+    "confidence": 0.366,
+    "lift": 3.8217
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "root vegetables"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0148,
+    "confidence": 0.2982,
+    "lift": 3.8157
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "root vegetables"
+    ],
+    "support": 0.0148,
+    "confidence": 0.1895,
+    "lift": 3.8157
+  },
+  {
+    "antecedents": [
+      "butter",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0166,
+    "confidence": 0.5579,
+    "lift": 3.7569
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "tropical fruit"
+    ],
+    "support": 0.0166,
+    "confidence": 0.1118,
+    "lift": 3.7569
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "support": 0.0116,
+    "confidence": 0.1487,
+    "lift": 3.6966
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0116,
+    "confidence": 0.2889,
+    "lift": 3.6966
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0163,
+    "confidence": 0.4491,
+    "lift": 3.656
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0163,
+    "confidence": 0.1331,
+    "lift": 3.656
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "support": 0.0157,
+    "confidence": 0.3333,
+    "lift": 3.6559
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0157,
+    "confidence": 0.1723,
+    "lift": 3.6559
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0116,
+    "confidence": 0.5417,
+    "lift": 3.6473
+  },
+  {
+    "antecedents": [
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread",
+      "other vegetables",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.1153,
+    "lift": 3.6422
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "other vegetables",
+      "yogurt"
+    ],
+    "consequents": [
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0139,
+    "confidence": 0.4395,
+    "lift": 3.6422
+  },
+  {
+    "antecedents": [
+      "root vegetables",
+      "tropical fruit",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "whole milk"
+    ],
+    "support": 0.0172,
+    "confidence": 0.7803,
+    "lift": 3.6353
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "root vegetables",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0148,
+    "confidence": 0.4427,
+    "lift": 3.6041
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "root vegetables",
+      "whole milk"
+    ],
+    "support": 0.0148,
+    "confidence": 0.1206,
+    "lift": 3.6041
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "support": 0.0139,
+    "confidence": 0.3263,
+    "lift": 3.5793
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.1527,
+    "lift": 3.5793
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0174,
+    "confidence": 0.8608,
+    "lift": 3.5646
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whipped/sour cream",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0121,
+    "confidence": 0.4378,
+    "lift": 3.5637
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0166,
+    "confidence": 0.4377,
+    "lift": 3.5631
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0166,
+    "confidence": 0.1351,
+    "lift": 3.5631
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0175,
+    "confidence": 0.1424,
+    "lift": 3.563
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0175,
+    "confidence": 0.4377,
+    "lift": 3.563
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0158,
+    "confidence": 0.4366,
+    "lift": 3.5542
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "soda",
+      "whole milk"
+    ],
+    "support": 0.0158,
+    "confidence": 0.1289,
+    "lift": 3.5542
+  },
+  {
+    "antecedents": [
+      "butter",
+      "yogurt"
+    ],
+    "consequents": [
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0143,
+    "confidence": 0.3035,
+    "lift": 3.5529
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "yogurt"
+    ],
+    "support": 0.0143,
+    "confidence": 0.1674,
+    "lift": 3.5529
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whipped/sour cream",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0123,
+    "confidence": 0.4364,
+    "lift": 3.5521
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0188,
+    "confidence": 0.8547,
+    "lift": 3.5393
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0115,
+    "confidence": 0.4348,
+    "lift": 3.5393
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0352,
+    "confidence": 0.434,
+    "lift": 3.5326
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0352,
+    "confidence": 0.2869,
+    "lift": 3.5326
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "bottled water",
+      "rolls/buns"
+    ],
+    "support": 0.0148,
+    "confidence": 0.1206,
+    "lift": 3.5234
+  },
+  {
+    "antecedents": [
+      "bottled water",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0148,
+    "confidence": 0.4328,
+    "lift": 3.5234
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "other vegetables"
+    ],
+    "consequents": [
+      "tropical fruit",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.222,
+    "lift": 3.512
+  },
+  {
+    "antecedents": [
+      "tropical fruit",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "brown bread",
+      "other vegetables"
+    ],
+    "support": 0.0139,
+    "confidence": 0.2202,
+    "lift": 3.512
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0139,
+    "confidence": 0.4308,
+    "lift": 3.5071
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0139,
+    "confidence": 0.1133,
+    "lift": 3.5071
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0232,
+    "confidence": 0.4303,
+    "lift": 3.5025
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "support": 0.0232,
+    "confidence": 0.1892,
+    "lift": 3.5025
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage",
+      "yogurt"
+    ],
+    "support": 0.0157,
+    "confidence": 0.1279,
+    "lift": 3.5009
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0157,
+    "confidence": 0.4301,
+    "lift": 3.5009
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0286,
+    "confidence": 0.2328,
+    "lift": 3.4732
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0286,
+    "confidence": 0.4267,
+    "lift": 3.4732
+  },
+  {
+    "antecedents": [
+      "root vegetables",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "other vegetables",
+      "yogurt"
+    ],
+    "support": 0.0172,
+    "confidence": 0.4561,
+    "lift": 3.4642
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "yogurt"
+    ],
+    "consequents": [
+      "root vegetables",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0172,
+    "confidence": 0.1309,
+    "lift": 3.4642
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "support": 0.0115,
+    "confidence": 0.3158,
+    "lift": 3.4635
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.1261,
+    "lift": 3.4635
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "soda"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0221,
+    "confidence": 0.4251,
+    "lift": 3.4601
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "soda"
+    ],
+    "support": 0.0221,
+    "confidence": 0.1798,
+    "lift": 3.4601
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0384,
+    "confidence": 0.3129,
+    "lift": 3.4559
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0384,
+    "confidence": 0.4245,
+    "lift": 3.4559
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "support": 0.0172,
+    "confidence": 0.3125,
+    "lift": 3.4516
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "support": 0.0172,
+    "confidence": 0.1904,
+    "lift": 3.4516
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0243,
+    "confidence": 0.4222,
+    "lift": 3.437
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0243,
+    "confidence": 0.1975,
+    "lift": 3.437
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0116,
+    "confidence": 0.4213,
+    "lift": 3.4295
+  },
+  {
+    "antecedents": [
+      "butter",
+      "soda"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0221,
+    "confidence": 0.8278,
+    "lift": 3.4279
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "rolls/buns",
+      "sausage"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0156,
+    "confidence": 0.4207,
+    "lift": 3.4246
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "sausage"
+    ],
+    "support": 0.0156,
+    "confidence": 0.1268,
+    "lift": 3.4246
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0352,
+    "confidence": 0.8263,
+    "lift": 3.4221
+  },
+  {
+    "antecedents": [
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0352,
+    "confidence": 0.146,
+    "lift": 3.4221
+  },
+  {
+    "antecedents": [
+      "sausage",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "support": 0.0115,
+    "confidence": 0.1345,
+    "lift": 3.4094
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables",
+      "rolls/buns"
+    ],
+    "consequents": [
+      "sausage",
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2913,
+    "lift": 3.4094
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "consequents": [
+      "butter",
+      "whole milk"
+    ],
+    "support": 0.0243,
+    "confidence": 0.2661,
+    "lift": 3.405
+  },
+  {
+    "antecedents": [
+      "butter",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "support": 0.0243,
+    "confidence": 0.3105,
+    "lift": 3.405
+  },
+  {
+    "antecedents": [
+      "butter",
+      "other vegetables"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "support": 0.0156,
+    "confidence": 0.3104,
+    "lift": 3.4048
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "sausage"
+    ],
+    "consequents": [
+      "butter",
+      "other vegetables"
+    ],
+    "support": 0.0156,
+    "confidence": 0.1709,
+    "lift": 3.4048
+  },
+  {
+    "antecedents": [
+      "butter",
+      "soda",
+      "whole milk"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0158,
+    "confidence": 0.8212,
+    "lift": 3.4007
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "support": 0.0619,
+    "confidence": 0.5042,
+    "lift": 3.3947
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0619,
+    "confidence": 0.417,
+    "lift": 3.3947
+  },
+  {
+    "antecedents": [
+      "brown bread",
+      "other vegetables"
+    ],
+    "consequents": [
+      "tropical fruit",
+      "whole milk"
+    ],
+    "support": 0.0257,
+    "confidence": 0.4094,
+    "lift": 3.3923
+  },
+  {
+    "antecedents": [
+      "tropical fruit",
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread",
+      "other vegetables"
+    ],
+    "support": 0.0257,
+    "confidence": 0.2127,
+    "lift": 3.3923
+  },
+  {
+    "antecedents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "consequents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "support": 0.0152,
+    "confidence": 0.1871,
+    "lift": 3.3917
+  },
+  {
+    "antecedents": [
+      "other vegetables",
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns",
+      "whole milk",
+      "yogurt"
+    ],
+    "support": 0.0152,
+    "confidence": 0.2755,
+    "lift": 3.3917
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "other vegetables",
+      "rolls/buns",
+      "tropical fruit"
+    ],
+    "support": 0.0167,
+    "confidence": 0.1362,
+    "lift": 3.3853
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0958,
+    "confidence": 0.7796,
+    "lift": 3.2286
+  },
+  {
+    "antecedents": [
+      "rolls/buns"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0958,
+    "confidence": 0.3966,
+    "lift": 3.2286
+  },
+  {
+    "antecedents": [
+      "sausage"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0912,
+    "confidence": 0.6617,
+    "lift": 2.7403
+  },
+  {
+    "antecedents": [
+      "rolls/buns"
+    ],
+    "consequents": [
+      "sausage"
+    ],
+    "support": 0.0912,
+    "confidence": 0.3776,
+    "lift": 2.7403
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "sausage"
+    ],
+    "support": 0.0397,
+    "confidence": 0.3233,
+    "lift": 2.3463
+  },
+  {
+    "antecedents": [
+      "sausage"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0397,
+    "confidence": 0.2882,
+    "lift": 2.3463
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "domestic eggs"
+    ],
+    "support": 0.0129,
+    "confidence": 0.105,
+    "lift": 2.2403
+  },
+  {
+    "antecedents": [
+      "domestic eggs"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0129,
+    "confidence": 0.2752,
+    "lift": 2.2403
+  },
+  {
+    "antecedents": [
+      "tropical fruit"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.1443,
+    "confidence": 0.7449,
+    "lift": 2.1359
+  },
+  {
+    "antecedents": [
+      "other vegetables"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.1443,
+    "confidence": 0.4138,
+    "lift": 2.1359
+  },
+  {
+    "antecedents": [
+      "root vegetables"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.1296,
+    "confidence": 0.6798,
+    "lift": 1.9494
+  },
+  {
+    "antecedents": [
+      "other vegetables"
+    ],
+    "consequents": [
+      "root vegetables"
+    ],
+    "support": 0.1296,
+    "confidence": 0.3717,
+    "lift": 1.9494
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.023,
+    "confidence": 0.4036,
+    "lift": 1.6713
+  },
+  {
+    "antecedents": [
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.1863,
+    "confidence": 0.9281,
+    "lift": 1.6689
+  },
+  {
+    "antecedents": [
+      "whole milk"
+    ],
+    "consequents": [
+      "whipped/sour cream"
+    ],
+    "support": 0.1863,
+    "confidence": 0.335,
+    "lift": 1.6689
+  },
+  {
+    "antecedents": [
+      "brown bread"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.154,
+    "confidence": 0.9136,
+    "lift": 1.6429
+  },
+  {
+    "antecedents": [
+      "whole milk"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.154,
+    "confidence": 0.2769,
+    "lift": 1.6429
+  },
+  {
+    "antecedents": [
+      "tropical fruit"
+    ],
+    "consequents": [
+      "root vegetables"
+    ],
+    "support": 0.0586,
+    "confidence": 0.3026,
+    "lift": 1.587
+  },
+  {
+    "antecedents": [
+      "root vegetables"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.0586,
+    "confidence": 0.3074,
+    "lift": 1.587
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "sausage"
+    ],
+    "support": 0.0124,
+    "confidence": 0.2175,
+    "lift": 1.5785
+  },
+  {
+    "antecedents": [
+      "brown bread"
+    ],
+    "consequents": [
+      "whipped/sour cream"
+    ],
+    "support": 0.0531,
+    "confidence": 0.3152,
+    "lift": 1.5699
+  },
+  {
+    "antecedents": [
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0531,
+    "confidence": 0.2646,
+    "lift": 1.5699
+  },
+  {
+    "antecedents": [
+      "yogurt"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.2872,
+    "confidence": 0.8519,
+    "lift": 1.5318
+  },
+  {
+    "antecedents": [
+      "whole milk"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.2872,
+    "confidence": 0.5164,
+    "lift": 1.5318
+  },
+  {
+    "antecedents": [
+      "brown bread"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0819,
+    "confidence": 0.4856,
+    "lift": 1.4404
+  },
+  {
+    "antecedents": [
+      "yogurt"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0819,
+    "confidence": 0.2428,
+    "lift": 1.4404
+  },
+  {
+    "antecedents": [
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0972,
+    "confidence": 0.4841,
+    "lift": 1.436
+  },
+  {
+    "antecedents": [
+      "yogurt"
+    ],
+    "consequents": [
+      "whipped/sour cream"
+    ],
+    "support": 0.0972,
+    "confidence": 0.2883,
+    "lift": 1.436
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0153,
+    "confidence": 0.2299,
+    "lift": 1.3638
+  },
+  {
+    "antecedents": [
+      "domestic eggs"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0209,
+    "confidence": 0.4469,
+    "lift": 1.3255
+  },
+  {
+    "antecedents": [
+      "domestic eggs"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0147,
+    "confidence": 0.3134,
+    "lift": 1.2976
+  },
+  {
+    "antecedents": [
+      "white bread"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0137,
+    "confidence": 0.2399,
+    "lift": 1.2886
+  },
+  {
+    "antecedents": [
+      "specialty bar"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0117,
+    "confidence": 0.4488,
+    "lift": 1.2869
+  },
+  {
+    "antecedents": [
+      "chicken"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0143,
+    "confidence": 0.448,
+    "lift": 1.2846
+  },
+  {
+    "antecedents": [
+      "pastry"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.0161,
+    "confidence": 0.248,
+    "lift": 1.2804
+  },
+  {
+    "antecedents": [
+      "beef"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0143,
+    "confidence": 0.4291,
+    "lift": 1.2729
+  },
+  {
+    "antecedents": [
+      "pastry"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0153,
+    "confidence": 0.2362,
+    "lift": 1.2688
+  },
+  {
+    "antecedents": [
+      "brown bread"
+    ],
+    "consequents": [
+      "shopping bags"
+    ],
+    "support": 0.0174,
+    "confidence": 0.103,
+    "lift": 1.2509
+  },
+  {
+    "antecedents": [
+      "shopping bags"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0174,
+    "confidence": 0.2109,
+    "lift": 1.2509
+  },
+  {
+    "antecedents": [
+      "napkins"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0163,
+    "confidence": 0.6957,
+    "lift": 1.2509
+  },
+  {
+    "antecedents": [
+      "butter"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.0298,
+    "confidence": 0.2422,
+    "lift": 1.2503
+  },
+  {
+    "antecedents": [
+      "tropical fruit"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0298,
+    "confidence": 0.1536,
+    "lift": 1.2503
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0268,
+    "confidence": 0.3,
+    "lift": 1.2424
+  },
+  {
+    "antecedents": [
+      "rolls/buns"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0268,
+    "confidence": 0.1111,
+    "lift": 1.2424
+  },
+  {
+    "antecedents": [
+      "pork"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0123,
+    "confidence": 0.4324,
+    "lift": 1.24
+  },
+  {
+    "antecedents": [
+      "cheese"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0116,
+    "confidence": 0.6894,
+    "lift": 1.2396
+  },
+  {
+    "antecedents": [
+      "pastry"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0135,
+    "confidence": 0.2087,
+    "lift": 1.2379
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0531,
+    "confidence": 0.4293,
+    "lift": 1.231
+  },
+  {
+    "antecedents": [
+      "other vegetables"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.0531,
+    "confidence": 0.1523,
+    "lift": 1.231
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0369,
+    "confidence": 0.4129,
+    "lift": 1.2247
+  },
+  {
+    "antecedents": [
+      "yogurt"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0369,
+    "confidence": 0.1095,
+    "lift": 1.2247
+  },
+  {
+    "antecedents": [
+      "newspapers"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2059,
+    "lift": 1.2218
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0184,
+    "confidence": 0.2057,
+    "lift": 1.2204
+  },
+  {
+    "antecedents": [
+      "brown bread"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0184,
+    "confidence": 0.1091,
+    "lift": 1.2204
+  },
+  {
+    "antecedents": [
+      "beef"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0142,
+    "confidence": 0.4253,
+    "lift": 1.2195
+  },
+  {
+    "antecedents": [
+      "bottled beer"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0115,
+    "confidence": 0.2055,
+    "lift": 1.219
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.0157,
+    "confidence": 0.2356,
+    "lift": 1.2164
+  },
+  {
+    "antecedents": [
+      "shopping bags"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.0193,
+    "confidence": 0.2341,
+    "lift": 1.2085
+  },
+  {
+    "antecedents": [
+      "shopping bags"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0335,
+    "confidence": 0.4062,
+    "lift": 1.2049
+  },
+  {
+    "antecedents": [
+      "sausage"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.028,
+    "confidence": 0.203,
+    "lift": 1.2041
+  },
+  {
+    "antecedents": [
+      "coffee"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0153,
+    "confidence": 0.4196,
+    "lift": 1.2031
+  },
+  {
+    "antecedents": [
+      "berries"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0124,
+    "confidence": 0.669,
+    "lift": 1.2029
+  },
+  {
+    "antecedents": [
+      "newspapers"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0234,
+    "confidence": 0.4188,
+    "lift": 1.2008
+  },
+  {
+    "antecedents": [
+      "pip fruit"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0124,
+    "confidence": 0.2896,
+    "lift": 1.1991
+  },
+  {
+    "antecedents": [
+      "frozen vegetables"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0184,
+    "confidence": 0.6667,
+    "lift": 1.1988
+  },
+  {
+    "antecedents": [
+      "pip fruit"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0179,
+    "confidence": 0.4179,
+    "lift": 1.1983
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0181,
+    "confidence": 0.1465,
+    "lift": 1.1929
+  },
+  {
+    "antecedents": [
+      "citrus fruit"
+    ],
+    "consequents": [
+      "sausage"
+    ],
+    "support": 0.0147,
+    "confidence": 0.1643,
+    "lift": 1.1923
+  },
+  {
+    "antecedents": [
+      "sausage"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0147,
+    "confidence": 0.1066,
+    "lift": 1.1923
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0277,
+    "confidence": 0.4157,
+    "lift": 1.192
+  },
+  {
+    "antecedents": [
+      "pastry"
+    ],
+    "consequents": [
+      "whipped/sour cream"
+    ],
+    "support": 0.0155,
+    "confidence": 0.2382,
+    "lift": 1.1866
+  },
+  {
+    "antecedents": [
+      "sausage"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.0317,
+    "confidence": 0.2298,
+    "lift": 1.1865
+  },
+  {
+    "antecedents": [
+      "tropical fruit"
+    ],
+    "consequents": [
+      "sausage"
+    ],
+    "support": 0.0317,
+    "confidence": 0.1635,
+    "lift": 1.1865
+  },
+  {
+    "antecedents": [
+      "hygiene articles"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0128,
+    "confidence": 0.6579,
+    "lift": 1.183
+  },
+  {
+    "antecedents": [
+      "fruit/vegetable juice"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0123,
+    "confidence": 0.412,
+    "lift": 1.1814
+  },
+  {
+    "antecedents": [
+      "shopping bags"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.012,
+    "confidence": 0.1457,
+    "lift": 1.1778
+  },
+  {
+    "antecedents": [
+      "pastry"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0184,
+    "confidence": 0.2835,
+    "lift": 1.1739
+  },
+  {
+    "antecedents": [
+      "chips"
+    ],
+    "consequents": [
+      "whipped/sour cream"
+    ],
+    "support": 0.0157,
+    "confidence": 0.2356,
+    "lift": 1.1738
+  },
+  {
+    "antecedents": [
+      "domestic eggs"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0192,
+    "confidence": 0.4087,
+    "lift": 1.172
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0368,
+    "confidence": 0.1975,
+    "lift": 1.1719
+  },
+  {
+    "antecedents": [
+      "other vegetables"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0502,
+    "confidence": 0.1439,
+    "lift": 1.1714
+  },
+  {
+    "antecedents": [
+      "yogurt"
+    ],
+    "consequents": [
+      "sausage"
+    ],
+    "support": 0.0544,
+    "confidence": 0.1614,
+    "lift": 1.1711
+  },
+  {
+    "antecedents": [
+      "shopping bags"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0536,
+    "confidence": 0.6512,
+    "lift": 1.1709
+  },
+  {
+    "antecedents": [
+      "candy"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.014,
+    "confidence": 0.6509,
+    "lift": 1.1704
+  },
+  {
+    "antecedents": [
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0289,
+    "confidence": 0.1438,
+    "lift": 1.1703
+  },
+  {
+    "antecedents": [
+      "curd"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0156,
+    "confidence": 0.6489,
+    "lift": 1.1669
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0267,
+    "confidence": 0.1433,
+    "lift": 1.1669
+  },
+  {
+    "antecedents": [
+      "tropical fruit"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0381,
+    "confidence": 0.1964,
+    "lift": 1.1654
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0243,
+    "confidence": 0.1961,
+    "lift": 1.1633
+  },
+  {
+    "antecedents": [
+      "bottled water"
+    ],
+    "consequents": [
+      "sausage"
+    ],
+    "support": 0.0198,
+    "confidence": 0.16,
+    "lift": 1.1609
+  },
+  {
+    "antecedents": [
+      "rolls/buns"
+    ],
+    "consequents": [
+      "brown bread"
+    ],
+    "support": 0.0472,
+    "confidence": 0.1957,
+    "lift": 1.1608
+  },
+  {
+    "antecedents": [
+      "long life bakery product"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.012,
+    "confidence": 0.6438,
+    "lift": 1.1577
+  },
+  {
+    "antecedents": [
+      "newspapers"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.0125,
+    "confidence": 0.2243,
+    "lift": 1.1576
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.052,
+    "confidence": 0.2791,
+    "lift": 1.156
+  },
+  {
+    "antecedents": [
+      "rolls/buns"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.052,
+    "confidence": 0.2152,
+    "lift": 1.156
+  },
+  {
+    "antecedents": [
+      "root vegetables"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0197,
+    "confidence": 0.1031,
+    "lift": 1.1539
+  },
+  {
+    "antecedents": [
+      "beef"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0213,
+    "confidence": 0.6398,
+    "lift": 1.1505
+  },
+  {
+    "antecedents": [
+      "bottled beer"
+    ],
+    "consequents": [
+      "root vegetables"
+    ],
+    "support": 0.0123,
+    "confidence": 0.2192,
+    "lift": 1.1496
+  },
+  {
+    "antecedents": [
+      "bottled beer"
+    ],
+    "consequents": [
+      "whipped/sour cream"
+    ],
+    "support": 0.0129,
+    "confidence": 0.2306,
+    "lift": 1.1487
+  },
+  {
+    "antecedents": [
+      "other vegetables"
+    ],
+    "consequents": [
+      "sausage"
+    ],
+    "support": 0.0552,
+    "confidence": 0.1582,
+    "lift": 1.148
+  },
+  {
+    "antecedents": [
+      "soda"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.072,
+    "confidence": 0.3868,
+    "lift": 1.1475
+  },
+  {
+    "antecedents": [
+      "whole milk"
+    ],
+    "consequents": [
+      "butter"
+    ],
+    "support": 0.0782,
+    "confidence": 0.1405,
+    "lift": 1.1439
+  },
+  {
+    "antecedents": [
+      "bottled beer"
+    ],
+    "consequents": [
+      "tropical fruit"
+    ],
+    "support": 0.0124,
+    "confidence": 0.2215,
+    "lift": 1.1432
+  },
+  {
+    "antecedents": [
+      "margarine"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0133,
+    "confidence": 0.3852,
+    "lift": 1.1426
+  },
+  {
+    "antecedents": [
+      "chicken"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0123,
+    "confidence": 0.384,
+    "lift": 1.1391
+  },
+  {
+    "antecedents": [
+      "whipped/sour cream"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.0425,
+    "confidence": 0.2118,
+    "lift": 1.1378
+  },
+  {
+    "antecedents": [
+      "bottled beer"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0215,
+    "confidence": 0.3836,
+    "lift": 1.1378
+  },
+  {
+    "antecedents": [
+      "canned beer"
+    ],
+    "consequents": [
+      "rolls/buns"
+    ],
+    "support": 0.0121,
+    "confidence": 0.2746,
+    "lift": 1.137
+  },
+  {
+    "antecedents": [
+      "sugar"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0121,
+    "confidence": 0.3815,
+    "lift": 1.1317
+  },
+  {
+    "antecedents": [
+      "chicken"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.02,
+    "confidence": 0.628,
+    "lift": 1.1292
+  },
+  {
+    "antecedents": [
+      "newspapers"
+    ],
+    "consequents": [
+      "root vegetables"
+    ],
+    "support": 0.012,
+    "confidence": 0.2151,
+    "lift": 1.1282
+  },
+  {
+    "antecedents": [
+      "whole milk"
+    ],
+    "consequents": [
+      "citrus fruit"
+    ],
+    "support": 0.0561,
+    "confidence": 0.1008,
+    "lift": 1.1277
+  },
+  {
+    "antecedents": [
+      "root vegetables"
+    ],
+    "consequents": [
+      "soda"
+    ],
+    "support": 0.04,
+    "confidence": 0.2096,
+    "lift": 1.126
+  },
+  {
+    "antecedents": [
+      "root vegetables"
+    ],
+    "consequents": [
+      "bottled water"
+    ],
+    "support": 0.0266,
+    "confidence": 0.1393,
+    "lift": 1.1259
+  },
+  {
+    "antecedents": [
+      "pork"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0176,
+    "confidence": 0.6216,
+    "lift": 1.1178
+  },
+  {
+    "antecedents": [
+      "pip fruit"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0266,
+    "confidence": 0.6209,
+    "lift": 1.1165
+  },
+  {
+    "antecedents": [
+      "specialty bar"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0162,
+    "confidence": 0.6195,
+    "lift": 1.114
+  },
+  {
+    "antecedents": [
+      "canned beer"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0171,
+    "confidence": 0.3873,
+    "lift": 1.1105
+  },
+  {
+    "antecedents": [
+      "coffee"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0225,
+    "confidence": 0.6154,
+    "lift": 1.1066
+  },
+  {
+    "antecedents": [
+      "newspapers"
+    ],
+    "consequents": [
+      "whipped/sour cream"
+    ],
+    "support": 0.0123,
+    "confidence": 0.2197,
+    "lift": 1.0943
+  },
+  {
+    "antecedents": [
+      "margarine"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0132,
+    "confidence": 0.3815,
+    "lift": 1.0939
+  },
+  {
+    "antecedents": [
+      "sugar"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0193,
+    "confidence": 0.6064,
+    "lift": 1.0905
+  },
+  {
+    "antecedents": [
+      "margarine"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0207,
+    "confidence": 0.6,
+    "lift": 1.0789
+  },
+  {
+    "antecedents": [
+      "waffles"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0115,
+    "confidence": 0.596,
+    "lift": 1.0718
+  },
+  {
+    "antecedents": [
+      "tea"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0128,
+    "confidence": 0.5952,
+    "lift": 1.0703
+  },
+  {
+    "antecedents": [
+      "canned beer"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.0261,
+    "confidence": 0.5896,
+    "lift": 1.0602
+  },
+  {
+    "antecedents": [
+      "canned beer"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0155,
+    "confidence": 0.3497,
+    "lift": 1.0373
+  },
+  {
+    "antecedents": [
+      "coffee"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0128,
+    "confidence": 0.3497,
+    "lift": 1.0372
+  },
+  {
+    "antecedents": [
+      "sugar"
+    ],
+    "consequents": [
+      "other vegetables"
+    ],
+    "support": 0.0115,
+    "confidence": 0.3614,
+    "lift": 1.0364
+  },
+  {
+    "antecedents": [
+      "fruit/vegetable juice"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.017,
+    "confidence": 0.5708,
+    "lift": 1.0264
+  },
+  {
+    "antecedents": [
+      "cream cheese"
+    ],
+    "consequents": [
+      "whole milk"
+    ],
+    "support": 0.014,
+    "confidence": 0.5612,
+    "lift": 1.0092
+  },
+  {
+    "antecedents": [
+      "pip fruit"
+    ],
+    "consequents": [
+      "yogurt"
+    ],
+    "support": 0.0144,
+    "confidence": 0.3373,
+    "lift": 1.0006
+  }
+]

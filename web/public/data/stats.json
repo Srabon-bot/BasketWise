@@ -1,0 +1,251 @@
+{
+  "total_transactions": 7831,
+  "total_items": 158,
+  "total_members": 2482,
+  "date_range": {
+    "start": "2014-01-01",
+    "end": "2015-12-31"
+  },
+  "top_items": [
+    {
+      "item": "whole milk",
+      "count": 4355
+    },
+    {
+      "item": "other vegetables",
+      "count": 2732
+    },
+    {
+      "item": "yogurt",
+      "count": 2640
+    },
+    {
+      "item": "rolls/buns",
+      "count": 1891
+    },
+    {
+      "item": "whipped/sour cream",
+      "count": 1572
+    },
+    {
+      "item": "tropical fruit",
+      "count": 1517
+    },
+    {
+      "item": "root vegetables",
+      "count": 1493
+    },
+    {
+      "item": "soda",
+      "count": 1458
+    },
+    {
+      "item": "brown bread",
+      "count": 1320
+    },
+    {
+      "item": "sausage",
+      "count": 1079
+    },
+    {
+      "item": "bottled water",
+      "count": 969
+    },
+    {
+      "item": "butter",
+      "count": 962
+    },
+    {
+      "item": "citrus fruit",
+      "count": 700
+    },
+    {
+      "item": "shopping bags",
+      "count": 645
+    },
+    {
+      "item": "chips",
+      "count": 522
+    }
+  ],
+  "monthly_counts": [
+    {
+      "month": "2014-01",
+      "count": 1529
+    },
+    {
+      "month": "2014-02",
+      "count": 1562
+    },
+    {
+      "month": "2014-03",
+      "count": 1607
+    },
+    {
+      "month": "2014-04",
+      "count": 1634
+    },
+    {
+      "month": "2014-05",
+      "count": 1478
+    },
+    {
+      "month": "2014-06",
+      "count": 1517
+    },
+    {
+      "month": "2014-07",
+      "count": 1649
+    },
+    {
+      "month": "2014-08",
+      "count": 1609
+    },
+    {
+      "month": "2014-09",
+      "count": 1536
+    },
+    {
+      "month": "2014-10",
+      "count": 1786
+    },
+    {
+      "month": "2014-11",
+      "count": 1550
+    },
+    {
+      "month": "2014-12",
+      "count": 1624
+    },
+    {
+      "month": "2015-01",
+      "count": 1661
+    },
+    {
+      "month": "2015-02",
+      "count": 1447
+    },
+    {
+      "month": "2015-03",
+      "count": 1645
+    },
+    {
+      "month": "2015-04",
+      "count": 1651
+    },
+    {
+      "month": "2015-05",
+      "count": 1661
+    },
+    {
+      "month": "2015-06",
+      "count": 1392
+    },
+    {
+      "month": "2015-07",
+      "count": 1645
+    },
+    {
+      "month": "2015-08",
+      "count": 1523
+    },
+    {
+      "month": "2015-09",
+      "count": 1523
+    },
+    {
+      "month": "2015-10",
+      "count": 1601
+    },
+    {
+      "month": "2015-11",
+      "count": 1439
+    },
+    {
+      "month": "2015-12",
+      "count": 1568
+    }
+  ],
+  "basket_size_distribution": [
+    {
+      "size": 1,
+      "count": 868
+    },
+    {
+      "size": 2,
+      "count": 1109
+    },
+    {
+      "size": 3,
+      "count": 1095
+    },
+    {
+      "size": 4,
+      "count": 991
+    },
+    {
+      "size": 5,
+      "count": 961
+    },
+    {
+      "size": 6,
+      "count": 715
+    },
+    {
+      "size": 7,
+      "count": 587
+    },
+    {
+      "size": 8,
+      "count": 489
+    },
+    {
+      "size": 9,
+      "count": 404
+    },
+    {
+      "size": 10,
+      "count": 250
+    },
+    {
+      "size": 11,
+      "count": 193
+    },
+    {
+      "size": 12,
+      "count": 102
+    },
+    {
+      "size": 13,
+      "count": 44
+    },
+    {
+      "size": 14,
+      "count": 16
+    },
+    {
+      "size": 15,
+      "count": 6
+    },
+    {
+      "size": 16,
+      "count": 1
+    }
+  ],
+  "algorithm_comparison": {
+    "apriori": {
+      "itemsets": 612,
+      "runtime_sec": 0.1283
+    },
+    "fpgrowth": {
+      "itemsets": 612,
+      "runtime_sec": 6.5903
+    },
+    "identical_results": true
+  },
+  "parameters": {
+    "min_support": 0.0112,
+    "min_confidence": 0.1
+  },
+  "data_source": "synthetic"
+}
