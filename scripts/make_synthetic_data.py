@@ -99,7 +99,8 @@ PLANTED_PAIRS = [
 # A few extra items that only appear as partners, plus some pantry basics.
 EXTRA_ITEMS = ["chips", "tomato sauce", "biscuits"]
 
-ITEMS = sorted(set(ITEMS + EXTRA_ITEMS))
+# Preserve the hand-written popularity order (most common staples first); do not sort.
+ITEMS = list(dict.fromkeys(ITEMS + EXTRA_ITEMS))
 
 
 def make_weights(n_items: int) -> np.ndarray:
@@ -195,6 +196,10 @@ def main() -> None:
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(out_path, index=False)
+
+    # Sidecar marker so the notebook and the website can label this run as demo data.
+    # When the real Kaggle CSV is dropped in, delete data/DATA_SOURCE.txt.
+    (out_path.parent / "DATA_SOURCE.txt").write_text("synthetic\n", encoding="utf-8")
 
     print(f"Wrote {len(df):,} rows x {df.shape[1]} columns to {out_path}")
     print(f"Distinct raw item strings: {df['itemDescription'].nunique():,}")

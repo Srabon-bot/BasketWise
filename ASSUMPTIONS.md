@@ -11,8 +11,9 @@ It grows as the project is built.
    parsed with `dayfirst=True`.
 3. **Missing file fallback.** If `data/Groceries_dataset.csv` is absent, the notebook runs
    `scripts/make_synthetic_data.py` to create a realistic synthetic replacement (seed 42).
-   Synthetic use is flagged loudly in the notebook and in `stats.json` (`data_source`), and the
-   website shows a "Demo data" banner.
+   The generator writes `data/DATA_SOURCE.txt`; while that file exists, the notebook and
+   `stats.json` report `data_source = "synthetic"` and the website shows a "Demo data" banner.
+   Delete the marker after replacing the CSV with the real Kaggle file.
 4. **Basket definition.** One basket = one `Member_number` + one `Date`. Repeated rows of the
    same item inside a basket are collapsed to a single item (a set), because buying the same
    item twice is not a new association.
