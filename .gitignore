@@ -18,6 +18,9 @@ pnpm-debug.log*
 # Build artifacts
 export.zip
 
+# Design tooling scratch
+.hallmark/
+
 # OS / editor
 .DS_Store
 Thumbs.db
