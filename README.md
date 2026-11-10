@@ -146,7 +146,7 @@ requests `/data/*.json` by absolute path. The simplest free deployment is Vercel
 | File | Used by | Contents |
 | --- | --- | --- |
 | `stats.json` | home, insights, methodology | counts, top items, monthly series, basket sizes, Apriori/FP-Growth timing, parameters, data-source flag |
-| `rules.json` | rules, recommender basket mode | 500 rules (antecedents, consequents, support, confidence, lift), sorted by lift |
+| `rules.json` | rules, recommender basket mode | 500 rules (antecedents, consequents, support, confidence, lift), sorted by lift, with each recommendable item's five best item-to-item rules guaranteed |
 | `recommendations.json` | recommender item mode | each item mapped to its five best single-item follow-ups |
 | `items.json` | recommender search | the 43 items that have recommendations, ordered by purchase count |
 
