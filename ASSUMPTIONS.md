@@ -42,12 +42,18 @@ It grows as the project is built.
     item and whose consequent is one product. That keeps the website's explanation ("x% of
     baskets with this item also had that item") literally true. Multi-item antecedents are left
     to basket mode, which requires the whole antecedent to be in the basket.
-11. **Numbers.** Every exported float is rounded to 4 decimals; `frozenset`s become sorted lists;
+12. **Numbers.** Every exported float is rounded to 4 decimals; `frozenset`s become sorted lists;
     no `NaN` or `Infinity` is allowed.
+13. **Notebook length.** 32 code cells and 29 markdown cells (61 total), a little above the PRD's
+    "about 40 to 50". The extra cells are short section headings and explanations; every code
+    cell still performs one small action, which was kept ahead of hitting an exact cell count.
 
-## Website (planned)
+## Website
 
-12. **Next.js**, App Router, TypeScript, Tailwind CSS and Recharts only, exported fully static
+14. **Next.js**, App Router, TypeScript, Tailwind CSS and Recharts only, exported fully static
     (`output: 'export'`). All data is fetched client-side from `/data/*.json`.
-13. **Notebook link.** A single `NOTEBOOK_URL` constant defaults to the notebook in the GitHub
+15. **Notebook link.** A single `NOTEBOOK_URL` constant defaults to the notebook in the GitHub
     repository.
+16. **Link prefetching.** Internal links set `prefetch={false}`. In a static export Next requests
+    RSC payloads at dot-named paths that plain static hosts (GitHub Pages, `python -m http.server`)
+    answer with 404; disabling prefetch keeps navigation client-side and the console clean.
