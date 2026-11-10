@@ -1,0 +1,958 @@
+{
+  "beef": [
+    {
+      "item": "yogurt",
+      "confidence": 0.5749,
+      "lift": 1.7052,
+      "support": 0.0123
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.8571,
+      "lift": 1.5413,
+      "support": 0.0123
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.4253,
+      "lift": 1.2195,
+      "support": 0.0142
+    }
+  ],
+  "berries": [
+    {
+      "item": "whole milk",
+      "confidence": 0.669,
+      "lift": 1.2029,
+      "support": 0.0124
+    }
+  ],
+  "bottled beer": [
+    {
+      "item": "whipped/sour cream",
+      "confidence": 0.3467,
+      "lift": 1.7272,
+      "support": 0.0121
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.9406,
+      "lift": 1.6913,
+      "support": 0.0121
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.5255,
+      "lift": 1.5589,
+      "support": 0.0184
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.4562,
+      "lift": 1.3081,
+      "support": 0.016
+    },
+    {
+      "item": "brown bread",
+      "confidence": 0.2055,
+      "lift": 1.219,
+      "support": 0.0115
+    }
+  ],
+  "bottled water": [
+    {
+      "item": "citrus fruit",
+      "confidence": 0.3994,
+      "lift": 4.4676,
+      "support": 0.0157
+    },
+    {
+      "item": "butter",
+      "confidence": 0.4328,
+      "lift": 3.5234,
+      "support": 0.0148
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.8169,
+      "lift": 3.3829,
+      "support": 0.0148
+    },
+    {
+      "item": "sausage",
+      "confidence": 0.3769,
+      "lift": 2.7352,
+      "support": 0.0129
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.8301,
+      "lift": 2.3803,
+      "support": 0.0218
+    }
+  ],
+  "brown bread": [
+    {
+      "item": "chips",
+      "confidence": 0.4115,
+      "lift": 6.1739,
+      "support": 0.0137
+    },
+    {
+      "item": "soda",
+      "confidence": 0.975,
+      "lift": 5.2368,
+      "support": 0.0149
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.8608,
+      "lift": 3.5646,
+      "support": 0.0174
+    },
+    {
+      "item": "butter",
+      "confidence": 0.3973,
+      "lift": 3.2341,
+      "support": 0.0188
+    },
+    {
+      "item": "sausage",
+      "confidence": 0.3865,
+      "lift": 2.805,
+      "support": 0.0183
+    }
+  ],
+  "buns": [
+    {
+      "item": "whole milk",
+      "confidence": 0.5476,
+      "lift": 0.9847,
+      "support": 0.0117
+    }
+  ],
+  "butter": [
+    {
+      "item": "white bread",
+      "confidence": 0.2818,
+      "lift": 4.9487,
+      "support": 0.0133
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.9762,
+      "lift": 4.0426,
+      "support": 0.0157
+    },
+    {
+      "item": "sausage",
+      "confidence": 0.4086,
+      "lift": 2.9657,
+      "support": 0.0157
+    },
+    {
+      "item": "domestic eggs",
+      "confidence": 0.105,
+      "lift": 2.2403,
+      "support": 0.0129
+    },
+    {
+      "item": "tropical fruit",
+      "confidence": 0.4275,
+      "lift": 2.2067,
+      "support": 0.0215
+    }
+  ],
+  "candy": [
+    {
+      "item": "whole milk",
+      "confidence": 0.6509,
+      "lift": 1.1704,
+      "support": 0.014
+    }
+  ],
+  "canned beer": [
+    {
+      "item": "whole milk",
+      "confidence": 0.876,
+      "lift": 1.5753,
+      "support": 0.0135
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.5196,
+      "lift": 1.5413,
+      "support": 0.0135
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.2746,
+      "lift": 1.137,
+      "support": 0.0121
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.3873,
+      "lift": 1.1105,
+      "support": 0.0171
+    }
+  ],
+  "cheese": [
+    {
+      "item": "whole milk",
+      "confidence": 0.6894,
+      "lift": 1.2396,
+      "support": 0.0116
+    }
+  ],
+  "chicken": [
+    {
+      "item": "spices",
+      "confidence": 0.36,
+      "lift": 23.1079,
+      "support": 0.0115
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.448,
+      "lift": 1.2846,
+      "support": 0.0143
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.384,
+      "lift": 1.1391,
+      "support": 0.0123
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.628,
+      "lift": 1.1292,
+      "support": 0.02
+    }
+  ],
+  "chips": [
+    {
+      "item": "soda",
+      "confidence": 0.9894,
+      "lift": 5.3139,
+      "support": 0.0119
+    },
+    {
+      "item": "tropical fruit",
+      "confidence": 0.4286,
+      "lift": 2.2124,
+      "support": 0.0119
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.7561,
+      "lift": 2.1681,
+      "support": 0.0119
+    },
+    {
+      "item": "brown bread",
+      "confidence": 0.3313,
+      "lift": 1.9653,
+      "support": 0.0137
+    },
+    {
+      "item": "whipped/sour cream",
+      "confidence": 0.356,
+      "lift": 1.7736,
+      "support": 0.0147
+    }
+  ],
+  "citrus fruit": [
+    {
+      "item": "bottled water",
+      "confidence": 0.5415,
+      "lift": 4.3763,
+      "support": 0.0192
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.8163,
+      "lift": 2.3408,
+      "support": 0.0153
+    },
+    {
+      "item": "tropical fruit",
+      "confidence": 0.4332,
+      "lift": 2.2363,
+      "support": 0.0153
+    },
+    {
+      "item": "root vegetables",
+      "confidence": 0.3791,
+      "lift": 1.9882,
+      "support": 0.0134
+    },
+    {
+      "item": "brown bread",
+      "confidence": 0.3098,
+      "lift": 1.8379,
+      "support": 0.0174
+    }
+  ],
+  "coffee": [
+    {
+      "item": "sugar",
+      "confidence": 0.4406,
+      "lift": 13.8555,
+      "support": 0.0161
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.89,
+      "lift": 1.6004,
+      "support": 0.0114
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.5057,
+      "lift": 1.5,
+      "support": 0.0114
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.4196,
+      "lift": 1.2031,
+      "support": 0.0153
+    }
+  ],
+  "cream cheese": [
+    {
+      "item": "whole milk",
+      "confidence": 0.5612,
+      "lift": 1.0092,
+      "support": 0.014
+    }
+  ],
+  "curd": [
+    {
+      "item": "whole milk",
+      "confidence": 0.6489,
+      "lift": 1.1669,
+      "support": 0.0156
+    }
+  ],
+  "domestic eggs": [
+    {
+      "item": "white bread",
+      "confidence": 0.4267,
+      "lift": 7.4925,
+      "support": 0.0126
+    },
+    {
+      "item": "butter",
+      "confidence": 0.2752,
+      "lift": 2.2403,
+      "support": 0.0129
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.625,
+      "lift": 1.8539,
+      "support": 0.0185
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.8841,
+      "lift": 1.5898,
+      "support": 0.0185
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.4698,
+      "lift": 1.3472,
+      "support": 0.0139
+    }
+  ],
+  "frozen vegetables": [
+    {
+      "item": "whole milk",
+      "confidence": 0.6667,
+      "lift": 1.1988,
+      "support": 0.0184
+    }
+  ],
+  "fruit/vegetable juice": [
+    {
+      "item": "other vegetables",
+      "confidence": 0.412,
+      "lift": 1.1814,
+      "support": 0.0123
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.5708,
+      "lift": 1.0264,
+      "support": 0.017
+    }
+  ],
+  "hygiene articles": [
+    {
+      "item": "whole milk",
+      "confidence": 0.6579,
+      "lift": 1.183,
+      "support": 0.0128
+    }
+  ],
+  "long life bakery product": [
+    {
+      "item": "whole milk",
+      "confidence": 0.6438,
+      "lift": 1.1577,
+      "support": 0.012
+    }
+  ],
+  "margarine": [
+    {
+      "item": "yogurt",
+      "confidence": 0.5556,
+      "lift": 1.6479,
+      "support": 0.0115
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.8654,
+      "lift": 1.5561,
+      "support": 0.0115
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.3815,
+      "lift": 1.0939,
+      "support": 0.0132
+    }
+  ],
+  "napkins": [
+    {
+      "item": "whole milk",
+      "confidence": 0.6957,
+      "lift": 1.2509,
+      "support": 0.0163
+    }
+  ],
+  "newspapers": [
+    {
+      "item": "whipped/sour cream",
+      "confidence": 0.345,
+      "lift": 1.7184,
+      "support": 0.0114
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.9271,
+      "lift": 1.667,
+      "support": 0.0114
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.5078,
+      "lift": 1.5061,
+      "support": 0.0167
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.4457,
+      "lift": 1.2781,
+      "support": 0.0147
+    },
+    {
+      "item": "brown bread",
+      "confidence": 0.2059,
+      "lift": 1.2218,
+      "support": 0.0115
+    }
+  ],
+  "other vegetables": [
+    {
+      "item": "chips",
+      "confidence": 0.3811,
+      "lift": 5.7179,
+      "support": 0.0119
+    },
+    {
+      "item": "soda",
+      "confidence": 0.9894,
+      "lift": 5.3139,
+      "support": 0.0119
+    },
+    {
+      "item": "bottled water",
+      "confidence": 0.5415,
+      "lift": 4.3763,
+      "support": 0.0192
+    },
+    {
+      "item": "citrus fruit",
+      "confidence": 0.3606,
+      "lift": 4.0338,
+      "support": 0.0192
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.9457,
+      "lift": 3.9165,
+      "support": 0.0156
+    }
+  ],
+  "pastry": [
+    {
+      "item": "tropical fruit",
+      "confidence": 0.4417,
+      "lift": 2.2804,
+      "support": 0.0116
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.7222,
+      "lift": 2.0709,
+      "support": 0.0116
+    },
+    {
+      "item": "whipped/sour cream",
+      "confidence": 0.3642,
+      "lift": 1.8144,
+      "support": 0.0146
+    },
+    {
+      "item": "brown bread",
+      "confidence": 0.3035,
+      "lift": 1.8006,
+      "support": 0.0121
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.9421,
+      "lift": 1.6941,
+      "support": 0.0146
+    }
+  ],
+  "pip fruit": [
+    {
+      "item": "whole milk",
+      "confidence": 0.9115,
+      "lift": 1.639,
+      "support": 0.0132
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.4952,
+      "lift": 1.4689,
+      "support": 0.0132
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.4663,
+      "lift": 1.3372,
+      "support": 0.0124
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.2896,
+      "lift": 1.1991,
+      "support": 0.0124
+    }
+  ],
+  "pork": [
+    {
+      "item": "other vegetables",
+      "confidence": 0.4324,
+      "lift": 1.24,
+      "support": 0.0123
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.6216,
+      "lift": 1.1178,
+      "support": 0.0176
+    }
+  ],
+  "rolls/buns": [
+    {
+      "item": "butter",
+      "confidence": 0.75,
+      "lift": 6.1052,
+      "support": 0.0172
+    },
+    {
+      "item": "chips",
+      "confidence": 0.3451,
+      "lift": 5.1767,
+      "support": 0.0125
+    },
+    {
+      "item": "soda",
+      "confidence": 0.931,
+      "lift": 5.0006,
+      "support": 0.0172
+    },
+    {
+      "item": "citrus fruit",
+      "confidence": 0.3806,
+      "lift": 4.2578,
+      "support": 0.013
+    },
+    {
+      "item": "bottled water",
+      "confidence": 0.4857,
+      "lift": 3.9253,
+      "support": 0.013
+    }
+  ],
+  "root vegetables": [
+    {
+      "item": "chips",
+      "confidence": 0.3482,
+      "lift": 5.2243,
+      "support": 0.0139
+    },
+    {
+      "item": "soda",
+      "confidence": 0.9646,
+      "lift": 5.1809,
+      "support": 0.0139
+    },
+    {
+      "item": "butter",
+      "confidence": 0.4427,
+      "lift": 3.6041,
+      "support": 0.0148
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.7892,
+      "lift": 3.2683,
+      "support": 0.0206
+    },
+    {
+      "item": "sausage",
+      "confidence": 0.382,
+      "lift": 2.7726,
+      "support": 0.013
+    }
+  ],
+  "sausage": [
+    {
+      "item": "rolls/buns",
+      "confidence": 0.9762,
+      "lift": 4.0426,
+      "support": 0.0157
+    },
+    {
+      "item": "butter",
+      "confidence": 0.4348,
+      "lift": 3.5393,
+      "support": 0.0115
+    },
+    {
+      "item": "tropical fruit",
+      "confidence": 0.4745,
+      "lift": 2.4494,
+      "support": 0.0119
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.8087,
+      "lift": 2.3189,
+      "support": 0.0119
+    },
+    {
+      "item": "root vegetables",
+      "confidence": 0.3588,
+      "lift": 1.8819,
+      "support": 0.0198
+    }
+  ],
+  "shopping bags": [
+    {
+      "item": "tropical fruit",
+      "confidence": 0.4303,
+      "lift": 2.2212,
+      "support": 0.0138
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.7152,
+      "lift": 2.0509,
+      "support": 0.0138
+    },
+    {
+      "item": "root vegetables",
+      "confidence": 0.3506,
+      "lift": 1.8389,
+      "support": 0.0112
+    },
+    {
+      "item": "brown bread",
+      "confidence": 0.3,
+      "lift": 1.7798,
+      "support": 0.0161
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.953,
+      "lift": 1.7137,
+      "support": 0.0181
+    }
+  ],
+  "soda": [
+    {
+      "item": "chips",
+      "confidence": 0.4115,
+      "lift": 6.1739,
+      "support": 0.0137
+    },
+    {
+      "item": "butter",
+      "confidence": 0.4366,
+      "lift": 3.5542,
+      "support": 0.0158
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.8278,
+      "lift": 3.4279,
+      "support": 0.0221
+    },
+    {
+      "item": "sausage",
+      "confidence": 0.3803,
+      "lift": 2.7599,
+      "support": 0.0138
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.7619,
+      "lift": 2.1847,
+      "support": 0.0306
+    }
+  ],
+  "specialty bar": [
+    {
+      "item": "other vegetables",
+      "confidence": 0.4488,
+      "lift": 1.2869,
+      "support": 0.0117
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.6195,
+      "lift": 1.114,
+      "support": 0.0162
+    }
+  ],
+  "spices": [
+    {
+      "item": "chicken",
+      "confidence": 0.7377,
+      "lift": 23.1079,
+      "support": 0.0115
+    }
+  ],
+  "sugar": [
+    {
+      "item": "coffee",
+      "confidence": 0.506,
+      "lift": 13.8555,
+      "support": 0.0161
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.3815,
+      "lift": 1.1317,
+      "support": 0.0121
+    },
+    {
+      "item": "whole milk",
+      "confidence": 0.6064,
+      "lift": 1.0905,
+      "support": 0.0193
+    },
+    {
+      "item": "other vegetables",
+      "confidence": 0.3614,
+      "lift": 1.0364,
+      "support": 0.0115
+    }
+  ],
+  "tea": [
+    {
+      "item": "whole milk",
+      "confidence": 0.5952,
+      "lift": 1.0703,
+      "support": 0.0128
+    }
+  ],
+  "tropical fruit": [
+    {
+      "item": "chips",
+      "confidence": 0.3929,
+      "lift": 5.8936,
+      "support": 0.0112
+    },
+    {
+      "item": "soda",
+      "confidence": 0.9512,
+      "lift": 5.1091,
+      "support": 0.0149
+    },
+    {
+      "item": "butter",
+      "confidence": 0.4377,
+      "lift": 3.5631,
+      "support": 0.0166
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.7811,
+      "lift": 3.2348,
+      "support": 0.0232
+    },
+    {
+      "item": "sausage",
+      "confidence": 0.4222,
+      "lift": 3.0643,
+      "support": 0.017
+    }
+  ],
+  "waffles": [
+    {
+      "item": "whole milk",
+      "confidence": 0.596,
+      "lift": 1.0718,
+      "support": 0.0115
+    }
+  ],
+  "whipped/sour cream": [
+    {
+      "item": "chips",
+      "confidence": 0.3651,
+      "lift": 5.4769,
+      "support": 0.0147
+    },
+    {
+      "item": "soda",
+      "confidence": 0.9664,
+      "lift": 5.1905,
+      "support": 0.0147
+    },
+    {
+      "item": "butter",
+      "confidence": 0.4378,
+      "lift": 3.5637,
+      "support": 0.0121
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.7805,
+      "lift": 3.2322,
+      "support": 0.0123
+    },
+    {
+      "item": "sausage",
+      "confidence": 0.3781,
+      "lift": 2.7442,
+      "support": 0.0194
+    }
+  ],
+  "white bread": [
+    {
+      "item": "domestic eggs",
+      "confidence": 0.3536,
+      "lift": 7.5445,
+      "support": 0.0126
+    },
+    {
+      "item": "butter",
+      "confidence": 0.75,
+      "lift": 6.1052,
+      "support": 0.0172
+    },
+    {
+      "item": "rolls/buns",
+      "confidence": 0.572,
+      "lift": 2.3689,
+      "support": 0.0172
+    },
+    {
+      "item": "yogurt",
+      "confidence": 0.6081,
+      "lift": 1.8038,
+      "support": 0.0115
+    },
+    {
+      "item": "whipped/sour cream",
+      "confidence": 0.3536,
+      "lift": 1.7613,
+      "support": 0.0126
+    }
+  ],
+  "whole milk": [
+    {
+      "item": "domestic eggs",
+      "confidence": 0.3536,
+      "lift": 7.5445,
+      "support": 0.0126
+    },
+    {
+      "item": "white bread",
+      "confidence": 0.4267,
+      "lift": 7.4925,
+      "support": 0.0126
+    },
+    {
+      "item": "chips",
+      "confidence": 0.4115,
+      "lift": 6.1739,
+      "support": 0.0137
+    },
+    {
+      "item": "soda",
+      "confidence": 0.974,
+      "lift": 5.2315,
+      "support": 0.0192
+    },
+    {
+      "item": "butter",
+      "confidence": 0.5521,
+      "lift": 4.4947,
+      "support": 0.0115
+    }
+  ],
+  "yogurt": [
+    {
+      "item": "chips",
+      "confidence": 0.3811,
+      "lift": 5.7179,
+      "support": 0.0119
+    },
+    {
+      "item": "soda",
+      "confidence": 0.9894,
+      "lift": 5.3139,
+      "support": 0.0119
+    },
+    {
+      "item": "white bread",
+      "confidence": 0.2818,
+      "lift": 4.9487,
+      "support": 0.0133
+    },
+    {
+      "item": "butter",
+      "confidence": 0.5521,
+      "lift": 4.4947,
+      "support": 0.0115
+    },
+    {
+      "item": "citrus fruit",
+      "confidence": 0.3994,
+      "lift": 4.4676,
+      "support": 0.0157
+    }
+  ]
+}
