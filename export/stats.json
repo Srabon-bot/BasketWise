@@ -235,11 +235,11 @@
   "algorithm_comparison": {
     "apriori": {
       "itemsets": 612,
-      "runtime_sec": 0.1603
+      "runtime_sec": 0.1283
     },
     "fpgrowth": {
       "itemsets": 612,
-      "runtime_sec": 9.1268
+      "runtime_sec": 6.5903
     },
     "identical_results": true
   },

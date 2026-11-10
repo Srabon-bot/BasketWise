@@ -486,8 +486,11 @@ display(frequent_itemsets["length"].value_counts().sort_index().to_frame("itemse
 
 md("""
 **What to notice:** both implementations return exactly the same sets, which is expected because
-they solve the same problem. FP-Growth avoids candidate generation, so it is often faster on
-large data; on this small dataset the difference is only a few tenths of a second.
+they solve the same problem. On this dataset FP-Growth is actually the slower of the two: its
+FP-tree construction and per-itemset Python overhead outweigh the saved candidate generation at
+this size, where Apriori has only 158 items to count. The textbook advantage of FP-Growth shows
+up on much larger, denser transaction databases, not on a few thousand small baskets. The measured
+numbers are exported as they are rather than smoothed to fit the usual story.
 """)
 
 code(r"""
@@ -582,8 +585,10 @@ else:
 
 md("""
 The tuning table shows the usual trade-off: lowering support finds more itemsets and more rules,
-but they become weaker and noisier; raising support keeps only very common patterns. The default
-`0.005` sits in a readable middle ground, so the safety net leaves it unchanged.
+but they become weaker and noisier; raising support keeps only very common patterns. At the
+textbook default `0.005` this dataset produced more than 5,000 rules — unreadable for a rule
+explorer — so the safety net stepped support up through `0.0075` to `0.0112`, where 612 itemsets
+remain and the rule set is small enough to inspect. The chosen value is reported in `stats.json`.
 """)
 
 # ---------------------------------------------------------------- Part 6 ----
@@ -666,8 +671,10 @@ Two functions turn rules into recommendations:
 - `recommend_for_basket(items)` — combine rules whose whole antecedent is inside the basket.
 
 Both rank candidates by lift first, then confidence. Items already in the basket are excluded.
-Recommendations use **single-item consequents**, so every card names exactly one product; the
-rules explorer can still show multi-item rules.
+Recommendations use rules whose **antecedent is exactly the chosen item** and whose consequent is
+a single product, so the plain-language explanation always matches the rule it came from. The
+rules explorer can still show multi-item rules, and basket mode uses every rule whose whole
+antecedent fits inside the basket.
 """)
 
 code(r"""
@@ -675,7 +682,7 @@ def recommend(item, top_n=5):
     '''Recommend items often bought with `item`, ranked by lift then confidence.'''
     item = str(item).strip().lower()
     matches = rules[
-        rules["antecedents"].apply(lambda ant: item in ant)
+        rules["antecedents"].apply(lambda ant: set(ant) == {item})
         & (rules["consequents"].apply(len) == 1)   # keep one product per card
     ].copy()
 
@@ -786,7 +793,7 @@ The website never runs Python. It only reads four JSON files written here:
 
 | File | Contents |
 |---|---|
-| `rules.json` | rules with lift > 1, top 500 by lift |
+| `rules.json` | the 500 strongest rules, with the best five per antecedent guaranteed |
 | `recommendations.json` | every item with rules mapped to its top 5 recommendations |
 | `items.json` | items in `recommendations.json`, sorted by purchase count |
 | `stats.json` | headline statistics, charts data and algorithm comparison |
@@ -804,9 +811,36 @@ def as_list(itemset):
 def r4(value):
     return round(float(value), 4)
 
-# --- rules.json: only positive associations, best 500 by lift ---
+# --- rules.json: positive associations only. Start with the strongest by lift,
+# then guarantee the five best single-consequent rules for every item that gets a
+# recommendation, so the ledger and the basket recommender share their evidence.
+candidate_items = sorted({item for ant in rules["antecedents"] for item in ant})
+
+positive_rules = rules[rules["lift"] > 1].sort_values(
+    ["lift", "confidence", "support"], ascending=False
+)
+
+selected_index = []
+selected_set = set()
+for item in candidate_items:
+    per_item = positive_rules[
+        positive_rules["antecedents"].apply(lambda ant: set(ant) == {item})
+        & (positive_rules["consequents"].apply(len) == 1)
+    ].head(5)
+    for index in per_item.index:
+        if index not in selected_set:
+            selected_set.add(index)
+            selected_index.append(index)
+
+for index in positive_rules.index:
+    if len(selected_index) >= 500:
+        break
+    if index not in selected_set:
+        selected_set.add(index)
+        selected_index.append(index)
+
 export_rules = (
-    rules[rules["lift"] > 1]
+    positive_rules.loc[selected_index]
     .sort_values(["lift", "confidence", "support"], ascending=False)
     .head(500)
 )
@@ -825,7 +859,6 @@ rules_payload = [
 )
 
 # --- recommendations.json: every item that appears in an antecedent ---
-candidate_items = sorted({item for ant in rules["antecedents"] for item in ant})
 recommendations_payload = {}
 for item in candidate_items:
     recs = recommend(item, top_n=5)
@@ -939,16 +972,19 @@ inconsistent capitalisation, stray whitespace and unparsed day-first dates. Rows
 shopping basket per member per date, and repeated items inside a basket are collapsed.
 
 **What was mined:** Apriori and FP-Growth produced the same frequent itemsets at
-`min_support = 0.005`; the exported rule set contains hundreds of rules, with the strongest
-lift values driven by planted everyday pairs such as *whole milk → yogurt*,
-*rolls/buns → butter* and *coffee → sugar*. Support, confidence and lift were used together,
+`min_support = 0.0112` (the safety net raised it from 0.005 to keep the rule set readable); the
+exported file keeps the 500 strongest rules. The strongest lift belongs to *spices → chicken*
+(lift 23.11), followed by *sugar → coffee* (13.86), with everyday pairs such as *whole milk →
+yogurt* and *rolls/buns → butter* further down. Support, confidence and lift were used together,
 never confidence alone, because a high-confidence rule can still be trivial if the consequent
 is simply very popular.
 
 **Apriori vs FP-Growth:** both algorithms agree exactly. Apriori generates candidates and
 counts them; FP-Growth compresses the transactions into an FP-tree and avoids candidate
-generation. On this small dataset the runtimes are close, but FP-Growth's advantage grows with
-data size.
+generation. Here Apriori was faster (roughly 0.16 s against 7.7 s for FP-Growth), because at
+158 items and a few thousand baskets the tree bookkeeping costs more than it saves. FP-Growth's
+asymptotic advantage needs larger, denser data to appear, and that is the honest result of this
+experiment rather than the expected one.
 
 **Limitations**
 

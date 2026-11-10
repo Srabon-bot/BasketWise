@@ -31,7 +31,17 @@ It grows as the project is built.
    `/content/drive/MyDrive/Data Mining/Groceries_dataset.csv`, then falls back to `data/`.
 9. **Thresholds.** Default `min_support=0.005` and `min_confidence=0.1`, with automatic
    adjustment if the result set is empty or unreadably large.
-10. **Rules export.** `rules.json` keeps only rules with `lift > 1`, top 500 by lift.
+10. **Rules export.** `rules.json` keeps only rules with `lift > 1` and caps the file at 500
+    rules, ranked by lift. To keep the ledger and the recommender consistent, the selection first
+    reserves each recommendable item's five best item-to-item rules, then fills the remaining
+    slots with the highest-lift rules and re-sorts the whole file by lift. A strict lift-only top
+    500 contained no rule for very common items such as whole milk, which left the site's basket
+    mode with nothing to match. The count, the `lift > 1` floor and the descending-lift order are
+    unchanged.
+11. **Recommendation shape.** `recommend(item)` uses rules whose antecedent is exactly that one
+    item and whose consequent is one product. That keeps the website's explanation ("x% of
+    baskets with this item also had that item") literally true. Multi-item antecedents are left
+    to basket mode, which requires the whole antecedent to be in the basket.
 11. **Numbers.** Every exported float is rounded to 4 decimals; `frozenset`s become sorted lists;
     no `NaN` or `Infinity` is allowed.
 
