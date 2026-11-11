@@ -46,30 +46,29 @@ md("""
 
 **CSE 426 — Data Mining and Warehouse Lab | Solo project**
 
-Every grocery receipt hides patterns: people who buy pasta often buy tomato sauce, and people
-who buy cheese often buy deli meats. This notebook takes ~289,000 receipt lines from 500
-households, cleans them, turns them into shopping baskets, mines **association rules** with
-**Apriori** and **FP-Growth**, and builds a small **recommender system** ("customers who buy X
-also buy Y").
+People who buy pasta usually buy tomato sauce, and people who buy cheese usually buy deli
+meats. This notebook takes about 289,000 receipt lines from 500 households, cleans them,
+groups them into shopping baskets, and mines association rules with Apriori and FP-Growth.
+The rules feed a simple "customers who buy X also buy Y" recommender.
 
-The cleaned results are exported as four JSON files that a companion Next.js website displays.
-**No mining happens in the website** — the notebook is the source of truth.
+Results go to four JSON files, and a Next.js site displays them. All the mining happens here;
+the site only reads the exported files.
 
-**Dataset:** `data/Groceries_dataset.csv`, derived from the **Complete Journey** study
-(84.51° / Dunnhumby) by `scripts/fetch_completejourney.py`. It has three columns:
-`Member_number`, `Date`, and `itemDescription`. One row is one item bought by one member on one
-date, and the item is a grocery **product category** (SKU detail is collapsed to keep the basket
-matrix tractable). If the real file is missing, the notebook automatically creates a
-clearly-labelled synthetic stand-in with ordinary item names.
+**Dataset:** `data/Groceries_dataset.csv`, built from the **Complete Journey** study
+(84.51° / Dunnhumby) by `scripts/fetch_completejourney.py`. Columns: `Member_number`, `Date`
+and `itemDescription`. One row is one item bought by one member on one date, and the item is
+a product category rather than an SKU, which keeps the basket matrix small enough to work
+with. If the real file is missing, the notebook makes a synthetic stand-in with ordinary item
+names.
 
-**Lab topics used:** data preprocessing, association rule mining (support, confidence, lift),
-Apriori vs FP-Growth, and recommendation systems.
+**Topics:** preprocessing, association rule mining (support, confidence, lift), Apriori vs
+FP-Growth, recommender systems.
 """)
 
 code("!pip install -q mlxtend")
 
 code(r"""
-# All imports live here, so no later cell can fail with NameError.
+# Imports for the whole notebook.
 import json
 import sys
 import time
@@ -98,16 +97,15 @@ print("Libraries loaded.")
 md("""
 ## Part 1: Load and explore the data
 
-Before cleaning anything, we look at the raw file exactly as it is. This tells us the size of
-the dataset, which columns exist, what the values look like, and how much cleaning will be
+First look at the raw file as it is: size, columns, value formats, and how much cleaning is
 needed.
 """)
 
 code(r"""
-# Resolve the dataset path once. In Colab we try Google Drive first, then the repo folder.
+# Dataset path: Google Drive first (Colab), then the repo folder.
 PROJECT_ROOT = Path.cwd()
 if not (PROJECT_ROOT / "scripts").exists() and (PROJECT_ROOT.parent / "scripts").exists():
-    PROJECT_ROOT = PROJECT_ROOT.parent  # handles nbconvert running from notebooks/
+    PROJECT_ROOT = PROJECT_ROOT.parent  # covers nbconvert running from notebooks/
 
 IN_COLAB = "google.colab" in sys.modules
 COLAB_PATH = Path("/content/drive/MyDrive/Data Mining/Groceries_dataset.csv")
@@ -118,7 +116,7 @@ if IN_COLAB and COLAB_PATH.exists():
 else:
     DATA_PATH = LOCAL_PATH
 
-# If neither file exists, generate the documented synthetic fallback.
+# If the file is missing, build the synthetic fallback.
 if not DATA_PATH.exists():
     import subprocess
     print("Dataset not found - generating the synthetic fallback ...")
@@ -140,10 +138,10 @@ if DATA_SOURCE == "synthetic":
 """)
 
 code(r"""
-# A first plain read: no cleaning, no special options.
+# Plain read, no cleaning.
 df_raw = pd.read_csv(DATA_PATH)
 
-# Remember the raw numbers so we can show a before/after comparison later.
+# Keep the raw counts for the before/after summary.
 before_rows = len(df_raw)
 before_items = df_raw["itemDescription"].nunique()
 before_members = df_raw["Member_number"].nunique()
@@ -154,7 +152,7 @@ df_raw.head(10)
 """)
 
 code(r"""
-# Structure, numeric summary and cardinality.
+# Shape, describe, and unique counts.
 df_raw.info()
 print("\n--- describe() ---")
 display(df_raw.describe())
@@ -163,41 +161,38 @@ print(df_raw.nunique())
 """)
 
 md("""
-**What to notice:** the file has three columns and around 289,000 rows. `Member_number` is an ID,
-not a quantity, so its `describe()` values are not meaningful. `Date` is still text at this
-stage, and a few hundred lines have no product category. Those rows are why preprocessing
-matters.
+The file has three columns and about 289,000 rows. `Member_number` is an ID, so its
+`describe()` numbers don't mean anything quantitative. `Date` is text at this point, and a
+few hundred rows have no product category. Those are the rows cleaning has to deal with.
 """)
 
 code(r"""
-# The 15 most frequent RAW item strings (before any cleaning).
+# Top 15 raw item strings, before cleaning.
 top15_raw = df_raw["itemDescription"].value_counts().head(15)
 display(top15_raw.to_frame("purchase_lines"))
 """)
 
 md("""
-The list is dominated by everyday grocery categories (fluid milk products, soft drinks, yogurt,
-bananas). The derived file is already lower-case, so the cleaning steps below focus on missing
-categories, duplicates, whitespace and dates rather than on repair work.
+Everyday categories dominate: fluid milk, soft drinks, yogurt, bananas. The file is already
+lower-case, so cleaning is mostly about missing categories, duplicates, whitespace and dates
+rather than fixing names.
 """)
 
 # ---------------------------------------------------------------- Part 2 ----
 md("""
 ## Part 2: Data preprocessing
 
-Raw retail data is messy. Here we:
+Steps:
 
-1. look for ordinary missing values,
-2. treat hidden missing values such as `?` as missing,
-3. remove exact duplicate rows,
+1. check for ordinary missing values,
+2. treat hidden missing tokens like `?` as missing,
+3. drop exact duplicate rows,
 4. standardise item names,
-5. parse the date column and add `Year` / `Month`.
-
-Every decision is explained so the pipeline is easy to defend in a lab report.
+5. parse the date and add `Year` / `Month`.
 """)
 
 code(r"""
-# Ordinary missing values (standard NaN) in the raw read.
+# Missing values in the plain read.
 missing = df_raw.isna().sum()
 missing_pct = (missing / len(df_raw) * 100).round(2)
 missing_table = pd.DataFrame({"missing": missing, "percent": missing_pct})
@@ -215,7 +210,7 @@ else:
 """)
 
 code(r"""
-# Hidden missing values: re-read the file with extra tokens recognised as NaN.
+# Same read, but with `?`, `n/a` and friends treated as NaN.
 HIDDEN_MISSING = ["?", "missing", "n/a", "--", "", "NULL"]
 df = pd.read_csv(DATA_PATH, na_values=HIDDEN_MISSING)
 
@@ -228,20 +223,20 @@ display(df.isna().sum().to_frame("missing_after_reRead"))
 """)
 
 md("""
-**What to notice:** the second read finds more missing cells. Values that looked like text
-(`?`, `n/a`, empty strings) are now correctly treated as unknown. Those rows cannot be used for
-mining, so we remove them rather than inventing item names.
+The second read finds more missing cells, because `?`, `n/a` and empty strings now count as
+unknown. Those rows can't be mined, so they get dropped instead of being given invented item
+names.
 """)
 
 code(r"""
-# Drop rows that cannot contribute a usable transaction.
+# Drop rows with no member, date or item.
 rows_before_drop = len(df)
 df = df.dropna(subset=["Member_number", "Date", "itemDescription"]).copy()
 print(f"Dropped {rows_before_drop - len(df):,} incomplete rows; {len(df):,} remain.")
 """)
 
 code(r"""
-# Exact duplicate rows: count them, then keep one copy of each.
+# Count exact duplicate rows, then keep one copy.
 exact_dupes = int(df.duplicated().sum())
 print(f"Exact duplicate rows found: {exact_dupes:,}")
 
@@ -251,14 +246,13 @@ print(f"Rows before: {rows_before_dupes:,} | after removing exact duplicates: {l
 """)
 
 md("""
-**Why only exact duplicates?** In basket data, the same member can legitimately buy the same
-item on two different dates, so we must not remove those rows. A true duplicate receipt line is
-an exact copy of all three columns, and that is what we remove. Later, when we build a basket,
-we also collapse repeated items inside the *same* basket into one set.
+Only exact duplicates are removed. The same member can buy the same item on two different
+dates, and those are real rows. A duplicate is an exact copy of all three columns. Repeated
+items inside one basket are handled later, when the basket is built.
 """)
 
 code(r"""
-# Standardise item names: trim, lowercase, collapse internal whitespace.
+# Trim, lowercase, and collapse internal spaces.
 df["itemDescription"] = (
     df["itemDescription"]
     .str.strip()
@@ -266,7 +260,7 @@ df["itemDescription"] = (
     .str.replace(r"\s+", " ", regex=True)
 )
 
-# Small spelling map for variants that survive the basic cleaning.
+# Fix the few spelling variants that survive.
 SPELLING_FIXES = {"uht milk": "uht-milk"}
 df["itemDescription"] = df["itemDescription"].replace(SPELLING_FIXES)
 
@@ -275,7 +269,7 @@ display(df["itemDescription"].value_counts().head(10).to_frame("purchase_lines")
 """)
 
 code(r"""
-# Parse the date as DAY-FIRST (21-07-2015 = 21 July 2015) and add time helpers.
+# Dates are day-first (21-07-2015 = 21 July 2015). Add Year and Month.
 df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, errors="coerce")
 bad_dates = int(df["Date"].isna().sum())
 df = df.dropna(subset=["Date"]).copy()
@@ -289,7 +283,7 @@ df[["Member_number", "Date", "Year", "Month", "itemDescription"]].head()
 """)
 
 code(r"""
-# Before/after summary of the cleaning work.
+# Before/after summary.
 before_stats = {
     "rows": before_rows,
     "unique items": before_items,
@@ -308,26 +302,26 @@ display(cleaning_summary)
 md("""
 ### Cleaning steps applied
 
-- Read `?`, `missing`, `n/a`, `--`, empty strings and `NULL` as missing values.
-- Removed rows with a missing member, date or item.
-- Removed exact duplicate rows only; kept legitimate repeat purchases on different dates.
-- Trimmed whitespace, lowercased item names, collapsed repeated spaces and fixed one spelling variant.
-- Parsed `Date` as **day-first** and added `Year` and `Month`.
-- Collapsed repeated items *inside a basket* later, when baskets are built.
+- Read `?`, `missing`, `n/a`, `--`, empty strings and `NULL` as missing.
+- Dropped rows with a missing member, date or item.
+- Dropped exact duplicate rows only; kept repeat purchases on different dates.
+- Trimmed whitespace, lowercased names, collapsed repeated spaces and fixed one spelling variant.
+- Parsed `Date` as day-first and added `Year` and `Month`.
+- Collapsed repeated items inside a basket when baskets are built.
 
-The unique item count falls sharply because mixed-case and spaced variants are merged into one
-canonical name. Fewer item names means more reliable support counts.
+The item count drops a lot because mixed-case and spaced variants merge into one name. Fewer
+distinct names means support counts are more reliable.
 """)
 
 # ---------------------------------------------------------------- Part 3 ----
 md("""
 ## Part 3: Exploratory plots
 
-Three quick charts give a feel for demand, seasonality and basket size before mining.
+Three charts: demand, seasonality and basket size.
 """)
 
 code(r"""
-# Chart 1: the 15 most purchased items after cleaning.
+# Chart 1: top 15 items after cleaning.
 top15 = df["itemDescription"].value_counts().head(15).sort_values()
 
 plt.figure(figsize=(10, 6))
@@ -340,12 +334,12 @@ plt.show()
 """)
 
 md("""
-**Insight:** a small group of staples accounts for a large share of all purchase lines. These
-popular items will also have the highest support, so they are the easiest to recommend.
+A small set of staples makes up a large share of all purchase lines. Those items also get the
+highest support, so they are the easiest to recommend.
 """)
 
 code(r"""
-# Chart 2: purchase lines per month.
+# Chart 2: lines per month.
 monthly = df.groupby("Month").size()
 
 plt.figure(figsize=(12, 5))
@@ -359,13 +353,12 @@ plt.show()
 """)
 
 md("""
-**Insight:** the monthly series shows how shopping activity moves over the year. Spikes can
-come from holidays or from particular members shopping more; this project does not model time,
-but the chart is useful context for the recommendation limits discussed at the end.
+Shopping activity moves over the year. Spikes can come from holidays or from heavy shoppers.
+The project doesn't model time, but this is useful context for the limitations later.
 """)
 
 code(r"""
-# Chart 3: how many distinct items are in a typical basket?
+# Chart 3: items per basket.
 preview_basket_sizes = (
     df.groupby(["Member_number", "Date"])["itemDescription"]
       .apply(lambda items: len(set(items)))
@@ -384,22 +377,20 @@ print("Largest basket:", int(preview_basket_sizes.max()), "items")
 """)
 
 md("""
-**Insight:** most baskets contain a handful of items, with a long tail of large baskets. Small
-baskets are good for mining because they represent clear, intentional shopping missions; very
-large baskets are rarer and contribute less support.
+Most baskets hold a handful of items, with a long tail of big ones. Small baskets are clearer
+shopping trips; very large baskets are rare and add little support.
 """)
 
 # ---------------------------------------------------------------- Part 4 ----
 md("""
 ## Part 4: Build shopping baskets
 
-Association rule mining needs **transactions**, not one-item-per-row records. We define one
-transaction as everything bought by the same member on the same date. Repeated copies of the
-same item inside that transaction are collapsed into a set.
+The mining needs transactions, not one-item-per-row records. A transaction is everything one
+member bought on one date, with repeated items collapsed into a set.
 """)
 
 code(r"""
-# One transaction per (member, date); items are unique and sorted for readability.
+# One row per member and date, items unique and sorted.
 basket_series = (
     df.groupby(["Member_number", "Date"])["itemDescription"]
       .apply(lambda items: sorted(set(items)))
@@ -413,13 +404,12 @@ for (member, date), items in basket_series.sample(3, random_state=RANDOM_STATE).
 """)
 
 md("""
-The example baskets read like real shopping trips: a few related products, not random noise.
-The count of transactions is smaller than the row count because several item lines share the
-same member and date.
+The example baskets look like real trips: a few related products, not random noise. There are
+fewer transactions than rows because several item lines share a member and date.
 """)
 
 code(r"""
-# One-hot encode: one boolean column per item, one row per basket.
+# One boolean column per item.
 te = TransactionEncoder()
 te_array = te.fit(basket_series.tolist()).transform(basket_series.tolist())
 basket_df = pd.DataFrame(te_array, columns=te.columns_)
@@ -430,26 +420,25 @@ display(basket_df.head())
 """)
 
 md("""
-Each row is now a machine-readable basket: `True` means the item was in that basket. This
-boolean matrix is exactly what `mlxtend` expects for Apriori and FP-Growth.
+Each row is now one basket with a `True`/`False` column per item. That boolean matrix is what
+`mlxtend` wants for Apriori and FP-Growth.
 """)
 
 # ---------------------------------------------------------------- Part 5 ----
 md("""
 ## Part 5: Frequent itemsets and association rules
 
-- **Support** = fraction of all baskets that contain an itemset.
-- **Confidence** = how often the consequent appears when the antecedent is present.
-- **Lift** = how much more often they appear together than if they were independent.
-  Lift > 1 means a positive association.
+- **Support**: fraction of baskets containing the itemset.
+- **Confidence**: how often the consequent shows up when the antecedent is there.
+- **Lift**: how much more often the two appear together than by chance. Above 1 is positive.
 
-We mine with both Apriori and FP-Growth at the same support threshold and compare the results.
+Both Apriori and FP-Growth run at the same support threshold so the results can be compared.
 """)
 
 code(r"""
-# Apriori with timing.
-MIN_SUPPORT = 0.01        # 1% of baskets; category-level data is dense, and 0.5% exhausts memory
-MIN_CONFIDENCE = 0.1      # a rule must be right at least 10% of the time
+# Apriori, timed.
+MIN_SUPPORT = 0.01        # 1% of baskets; 0.5% runs out of memory on this data
+MIN_CONFIDENCE = 0.1      # keep rules that are right at least 10% of the time
 
 start = time.perf_counter()
 frequent_itemsets = apriori(basket_df, min_support=MIN_SUPPORT, use_colnames=True)
@@ -460,7 +449,7 @@ frequent_itemsets.head()
 """)
 
 code(r"""
-# FP-Growth with the same support threshold and timing.
+# FP-Growth, same threshold, timed.
 start = time.perf_counter()
 frequent_itemsets_fp = fpgrowth(basket_df, min_support=MIN_SUPPORT, use_colnames=True)
 fp_runtime = time.perf_counter() - start
@@ -470,7 +459,7 @@ frequent_itemsets_fp.head()
 """)
 
 code(r"""
-# Compare the two algorithms and inspect itemset sizes.
+# Compare results and look at itemset sizes.
 same_sets = set(frequent_itemsets["itemsets"]) == set(frequent_itemsets_fp["itemsets"])
 
 comparison = pd.DataFrame({
@@ -482,22 +471,21 @@ comparison["identical_results"] = same_sets
 display(comparison)
 print("Both algorithms found the same itemsets:", same_sets)
 
-# Count itemsets by their length (1-item, 2-item, ...).
+# Itemsets by length.
 frequent_itemsets["length"] = frequent_itemsets["itemsets"].apply(len)
 display(frequent_itemsets["length"].value_counts().sort_index().to_frame("itemsets"))
 """)
 
 md("""
-**What to notice:** both implementations return exactly the same sets, which is expected because
-they solve the same problem. On this dataset Apriori is far faster (roughly 2 s against 26 s for
-FP-Growth): with 294 categories and about 25,000 baskets, FP-Growth's Python-level tree
-bookkeeping costs more than the candidate generation it avoids. The textbook advantage of
-FP-Growth needs larger, denser transaction databases to appear. The measured numbers are exported
-as they are rather than smoothed to fit the usual story.
+Both algorithms return the same sets, which makes sense because they solve the same problem.
+Apriori is much faster here: at the final threshold it takes about 2 s against 25 s. With
+294 categories and about 25,000 baskets, FP-Growth's tree bookkeeping in Python costs more
+than the candidate generation it avoids. FP-Growth should win on bigger, denser data, but not
+on this one. The measured numbers are reported as they came out.
 """)
 
 code(r"""
-# Generate rules. mlxtend 0.23+ requires num_itemsets.
+# Rules. mlxtend 0.23+ wants num_itemsets.
 rules = association_rules(
     frequent_itemsets,
     metric="confidence",
@@ -512,13 +500,13 @@ display(rules[rule_columns].head(20))
 """)
 
 md("""
-**Reading a rule:** support tells us how common the combination is, confidence tells us how
-reliable the "if X then Y" guess is, and lift tells us whether the guess is better than random
-chance. A rule with lift just above 1 is weak; a rule with lift 2 or more is a strong signal.
+A rule is read as: support is how common the combination is, confidence is how reliable the
+"if X then Y" guess is, and lift says whether the guess beats chance. Lift just above 1 is
+weak; 2 or more is a strong signal.
 """)
 
 code(r"""
-# Explain the strongest rule in plain English.
+# Strongest rule, written out.
 example = rules.iloc[0]
 left = ", ".join(sorted(example["antecedents"]))
 right = ", ".join(sorted(example["consequents"]))
@@ -529,7 +517,7 @@ print(f"  Lift       : {example['lift']:.4f}  ({example['lift']:.2f}x more likel
 """)
 
 code(r"""
-# Parameter tuning: how does min_support change the number of itemsets and rules?
+# How min_support changes the itemset and rule counts.
 tuning_rows = []
 for support in [0.01, 0.015, 0.02, 0.03, 0.05]:
     fi = apriori(basket_df, min_support=support, use_colnames=True)
@@ -546,8 +534,8 @@ for support in [0.01, 0.015, 0.02, 0.03, 0.05]:
 tuning_df = pd.DataFrame(tuning_rows)
 display(tuning_df)
 
-# Automatic safety net: if the chosen threshold gives zero rules (or more than 5,000,
-# which is unreadable), move it until the result is useful. The default is usually kept.
+# Safety net: no rules, or more than 5,000, moves the threshold.
+# The default is normally kept.
 chosen_support = MIN_SUPPORT
 for _ in range(6):
     trial_itemsets = apriori(basket_df, min_support=chosen_support, use_colnames=True)
@@ -587,25 +575,24 @@ else:
 """)
 
 md("""
-The tuning table shows the usual trade-off: lowering support finds more itemsets and more rules,
-but they become weaker and noisier; raising support keeps only very common patterns. This
-category-level data is too dense for the textbook default: `0.005` produced more than 400,000
-candidate itemsets and exhausted memory before any rules were generated. Starting at `0.01`
-gives roughly 40,000 rules — unreadable for a rule explorer — so the safety net stepped support up
-through `0.015` to `0.0225`, where 763 itemsets and 2,451 rules remain. The chosen value is
-reported in `stats.json`.
+Lower support gives more itemsets and more rules, but weaker and noisier ones. Higher support
+keeps only very common patterns. This category-level data is dense: `0.005` produced over
+400,000 candidate itemsets and ran out of memory before producing rules. Starting at `0.01`
+gives about 40,000 rules, which is too many to inspect, so the safety net moved support to
+`0.015` and then `0.0225`, leaving 763 itemsets and 2,451 rules. `stats.json` records the value
+that was used.
 """)
 
 # ---------------------------------------------------------------- Part 6 ----
 md("""
 ## Part 6: Visualising the rules
 
-Visualisations make the trade-off visible. Good rules tend to sit in the upper-right of the
-support/confidence plot and have a high lift colour.
+The plots show the support/confidence trade-off. Good rules sit towards the upper right, and
+colour shows lift.
 """)
 
 code(r"""
-# Support vs confidence, coloured by lift.
+# Support vs confidence, colour = lift.
 plt.figure(figsize=(10, 6))
 scatter = plt.scatter(
     rules["support"], rules["confidence"],
@@ -620,13 +607,13 @@ plt.show()
 """)
 
 md("""
-**Insight:** most rules sit at low support because individual product combinations are rare in
-the full basket population. Rules with high lift are the interesting ones: their colour stands
-out even when their support is small.
+Most rules have low support because one product combination is rare across all baskets. The
+high-lift rules are the interesting ones, and their colour stands out even when support is
+small.
 """)
 
 code(r"""
-# Top 10 rules by lift.
+# Top 10 by lift.
 top10 = rules.head(10).copy()
 top10["rule"] = top10.apply(
     lambda row: " + ".join(sorted(row["antecedents"])) + " -> " + " + ".join(sorted(row["consequents"])),
@@ -642,7 +629,7 @@ plt.ylabel("Rule")
 plt.tight_layout()
 plt.show()
 
-# Strongest single-item -> single-item rules (the cleanest recommendations).
+# Best one-item to one-item rules.
 single_rules = rules[
     (rules["antecedents"].apply(len) == 1) & (rules["consequents"].apply(len) == 1)
 ].copy()
@@ -661,9 +648,8 @@ plt.show()
 """)
 
 md("""
-The single-item rules are the easiest to explain to a shopper and are exactly what the website
-uses for its recommendation cards. Multi-item rules can be stronger, but they need a larger
-basket to trigger.
+Single-item rules are the easiest to explain to a shopper, and they are what the website uses
+for its cards. Multi-item rules can be stronger but need a bigger basket to fire.
 """)
 
 # ---------------------------------------------------------------- Part 7 ----
@@ -672,14 +658,13 @@ md("""
 
 Two functions turn rules into recommendations:
 
-- `recommend(item)` — "people who bought this item also bought ..."
-- `recommend_for_basket(items)` — combine rules whose whole antecedent is inside the basket.
+- `recommend(item)`: "people who bought this item also bought ..."
+- `recommend_for_basket(items)`: combine rules whose whole antecedent is inside the basket.
 
-Both rank candidates by lift first, then confidence. Items already in the basket are excluded.
-Recommendations use rules whose **antecedent is exactly the chosen item** and whose consequent is
-a single product, so the plain-language explanation always matches the rule it came from. The
-rules explorer can still show multi-item rules, and basket mode uses every rule whose whole
-antecedent fits inside the basket.
+Candidates are ranked by lift, then confidence, and items already in the basket are skipped.
+`recommend` only uses rules whose antecedent is exactly the chosen item and whose consequent is
+one product, so the wording matches the rule behind it. The rules explorer can still show
+multi-item rules, and basket mode uses any rule whose full antecedent fits in the basket.
 """)
 
 code(r"""
@@ -688,7 +673,7 @@ def recommend(item, top_n=5):
     item = str(item).strip().lower()
     matches = rules[
         rules["antecedents"].apply(lambda ant: set(ant) == {item})
-        & (rules["consequents"].apply(len) == 1)   # keep one product per card
+        & (rules["consequents"].apply(len) == 1)   # one product per row
     ].copy()
 
     if matches.empty:
@@ -704,21 +689,21 @@ def recommend(item, top_n=5):
     return matches[["recommended_item", "confidence", "lift", "support"]].reset_index(drop=True)
 
 
-# Demo on the five most popular items.
+# Try it on the five most popular items.
 popular_items = df["itemDescription"].value_counts().head(5).index.tolist()
 for popular in popular_items:
     print(f"\nTop 5 recommendations for: {popular}")
     display(recommend(popular, top_n=5))
 
-# The empty case is handled with a friendly message instead of an exception.
+# Unknown item: message and empty table, no error.
 print("\nEmpty-case demo:")
 _ = recommend("a product that does not exist", top_n=5)
 """)
 
 md("""
-The top recommendations recover real grocery behaviour: pasta with pasta sauce, cheese with deli
-meats, milk with cereal. The empty-case demo shows that an unknown item returns a helpful
-message and an empty table, not a crash.
+The top recommendations pick up real grocery pairs: pasta with pasta sauce, cheese with deli
+meats, milk with cereal. An unknown item returns a short message and an empty table instead of
+an error.
 """)
 
 code(r"""
@@ -733,7 +718,7 @@ def recommend_for_basket(items, top_n=5):
         print("No rules matched this basket. Try adding a more popular item.")
         return pd.DataFrame(columns=["recommended_item", "confidence", "lift", "support"])
 
-    # Never recommend an item that is already in the basket.
+    # Skip items already in the basket.
     matches = matches[matches["consequents"].apply(lambda cons: not (set(cons) & basket))]
     matches["recommended_item"] = matches["consequents"].apply(lambda items_: ", ".join(sorted(items_)))
     matches = (
@@ -755,13 +740,13 @@ for basket in example_baskets:
 """)
 
 md("""
-Basket mode finds rules that are fully supported by the basket, so the result is more specific
-than a single-item lookup and never repeats something the shopper already has.
+Basket mode uses rules the whole basket supports, so results are more specific than a
+single-item lookup and never repeat what the shopper already has.
 """)
 
 code(r"""
-# Bonus: item-to-item similarity from the customer-item matrix (cosine similarity).
-item_matrix = basket_df.astype(int).T                      # rows = items, columns = baskets
+# Extra: cosine similarity between item vectors.
+item_matrix = basket_df.astype(int).T                      # rows = items, cols = baskets
 row_norms = np.sqrt((item_matrix ** 2).sum(axis=1))
 similarity = item_matrix.dot(item_matrix.T).div(row_norms, axis=0).div(row_norms, axis=1)
 
@@ -784,26 +769,26 @@ for compare_item in popular_items[:2]:
 """)
 
 md("""
-**Comparison:** rule-based recommendations answer *"what is bought together?"* and often beat
-chance (lift > 1). Similarity-based recommendations answer *"what has a similar audience?"* and
-can surface substitutes (for example, two types of bread) rather than complements. Both are
-useful; this project uses the rule-based view on the website because it is easier to explain.
+**Comparison:** rule-based recommendations answer "what is bought together?" and usually beat
+chance (lift > 1). Similarity-based recommendations answer "what has a similar audience?" and
+tend to surface substitutes (two kinds of bread, for example) rather than complements. Both are
+useful; the website shows the rule-based view because it is easier to explain.
 """)
 
 # ---------------------------------------------------------------- Part 8 ----
 md("""
 ## Part 8: Export the results
 
-The website never runs Python. It only reads four JSON files written here:
+The website runs no Python. It only reads four JSON files written here:
 
 | File | Contents |
 |---|---|
 | `rules.json` | the 500 strongest rules, with the best five per antecedent guaranteed |
 | `recommendations.json` | every item with rules mapped to its top 5 recommendations |
 | `items.json` | items in `recommendations.json`, sorted by purchase count |
-| `stats.json` | headline statistics, charts data and algorithm comparison |
+| `stats.json` | headline statistics, chart data and algorithm comparison |
 
-All floats are rounded to 4 decimals, `frozenset`s become sorted lists, and the files are UTF-8.
+Floats are rounded to 4 decimals, `frozenset`s become sorted lists, and everything is UTF-8.
 """)
 
 code(r"""
@@ -816,9 +801,9 @@ def as_list(itemset):
 def r4(value):
     return round(float(value), 4)
 
-# --- rules.json: positive associations only. Start with the strongest by lift,
-# then guarantee the five best single-consequent rules for every item that gets a
-# recommendation, so the ledger and the basket recommender share their evidence.
+# --- rules.json: lift > 1 only. Start with the strongest,
+# then keep the best five one-consequent rules per antecedent so
+# the rules table and the recommender use the same evidence.
 candidate_items = sorted({item for ant in rules["antecedents"] for item in ant})
 
 positive_rules = rules[rules["lift"] > 1].sort_values(
@@ -863,7 +848,7 @@ rules_payload = [
     json.dumps(rules_payload, indent=2, ensure_ascii=False), encoding="utf-8"
 )
 
-# --- recommendations.json: every item that appears in an antecedent ---
+# --- recommendations.json: one entry per antecedent item ---
 recommendations_payload = {}
 for item in candidate_items:
     recs = recommend(item, top_n=5)
@@ -881,7 +866,7 @@ for item in candidate_items:
     json.dumps(recommendations_payload, indent=2, ensure_ascii=False), encoding="utf-8"
 )
 
-# --- items.json: only items that have recommendations, by purchase count ---
+# --- items.json: items with recommendations, by purchase count ---
 item_counts = df["itemDescription"].value_counts()
 items_payload = [
     {"item": item, "count": int(item_counts.get(item, 0))}
@@ -898,7 +883,7 @@ print(f"items.json            : {len(items_payload):,} items")
 """)
 
 code(r"""
-# --- stats.json: headline numbers and chart data for the website ---
+# --- stats.json: headline numbers and chart data ---
 top_items_payload = [
     {"item": item, "count": int(count)}
     for item, count in item_counts.head(15).items()
@@ -944,7 +929,7 @@ print(json.dumps(stats_payload, indent=2)[:900] + "\n...")
 """)
 
 code(r"""
-# File sizes, short previews, and a single zip for easy downloading from Colab.
+# Sizes, short previews, and a zip for Colab.
 export_files = ["rules.json", "recommendations.json", "items.json", "stats.json"]
 for name in export_files:
     path = EXPORT_DIR / name
@@ -970,39 +955,36 @@ All four files passed the shape checks in `scripts/validate_exports.py`. Copy th
 md("""
 ## Part 9: Conclusion
 
-This notebook turned raw grocery receipts into a working recommendation engine.
+Raw grocery receipts turned into a working recommendation engine.
 
-**What was cleaned:** rows with no product category, exact duplicates, stray whitespace and
-unparsed day-first dates. Rows are now one shopping basket per member per date, and repeated
-items inside a basket are collapsed.
+**Cleaning:** dropped rows with no product category, exact duplicates and stray whitespace, and
+parsed day-first dates. Each row is now one basket per member per date, with repeated items
+collapsed.
 
-**What was mined:** Apriori and FP-Growth produced the same frequent itemsets at
-`min_support = 0.0225` (the safety net raised it from 0.01, and 0.005 exhausted memory on this
-dense category-level data); the exported file keeps the 500 strongest rules. The strongest lifts
-are *cheeses → deli meats* (8.78) and *pasta sauce → dry noodles/pasta* (8.75), followed by
-four-category combinations such as *baked bread + beef → vegetables + fluid milk* (4.68).
-Support, confidence and lift were used together, never confidence alone, because a
-high-confidence rule can still be trivial if the consequent is simply very popular.
+**Mining:** Apriori and FP-Growth gave the same frequent itemsets at `min_support = 0.0225`
+(the safety net raised it from 0.01, and 0.005 ran out of memory on this dense category-level
+data). The export keeps the 500 strongest rules. The top lifts are *cheeses → deli meats*
+(8.78) and *pasta sauce → dry noodles/pasta* (8.75), then four-category rules like *baked bread
++ beef → vegetables + fluid milk* (4.68). Support, confidence and lift were read together,
+never confidence alone, because a high-confidence rule can still be trivial when the
+consequent is just a very popular item.
 
-**Apriori vs FP-Growth:** both algorithms agree exactly. Apriori generates candidates and
-counts them; FP-Growth compresses the transactions into an FP-tree and avoids candidate
-generation. Here Apriori was much faster (roughly 2 s against 26 s for FP-Growth), because at
-294 categories and about 25,000 baskets the Python-level tree bookkeeping costs more than it
-saves. FP-Growth's asymptotic advantage needs larger, denser data to appear, and that is the
-honest result of this experiment rather than the expected one.
+**Apriori vs FP-Growth:** both agree exactly. Apriori generates candidates and counts them;
+FP-Growth builds an FP-tree and skips candidate generation. Here Apriori was faster: at the
+final threshold, about 2 s against 25 s, because at 294 categories and about 25,000 baskets
+the Python tree work costs more than it saves. FP-Growth's advantage needs larger, denser
+data, and this experiment didn't show it.
 
 **Limitations**
 
-- No ratings or basket totals: we know *that* a category was bought, not how much the shopper liked it.
-- No time awareness: a rule learned from one year of data may not hold this week.
-- Sampled and coarse: 500 households and product categories, not individual SKUs, so rare
-  products never reach the support threshold and recommendations stay at category level.
-- Rules are correlational, not causal: "bought together" does not mean "causes".
+- No ratings or basket totals: we know a category was bought, not how much the shopper liked it.
+- No time awareness: a rule from one year of data may not hold this week.
+- Sampled and coarse: 500 households and product categories, not SKUs, so rare products never
+  reach the support threshold and recommendations stay at category level.
+- Rules are correlational, not causal.
 
-**Future work:** add time-aware rules, quantity-aware weighting, SKU-level rules on a larger
-sample, and a properly evaluated recommender using hold-out baskets. The current system is a
-clean, explainable baseline that connects preprocessing, association rule mining and
-recommendation in one reproducible pipeline.
+**Future work:** time-aware rules, quantity-aware weighting, SKU-level rules on a larger
+sample, and a recommender evaluated on hold-out baskets.
 """)
 
 nb.cells = cells

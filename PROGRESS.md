@@ -33,7 +33,7 @@ redistributed.
 Mining notes: category-level baskets are dense. `0.005` exhausted memory
 (~40 GB candidate array); `0.01` gave 39,858 rules, so the notebook's safety
 net raised support through `0.015` to `0.0225`. Apriori and FP-Growth returned
-identical itemsets; Apriori was faster (2.01 s vs 27.09 s).
+identical itemsets; Apriori was faster (2.04 s vs 24.57 s).
 
 ## Site updates
 

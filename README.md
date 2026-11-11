@@ -24,7 +24,7 @@ data-mining technique and function used, and how the notebook, exports and site 
 | Rules exported | 500 |
 | Items with recommendations | 67 |
 | Strongest rule by lift | `cheeses → deli meats`, confidence 63.5%, lift 8.78 |
-| Apriori / FP-Growth runtime | 2.01 s / 27.09 s, identical itemsets |
+| Apriori / FP-Growth runtime | 2.04 s / 24.57 s, identical itemsets |
 
 The run uses a fixed 500-household sample of the **Complete Journey** study (84.51° / Dunnhumby),
 with grocery product categories as the mined item. The raw data is not redistributed;

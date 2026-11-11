@@ -377,7 +377,7 @@ The **Apriori principle**: if an itemset is frequent, every subset of it must al
 frequent; if a subset is infrequent, every superset can be discarded. This is what makes
 the search tractable.
 
-At the starting threshold `0.01`, this dataset produced **6,302 itemsets** in about **25 s**.
+At the starting threshold `0.01`, this dataset produced **6,302 itemsets** in about **35 s**.
 
 ### Step 9 — Frequent itemsets with FP-Growth
 
@@ -865,7 +865,7 @@ This is the practical “what does this call do?” list. It is grouped by libra
 | `formatInteger(value)` | `web/src/lib/data.ts` | thousands separators |
 | `formatPercent(value)` | `web/src/lib/data.ts` | `0.6349 → "63.5%"` |
 | `formatLift(value)` | `web/src/lib/data.ts` | two decimal places |
-| `formatSeconds(value)` | `web/src/lib/data.ts` | `2.0092 → "2.01 s"` |
+| `formatSeconds(value)` | `web/src/lib/data.ts` | `2.0377 → "2.04 s"` |
 | `ruleSide(items)` | `web/src/lib/data.ts` | `["a","b"] → "a + b"` |
 | `ruleSentence(rule)` | `web/src/lib/data.ts` | natural-language rule |
 | `recommendForBasket(rules, basket, topN)` | `web/src/lib/data.ts` | browser-side basket matching |
@@ -998,8 +998,8 @@ baskets is not large enough for its asymptotic advantage to pay off.
 
 | Algorithm | Itemsets | Runtime |
 | --- | --- | --- |
-| Apriori | 763 | 2.01 s |
-| FP-Growth | 763 | 27.09 s |
+| Apriori | 763 | 2.04 s |
+| FP-Growth | 763 | 24.57 s |
 
 ---
 
@@ -1069,8 +1069,8 @@ baskets is not large enough for its asymptotic advantage to pay off.
   "monthly_counts": [{ "month": "2017-01", "count": 18401 }],
   "basket_size_distribution": [{ "size": 1, "count": 3923 }],
   "algorithm_comparison": {
-    "apriori": { "itemsets": 763, "runtime_sec": 2.0092 },
-    "fpgrowth": { "itemsets": 763, "runtime_sec": 27.0901 },
+    "apriori": { "itemsets": 763, "runtime_sec": 2.0377 },
+    "fpgrowth": { "itemsets": 763, "runtime_sec": 24.5744 },
     "identical_results": true
   },
   "parameters": { "min_support": 0.0225, "min_confidence": 0.1 },
@@ -1361,3 +1361,1292 @@ PUBLISH
 
 That is the complete cycle. Change the data or a threshold, re-run the notebook, validate,
 copy the exports, rebuild the site, and the whole system follows.
+
+---
+
+## 19. Site walkthrough and the 10-minute presentation script
+
+This section documents the deployed site at **https://basketwise-ten.vercel.app/** and turns
+it into a presentation. It has three jobs:
+
+1. Explain every page, every button, every number and every sentence a visitor can see.
+2. Give a slide-by-slide script for the five-slide deck (`BasketWise.pptx`).
+3. Give a click-by-click website demo script, timed so the whole talk fits **10:00**.
+
+The site is a static Next.js export. Its pages are `/`, `/recommend/`, `/rules/`,
+`/insights/` and `/notebook/`. Every number on screen is read at runtime from one of four
+files in `/data`: `stats.json`, `rules.json`, `recommendations.json` and `items.json`.
+
+---
+
+### 19.1 Route map
+
+| Route | Page title | Job | Files it reads | Main controls |
+| --- | --- | --- | --- | --- |
+| `/` | BasketWise | Explain the project and show one real recommendation | `stats.json`, `rules.json`, `recommendations.json` | 3 navigation-style buttons |
+| `/recommend/` | What leaves with it? | Look up one item or build a basket | `recommendations.json`, `rules.json`, `items.json`, `stats.json` | Mode switch, combobox, remove buttons, two empty-state buttons |
+| `/rules/` | The rule ledger | Inspect all 500 exported rules | `rules.json` | Search, two range sliders, four sortable headers, reset, previous/next |
+| `/insights/` | The shape of the data | Show the data and algorithm evidence | `stats.json` | Chart hover tooltips |
+| `/notebook/` | The notebook is the method | Explain the method in prose | `stats.json`, `rules.json`, `recommendations.json`, `items.json` | In-page anchor links, GitHub button |
+
+All routes use a trailing slash. That is deliberate: `next.config.ts` sets
+`trailingSlash: true` and `output: "export"`, so the same files work on Vercel, Netlify,
+GitHub Pages or a plain static server.
+
+---
+
+### 19.2 What appears on every page
+
+These elements are shared by all five routes.
+
+#### The skip link
+
+The first focusable element is **“Skip to content”**. It is visually hidden until a keyboard
+user presses Tab, then it jumps to `<main id="main">`. It exists so the navigation is not
+repeated on every tab press.
+
+#### The header
+
+| Element | Exact text / label | Action |
+| --- | --- | --- |
+| Wordmark | `BasketWise` + small `CSE 426` | Goes to `/` |
+| Nav link | `Recommender` | Goes to `/recommend/` |
+| Nav link | `Rules` | Goes to `/rules/` |
+| Nav link | `Insights` | Goes to `/insights/` |
+| Nav link | `Notebook` | Goes to `/notebook/` |
+| Theme button | aria-label `Switch to dark mode` when light, `Switch to light mode` when dark; tooltip `Dark mode` / `Light mode` | Flips the palette |
+| Active link | `aria-current="page"` | Screen-reader state only; the visual state is a colour change |
+
+The wordmark is the project name plus the course code. The nav is the whole site: there are
+only five pages, so there is no dropdown, search bar or hamburger menu.
+
+**Theme behaviour.** The first visit follows the operating system
+(`prefers-color-scheme`). A click stores the choice in `localStorage` under
+`basketwise-mode`, so it survives a reload. If storage is blocked, the switch still works
+for the session. The icon is a moon in light mode and a sun in dark mode.
+
+#### The demo banner
+
+`DataBanner` reads `stats.json`. If `data_source` is `"synthetic"` it shows:
+
+> **Demo data.** This site is showing the synthetic stand-in, not the Complete Journey
+> sample. [How to run the real data]
+
+The link goes to `/notebook#data-source`. With the current real run, the banner is absent.
+This is the fastest way to prove the site is showing real data.
+
+#### The footer
+
+| Block | Exact copy | Meaning |
+| --- | --- | --- |
+| Wordmark | `BasketWise` | Project name |
+| Note | “A CSE 426 Data Mining and Warehouse Lab project by Md. Shahriar Hossain Srabon. The notebook mines the baskets; this site reads what it exported.” | Authorship and the division of labour |
+| Pages | `Recommender`, `Rule explorer`, `Insights`, `Methodology` | Same four routes, different labels |
+| Project | `Notebook on GitHub`, `Source repository`, `Complete Journey (84.51°)` | Notebook, repo, data citation |
+| Bottom | “Built with Next.js. Data is read from four JSON files in `public/data`.” | Confirms the static architecture |
+
+Note the deliberate label difference: the nav says **Rules**, the footer says **Rule
+explorer**; the nav says **Notebook**, the footer says **Methodology**. Both point to the
+same page.
+
+#### The three data states
+
+Every page that fetches JSON can show three non-content states:
+
+| State | What the user sees | When |
+| --- | --- | --- |
+| Loading | A heading such as “Reading the exported rules”, “Reading the statistics export”, “Reading the recommendation tables” or “Reading the notebook's exports”, plus “Reading the exported JSON. This only takes a moment.” and three skeleton lines | First paint before the fetch resolves |
+| Error | “The data did not load.” + the actual fetch error + a **Try again** button | Missing file, network failure or non-200 response |
+| Empty | Page-specific: “No recommendations for this item”, “Start with a staple”, “No rule covers this basket”, “No rule survives these filters” | The query is valid but matches nothing |
+
+No page is allowed to render a silent blank. That is a deliberate contract in
+`web/src/lib/useJson.ts`.
+
+---
+
+### 19.3 Home page — `/`
+
+The home page is a single scrolling argument: what the project is, what the data is, how the
+pipeline works, what the strongest rule is, and where to click next.
+
+#### 19.3.1 Hero
+
+| Element | Exact text | What it means |
+| --- | --- | --- |
+| Heading | `BasketWise` | Project name |
+| Lead | “Grocery baskets, mined for what sells together.” | The one-line product statement |
+| Primary button | `Find a recommendation` | Goes to `/recommend/` |
+| Secondary button | `Read the notebook` | Goes to `/notebook/` |
+
+`Find a recommendation` is the green primary button; `Read the notebook` is the outlined
+secondary. They are the two intended paths: use the product, or inspect the method.
+
+#### 19.3.2 The recommendation slip
+
+This is the most important element on the page. It is a paper-like card that reads the first
+entry of `recommendations.json["cheeses"]`.
+
+| Line | Exact text | Source |
+| --- | --- | --- |
+| Label | `Recommendation slip` | Static |
+| Figure | `lift 8.78` | `recommendations.json` |
+| In the basket | `cheeses` | The lookup key |
+| Also bought | `deli meats` | First recommendation |
+| Explanation | “63.5% of baskets with cheeses also had deli meats.” | `confidence = 0.6349` |
+| Footer left | `Sample from recommendations.json` | Provenance |
+| Footer right | `confidence 63.5%` | Same confidence, repeated as a figure |
+
+**Why this card matters.** It is not a screenshot or a hard-coded example. It is the same
+data the recommender uses, rendered in a receipt idiom. If `cheeses` disappeared from the
+file, the component would fall back to the first available item; if the file failed, it
+would show “The recommendation file is not available yet.” and an **Open the recommender**
+button. While the fetch is in flight it shows the label “Reading the recommendation sheet”
+and three skeleton lines, so the card never collapses.
+
+#### 19.3.3 Dataset figures band
+
+Four large numbers, each with a label:
+
+| Label | Value | Source |
+| --- | --- | --- |
+| `Baskets` | **25,431** | `stats.total_transactions` |
+| `Items in the data` | **294** | `stats.total_items` |
+| `Members` | **500** | `stats.total_members` |
+| `Exported rules` | **500** | `rules.length` |
+
+“Items in the data” means product categories, not SKUs. “Exported rules” is the length of
+the JSON array, not the 2,451 rules the notebook generated. Both distinctions are worth
+saying out loud in a presentation.
+
+While loading, each value is an ellipsis (`…`), not a zero. That avoids the false impression
+that the dataset is empty.
+
+#### 19.3.4 “From receipt to rule”
+
+| Element | Exact text |
+| --- | --- |
+| Heading | `From receipt to rule` |
+| Lead | “Six steps, one reproducible notebook, four JSON files the site can read.” |
+
+The six steps:
+
+| # | Title | Description |
+| --- | --- | --- |
+| 01 | `Raw data` | “One line per purchase: member, date, item.” |
+| 02 | `Cleaning` | “Hidden missing values, duplicates and name variants removed.” |
+| 03 | `Baskets` | “One member and one date become one transaction.” |
+| 04 | `Apriori and FP-Growth` | “Both algorithms mine the same support threshold.” |
+| 05 | `Rules` | “Support, confidence and lift rank every combination.” |
+| 06 | `Recommender` | “The site reads the exported rules, never the raw CSV.” |
+
+This is the same pipeline as section 5 of the guide, compressed to six readable steps. Step
+06 is the architectural claim: the browser is a reader, not a miner.
+
+#### 19.3.5 The statement band
+
+A large editorial sentence, generated from `rules[0]`:
+
+> “deli meats appears in 63.5% of the baskets that hold cheeses.”
+
+Under it, in smaller type:
+
+> “Strongest rule by lift, from the 500 exported rules. Lift **8.78**.”
+
+This is the plain-English version of the top rule. The sentence is built by
+`ruleSide(strongest.consequents)` + `formatPercent(strongest.confidence)` +
+`ruleSide(strongest.antecedents)`, so it stays correct if the data changes. The meta line
+names the ranking basis (lift) and the size of the exported ledger (500).
+
+#### 19.3.6 “The notebook is the source.”
+
+| Element | Exact text |
+| --- | --- |
+| Heading | `The notebook is the source.` |
+| Lead | “The website holds no mining code. It reads the four files the notebook writes.” |
+| Button | `Read the methodology` → `/notebook/` |
+
+Beside it are four numbered method rows:
+
+| # | Title | Description |
+| --- | --- | --- |
+| 01 | `Preprocess` | “Missing values, duplicates, names and day-first dates.” |
+| 02 | `Build baskets` | “One member on one date, one-hot encoded for mining.” |
+| 03 | `Mine and rank` | “Apriori and FP-Growth, timed, then ranked by lift.” |
+| 04 | `Export` | “Rules, recommendations, items and statistics as JSON.” |
+
+This block is the answer to “is the website doing the data mining?” It is not. The notebook
+is the source of truth; the site is a presentation layer.
+
+#### 19.3.7 Closing band
+
+| Element | Exact text | Action |
+| --- | --- | --- |
+| Heading | `Pick an item. See what leaves with it.` | — |
+| Button | `Open the recommender` | Goes to `/recommend/` |
+
+The last button repeats the primary call to action. The home page therefore has two visible
+routes into the recommender (`Find a recommendation` and this closing button), plus the
+`Open the recommender` fallback that only appears if the recommendation file fails. It also
+has two routes into the notebook (`Read the notebook` and `Read the methodology`).
+
+---
+
+### 19.4 Recommender page — `/recommend/`
+
+This is the interactive product page. It has two modes that answer two different questions.
+
+#### 19.4.1 Page head
+
+| Element | Exact text |
+| --- | --- |
+| Heading | `What leaves with it?` |
+| Lead | “Pick one product or build a small basket. Every card is a mined rule.” |
+
+#### 19.4.2 Left panel
+
+| Element | Exact text |
+| --- | --- |
+| Heading | `Build the basket` |
+| Description | “Look up one product, or assemble a small basket and let every matching rule vote.” |
+| Mode button 1 | `One item` |
+| Mode button 2 | `Basket` |
+| Persistent note | “Ranked by lift, then confidence. Items already in the basket are never recommended back.” |
+
+The two mode buttons form a segmented control. The active one is indicated by
+`aria-pressed` and a filled style. Switching modes keeps the item selection and the basket
+contents, so a presenter can move back and forth without retyping.
+
+#### 19.4.3 Item mode
+
+The default state is **One item** with `cheeses` already selected. This is why the page is
+never empty on first load.
+
+| Element | Exact text / behaviour |
+| --- | --- |
+| Label | `Find an item` |
+| Placeholder | `cheeses, pasta sauce, milk…` |
+| Input role | `combobox`, `aria-autocomplete="list"` |
+| Suggestions | Up to 8 items, prefix matches first, then alphabetical |
+| Keyboard | ↑ / ↓ move, Enter selects, Escape closes, Tab closes |
+| Helper, exact match | “cheeses is selected. Type to choose another item.” |
+| Helper, partial query | “N matches shown. Use the arrow keys and Enter.” |
+| Helper, empty input | “67 items have recommendations. Use the arrow keys and Enter.” |
+| No match | “No item matches “xyz”.” |
+
+The helper text is live. It tells the user how many options exist, how many match, and
+whether the typed word is an exact selection. This is a small accessibility detail that
+matters in a demo: the presenter never has to guess whether the input accepted the word.
+
+**Result header**
+
+| Element | Exact text |
+| --- | --- |
+| Heading | `Bought with cheeses` |
+| Sub-line | `3 recommendations from recommendations.json` |
+| Empty sub-line | `No rule reaches this item` |
+
+**Result cards.** Each card shows the recommended item, a plain-English reason, a
+confidence bar, the confidence as a percentage, and the lift as a number.
+
+For `cheeses`, the three cards are:
+
+| Rank | Item | Reason sentence | Confidence | Lift |
+| --- | --- | --- | --- | --- |
+| 1 | `deli meats` | “63.5% of baskets with cheeses also had deli meats.” | 63.5% | 8.78 |
+| 2 | `baked bread/buns/rolls` | “62.9% of baskets with cheeses also had baked bread/buns/rolls.” | 62.9% | 2.36 |
+| 3 | `fluid milk products` | “60.4% of baskets with cheeses also had fluid milk products.” | 60.4% | 2.02 |
+
+The visual bar is driven by confidence, not lift. That is why the second card can look
+almost as long as the first while its lift is less than a third. The number labels are what
+separate reliability from association strength.
+
+**Empty state.** If an item has no rules, the page shows:
+
+- Heading: `No recommendations for this item`
+- Body: “This product never clears the support threshold in an antecedent, so the mined
+  rules cannot say what leaves with it. Try a more common item.”
+- Button: `Try cheeses` (sets the selection back to `cheeses`)
+
+**Footnote.** Below the results:
+
+> “Data source: `recommendations.json` for one item, `rules.json` for a basket. Minimum
+> confidence in the export is 10.0% and minimum support is 2.25%.”
+>
+> “Strongest rule currently exported: cheeses → deli meats at 63.5% confidence.”
+
+The values are read from `stats.parameters`, so they cannot drift from the export.
+
+#### 19.4.4 Basket mode
+
+| Element | Exact text / behaviour |
+| --- | --- |
+| Label | `Add an item to the basket` |
+| Placeholder | `cheeses, pasta sauce, milk…`; becomes `Basket is full` at 6 items |
+| Selection | Clicking a suggestion adds it and clears the input |
+| Basket cap | 6 items (`MAX_BASKET = 6`) |
+| Empty note | “Add up to 6 items. A recommendation only fires when a rule’s whole antecedent is in the basket.” |
+| Selected list | One row per item with a `Remove` button; aria-label “Remove {item} from the basket” |
+| Result heading | `What to add next` |
+| Empty sub-line | `An empty basket has nothing to match` |
+| Filled sub-line | `2 items in the basket · 5 matches` |
+
+**Empty basket state**
+
+- Heading: `Start with a staple`
+- Body: “Cheeses, pasta sauce and fluid milk sit at the top of the data; small baskets around
+  them match the most rules.”
+- Button: `Try dry noodles and beef` (sets the basket to
+  `["dry noodles/pasta", "beef"]`)
+
+This shortcut exists so a demo or a first-time visitor can see a multi-item result in one
+click.
+
+**No-match state**
+
+- Heading: `No rule covers this basket`
+- Body: “The rules need every antecedent item present. Remove one and try a more common
+  combination, or start from cheeses.”
+- Button: `Clear the basket`
+
+**Result cards in basket mode.** The reason sentence changes to avoid claiming that a
+multi-item antecedent is one product:
+
+> “{confidence}% of baskets with this combination also had {item}.”
+
+For the canonical demo basket `dry noodles/pasta + beef`, the five results are:
+
+| Rank | Item | Confidence | Lift |
+| --- | --- | --- | --- |
+| 1 | `pasta sauce` | 44.7% | 8.75 |
+| 2 | `vegetables - shelf stable` | 42.2% | 3.97 |
+| 3 | `baked bread/buns/rolls` | 14.1% | 3.56 |
+| 4 | `fluid milk products` | 14.1% | 3.56 |
+| 5 | `bag snacks` | 13.9% | 3.55 |
+
+The reason text is generated, not stored. `RecommendationList` picks the basket sentence
+when `basketMode` is true and the item sentence otherwise.
+
+#### 19.4.5 What the browser actually does
+
+`recommendForBasket(rules, basket, topN)` in `web/src/lib/data.ts`:
+
+1. keeps every rule whose **entire antecedent** is inside the basket;
+2. drops any consequent already in the basket;
+3. keeps the best entry per consequent (highest lift, then confidence);
+4. sorts by lift, then confidence;
+5. returns the top five.
+
+This is a filter over the 500 exported rules. It is **not** Apriori, FP-Growth, or any new
+mining. If the basket is rare enough that no exported rule covers it, the page says so
+instead of inventing a recommendation.
+
+---
+
+### 19.5 Rules page — `/rules/`
+
+The rules page is the evidence ledger. It exposes the 500 exported rules so a reader can
+audit any recommendation.
+
+#### 19.5.1 Page head
+
+| Element | Exact text |
+| --- | --- |
+| Heading | `The rule ledger` |
+| Lead | “Every exported rule with the numbers that judge it. Sort a column or filter the list.” |
+
+#### 19.5.2 Controls
+
+| Control | Type | Range / default | Effect |
+| --- | --- | --- | --- |
+| `Filter by item` | Search input | empty | Substring match on either side of the rule; case-insensitive |
+| Helper | Static text | — | “Matches either side of the rule. Case does not matter.” |
+| `Minimum confidence` | Range slider | 10–100, step 5, default 10 | Hides rules below the chosen confidence |
+| `Minimum lift` | Range slider | 1–9, step 0.5, default 1 | Hides rules below the chosen lift |
+| `Reset filters` | Button | — | Restores query `""`, confidence 10, lift 1, sort lift descending, page 1 |
+| `Rule` / `Support` / `Confidence` / `Lift` | Sortable column headers | default lift ↓ | First click sorts; second click reverses |
+| `Previous` / `Next` | Pagination buttons | 20 rows per page | Move one page; disabled at the ends |
+
+The lift slider maximum is computed from the data: `Math.ceil(max lift)` = `ceil(8.7796)` =
+**9**. It is not hard-coded, so a new export with a stronger rule would widen the slider
+automatically.
+
+#### 19.5.3 Summary line
+
+Above the table, a live region announces:
+
+> “**500** of 500 rules match. Sorted by lift, descending. Page 1 of 25.”
+
+After typing `cheeses`:
+
+> “**5** of 500 rules match. Sorted by lift, descending. Page 1 of 1.”
+
+After raising minimum lift to 8.5 while `cheeses` is still in the search box:
+
+> “**2** of 500 rules match. Sorted by lift, descending. Page 1 of 1.”
+
+This line is the fastest way to show that filters are applied to the whole file, not just the
+visible page.
+
+#### 19.5.4 Table
+
+Columns: `Rule`, `Support`, `Confidence`, `Lift`.
+
+| Column | Format | Example from row 1 |
+| --- | --- | --- |
+| Rule | antecedent → consequent, with a literal arrow | `cheeses` → `deli meats` |
+| Support | one decimal percent | `2.9%` |
+| Confidence | one decimal percent | `63.5%` |
+| Lift | two decimals | `8.78` |
+
+The active sort column shows `↓` or `↑`; inactive columns show a middle dot `·`. The header
+is a real `<button>` inside `<th>`, and `aria-sort` is set, so the control is keyboard and
+screen-reader accessible.
+
+At the default settings the first five rows are:
+
+| Rule | Support | Confidence | Lift |
+| --- | --- | --- | --- |
+| `cheeses` → `deli meats` | 2.9% | 63.5% | 8.78 |
+| `deli meats` → `cheeses` | 2.9% | 40.2% | 8.78 |
+| `pasta sauce` → `dry noodles/pasta` | 2.7% | 52.7% | 8.75 |
+| `dry noodles/pasta` → `pasta sauce` | 2.7% | 44.7% | 8.75 |
+| `fluid milk products + vegetables - shelf stable` → `baked bread/buns/rolls + beef` | 2.4% | 40.5% | 4.68 |
+
+Notice the symmetry: support and lift are identical in both directions of a pair, while
+confidence is not. `cheeses → deli meats` is 63.5%, but `deli meats → cheeses` is 40.2%.
+That is the clearest one-screen demonstration of the metric definitions.
+
+#### 19.5.5 Empty state
+
+If no rule survives:
+
+> “No rule survives these filters. Lower the minimum confidence or lift, or clear the item
+> filter.”
+
+The table is replaced, but the pagination line still reads `Showing 0 to 0 of 0`.
+
+#### 19.5.6 Pagination
+
+| Text | Meaning |
+| --- | --- |
+| `Showing 1 to 20 of 500` | First page, 20 rows visible, 500 rows after filtering |
+| `Page 1 of 25` | 500 ÷ 20 = 25 pages |
+| `Previous` disabled on page 1 | No earlier page |
+| `Next` disabled on page 25 | No later page |
+
+The page number resets to 1 whenever a filter or sort changes, so the user never lands on a
+page that no longer exists.
+
+#### 19.5.7 “Reading the columns”
+
+Below the table:
+
+> “**Support** is the share of all baskets containing the whole rule. **Confidence** is the
+> share of baskets with the antecedent that also contain the consequent. **Lift** compares
+> that confidence with the consequent's normal popularity: 1 means no association, above 1
+> means the two items appear together more often than chance.”
+
+This is the plain-language metric definition. It is the sentence to point at if a reviewer
+asks what lift means.
+
+---
+
+### 19.6 Insights page — `/insights/`
+
+This page shows what the rules rest on. It is descriptive analytics, not a second model.
+
+#### 19.6.1 Page head
+
+| Element | Exact text |
+| --- | --- |
+| Heading | `The shape of the data` |
+| Lead | “Four figures from the recommender's export, showing what the rules rest on.” |
+
+#### 19.6.2 Figure row
+
+| Label | Value | Source |
+| --- | --- | --- |
+| `Transactions` | **25,431** | `stats.total_transactions` |
+| `Distinct items` | **294** | `stats.total_items` |
+| `Minimum support` | **2.25%** | `stats.parameters.min_support` |
+| `Minimum confidence` | **10%** | `stats.parameters.min_confidence` |
+
+The support value is shown to two decimals because `0.0225 × 100 = 2.25`. The confidence
+value is shown to zero decimals because it is exactly `0.1`.
+
+#### 19.6.3 Chart 1 — “What the baskets are built on”
+
+| Element | Copy |
+| --- | --- |
+| Heading | `What the baskets are built on` |
+| Lead | “The fifteen most purchased items. A long head of staples makes them easy to recommend and easy to support.” |
+| Chart | Horizontal bars, one per item, count on the x-axis |
+| Tooltip | Item name + `N purchase lines` |
+| Caption | “Counts are purchase lines after cleaning, from stats.json.” |
+
+The top five bars are `soft drinks` (7,753), `fluid milk products` (7,622),
+`baked bread/buns/rolls` (6,763), `cheese` (5,514) and `bag snacks` (4,673). Note the
+distinction between `cheese` (5,514 lines, a top seller) and `cheeses` (1,164 baskets, the
+antecedent of the strongest rule). They are different category labels in the source data.
+Do not conflate them on stage.
+
+#### 19.6.4 Chart 2 — “A year of shopping”
+
+| Element | Copy |
+| --- | --- |
+| Heading | `A year of shopping` |
+| Lead | “Purchase lines per month. The series is steady rather than seasonal, which is one reason the rules ignore time.” |
+| Chart | Line, x = month, y = purchase lines |
+| X-axis labels | Shortened from `2017-01` to `17-01`; every fourth label is shown |
+| Tooltip | Month + `N purchase lines` |
+| Caption | “Axis labels shorten 2017-01 to 17-01. Every month from January 2017 to January 2018 is present.” |
+
+The counts sit between roughly 16,258 and 18,585 per month. The last point, January 2018,
+is only 88 because the sample ends on 1 January. If asked, say the final point is a partial
+month, not a collapse in demand.
+
+#### 19.6.5 Chart 3 — “How big is a basket?”
+
+| Element | Copy |
+| --- | --- |
+| Heading | `How big is a basket?` |
+| Lead | “Most trips carry one to five distinct categories. Baskets are counted once and repeated items collapse into a set.” |
+| Chart | Vertical bars, x = basket size, y = number of baskets |
+| Tooltip | “N items” + `N baskets` |
+| Caption | “The chart shows baskets up to 20 categories. Longer visits exist (the longest is 73) but hold only a handful of baskets each.” |
+
+The distribution peaks at size 1 (3,923 baskets) and falls steadily: 3,182 at size 2, 2,584
+at size 3, 2,081 at size 4, 1,598 at size 5. The mean is 8.25 and the median is 5. The long
+tail is real but thin, so the chart is clipped at 20 for readability while `stats.json`
+keeps every size up to 73.
+
+#### 19.6.6 Chart 4 — “Two algorithms, one answer”
+
+| Element | Copy |
+| --- | --- |
+| Heading | `Two algorithms, one answer` |
+| Lead | “Apriori and FP-Growth returned identical itemsets. On 294 categories, Apriori's simpler counting won on time.” |
+| Chart | Horizontal bars, seconds on the x-axis, Apriori green and FP-Growth muted |
+| Tooltip | Algorithm + `N seconds` |
+| Caption | “763 itemsets each. Apriori 2.04 s, FP-Growth 24.57 s. Results are identical.” |
+
+This is the honest result. The textbook expectation is that FP-Growth wins on large data;
+here the data is moderate (294 columns, ~25k rows), and Python's FP-tree construction costs
+more than Apriori's counting. The identical item count is the correctness check.
+
+#### 19.6.7 Interaction note
+
+All four charts are Recharts SVGs. Hovering a bar or point opens a small tooltip; there is no
+zoom, filter or drill-down. The page is explanatory, not exploratory. On a projector, the
+tooltips are a nice touch but not required for the script.
+
+---
+
+### 19.7 Notebook page — `/notebook/`
+
+This is the written methodology: the same story as the notebook, without the plots.
+
+#### 19.7.1 Page head
+
+| Element | Exact text |
+| --- | --- |
+| Heading | `The notebook is the method` |
+| Lead | “Cleaning, thresholds, one worked rule and the four exports. The notebook remains the source.” |
+
+#### 19.7.2 Left sidebar
+
+> “The executed notebook is the deliverable. This page is the short version for a reader who
+> wants the method without the plots.”
+
+Below it is an in-page table of contents with nine anchor links:
+
+| Link label | Anchor |
+| --- | --- |
+| `Notebook and site` | `#division` |
+| `Cleaning` | `#cleaning` |
+| `Baskets and thresholds` | `#baskets` |
+| `A worked rule` | `#worked-example` |
+| `Apriori and FP-Growth` | `#algorithms` |
+| `The four exports` | `#exports` |
+| `Real or demo data` | `#data-source` |
+| `Limits and next steps` | `#limits` |
+| `Run it yourself` | `#run` |
+
+These are plain `<a href="#...">` links, so they work with JavaScript disabled and update the
+URL hash.
+
+#### 19.7.3 Section: “One pipeline, two roles”
+
+> “`grocery_basket_recommender.ipynb` is where every decision is made: reading the CSV,
+> cleaning it, building baskets, running Apriori and FP-Growth, generating rules and ranking
+> recommendations. It writes four JSON files.”
+>
+> “This site performs no mining. Each page fetches those files from `/data` in the browser
+> and renders them. Re-run the notebook, copy the exports, and the site follows.”
+
+This is the division of responsibility in two sentences.
+
+#### 19.7.4 Section: “Cleaning before counting”
+
+The page lists four cleaning actions:
+
+1. Read `?`, `n/a`, `missing`, `--`, `NULL` and empty strings as missing, then drop rows with
+   no member, date or item.
+2. Remove exact duplicate rows, but keep genuine repeat purchases.
+3. Trim, lowercase and collapse whitespace in item names so near-duplicates do not split the
+   counts.
+4. Parse dates day-first, then add `Year` and `Month`.
+
+It then prints the live counts: **25,431 baskets**, **294 items**, **500 members**, from
+**2017-01-01** to **2018-01-01**.
+
+#### 19.7.5 Section: “One member, one date, one basket”
+
+Key sentences:
+
+> “A basket is everything the same member bought on the same date. Repeated lines of one
+> product collapse into a single item, because buying two loaves is not a new association.”
+
+> “Support and confidence are the two filters. The notebook starts at support `0.01` and
+> confidence `0.1`; if the rule set is empty or larger than 5,000 rows, a safety loop moves
+> support until it is readable. This run settled at **2.3%** support and **10.0%**
+> confidence. Both values are written to `stats.json`, and the tuning table is in the
+> notebook.”
+
+This is the one place where the same threshold is formatted differently: the notebook page
+uses `formatPercent()` (one decimal), so `0.0225` renders as **2.3%**. The Insights page and
+the recommender footnote use `toFixed(2)`, so the same value renders as **2.25%**. The value
+is identical; only the display precision differs.
+
+This is the place to explain why the threshold is not the PRD's `0.005`: dense category data
+ran out of memory, and `0.01` produced 39,858 rules. The safety loop is the answer.
+
+#### 19.7.6 Section: “A worked rule”
+
+The block is filled from `rules[0]`:
+
+| Line | Exact rendered content |
+| --- | --- |
+| Rule | `cheeses → deli meats` |
+| Support | **2.9%** support: about **740** of the 25,431 baskets contain both sides. |
+| Confidence | **63.5%** confidence: when the basket has cheeses, it also has deli meats about 63.5% of the time. |
+| Lift | **8.78** lift. The pair appears 8.78 times more often than independent popularity would predict. This is the strongest rule in the export, sorted by lift. |
+
+The page computes the basket count as `round(support × total_transactions)`. Because
+`support` is already rounded to `0.0291`, the page shows **740**. The exact count is **739**
+(`739 / 25,431 = 0.02906`, and `739 / 1,164 = 0.6349` matches the exported confidence). The
+one-basket difference is a display artefact of multiplying a rounded value; sections 5 and 11
+of this guide use the exact count.
+
+After the box:
+
+> “Support answers ‘how common is this?’, confidence answers ‘how reliable is the guess?’,
+> and lift answers ‘is it better than guessing the consequent anyway?’. A rule can have high
+> confidence and almost no lift when the consequent is a staple that appears in most
+> baskets, which is why the site never ranks on confidence alone.”
+
+That last sentence is the conceptual heart of the project. It also explains the second
+recommendation card, where confidence is high but lift is only 2.36.
+
+#### 19.7.7 Section: “Apriori and FP-Growth”
+
+> “Both algorithms mined the same support threshold and returned the same **763** frequent
+> itemsets. Apriori builds candidate sets and counts them; FP-Growth compresses baskets into
+> an FP-tree and avoids candidate generation.”
+
+The table:
+
+| Algorithm | Itemsets | Runtime |
+| --- | --- | --- |
+| Apriori | 763 | 2.04 s |
+| FP-Growth | 763 | 24.57 s |
+
+> “FP-Growth was slower here, not faster. With only 294 category columns and about 25,000
+> baskets, Apriori's counting is cheaper than building and walking the tree in Python. The
+> textbook advantage needs larger, denser data; the measured numbers are reported as they
+> came out.”
+
+#### 19.7.8 Section: “The four exports”
+
+> “Every file is UTF-8 JSON, every float is rounded to four decimals, and sets become sorted
+> lists so the output is stable between runs.”
+
+| File | Contents | Rows |
+| --- | --- | --- |
+| `rules.json` | The strongest rules by lift, capped at 500, with each item's best five item-to-item rules guaranteed. | 500 |
+| `recommendations.json` | Each item mapped to five items that follow it, using rules whose antecedent is that item alone, by lift then confidence. | 67 |
+| `items.json` | Items that have recommendations, ordered by purchase count. | 67 |
+| `stats.json` | Headline counts, chart series, parameters, algorithm comparison and the data-source flag. | 1 |
+
+> “`scripts/validate_exports.py` checks all four files against the contract: keys, rounding,
+> ordering, probabilities, and that items and recommendations describe the same item set. It
+> exits non-zero on any mismatch.”
+
+Note the “Rows” column for `recommendations.json` is the number of **items**, not the number
+of recommendation entries (285).
+
+#### 19.7.9 Section: “Real or demo data”
+
+> “The notebook prefers `data/Groceries_dataset.csv`, a product-category extract of the
+> Complete Journey study (84.51° / Dunnhumby) built by
+> `scripts/fetch_completejourney.py`. If that file is absent,
+> `scripts/make_synthetic_data.py` builds a seeded stand-in with realistic popularity,
+> basket sizes and planted co-purchases, and writes `data/DATA_SOURCE.txt`.”
+>
+> “While that marker exists, the run is labelled **synthetic** in `stats.json` and the site
+> shows the demo banner; without it, the label is **real**. To switch: replace the CSV,
+> delete the marker, re-run the notebook, copy the four files into `web/public/data/`.
+> Nothing in the site needs editing.”
+
+The bold label is dynamic: it reads `stats.data_source` and prints `synthetic` or `real`. In
+the current run it says **real**, and the banner is absent.
+
+#### 19.7.10 Section: “Limits and next steps”
+
+The four limits:
+
+1. **No ratings or quantities** — the data records that an item was bought, not how much it
+   was liked.
+2. **No time awareness** — a rule learned across one year may not hold this week.
+3. **Sampled and coarse** — 500 households and product categories, not individual SKUs, so
+   rare products never reach the support threshold. That is why only **67** items have
+   recommendations.
+4. **Association is not causation** — “bought together” does not mean one product causes the
+   other.
+
+> “Natural extensions are time-aware rules, quantity weighting, category-level
+> generalisation, and a hold-out evaluation of the recommender instead of ranking by lift
+> alone.”
+
+#### 19.7.11 Section: “Run it yourself”
+
+```bash
+pip install -r requirements.txt
+python scripts/build_notebook.py
+python -m nbconvert --to notebook --execute --inplace notebooks/grocery_basket_recommender.ipynb
+python scripts/validate_exports.py
+```
+
+> “The executed notebook is committed with its outputs and plots, so it can be read without
+> running anything. Open it on GitHub or in Jupyter.”
+
+Button: **Open the notebook on GitHub** → the repository's `notebooks/` folder (new tab).
+
+---
+
+### 19.8 Every button and control, in one table
+
+| Page | Control | Element | Exact label / aria | What it does | Demo use |
+| --- | --- | --- | --- | --- | --- |
+| All | Skip link | `<a href="#main">` | `Skip to content` | Jumps focus to main content | Not used on stage |
+| All | Wordmark | Link | `BasketWise CSE 426` | Goes home | — |
+| All | Nav × 4 | Links | `Recommender`, `Rules`, `Insights`, `Notebook` | Route change | Primary navigation |
+| All | Theme toggle | Button | `Switch to dark mode` / `Switch to light mode` | Toggles palette, saves choice | Optional 5 s flourish |
+| All | Footer pages × 4 | Links | `Recommender`, `Rule explorer`, `Insights`, `Methodology` | Same routes | — |
+| All | Footer project × 3 | External links | `Notebook on GitHub`, `Source repository`, `Complete Journey (84.51°)` | New tab | Credibility |
+| All | Retry | Button in error state | `Try again` | Refetches the JSON | Fallback only |
+| Home | Primary CTA | Link | `Find a recommendation` | `/recommend/` | Opens the demo |
+| Home | Secondary CTA | Link | `Read the notebook` | `/notebook/` | Optional |
+| Home | Slip fallback | Link | `Open the recommender` | `/recommend/` | Only if recs fail |
+| Home | Method CTA | Link | `Read the methodology` | `/notebook/` | Optional |
+| Home | Close CTA | Link | `Open the recommender` | `/recommend/` | Alternate entry |
+| Recommender | Mode | Button | `One item` | Switches to item lookup | Start here |
+| Recommender | Mode | Button | `Basket` | Switches to basket matching | Second beat |
+| Recommender | Combobox | Input | `Find an item` | Type + select an item | Type `cheeses` |
+| Recommender | Combobox | Input | `Add an item to the basket` | Adds selection, clears input | Add two items |
+| Recommender | Remove | Button per item | `Remove {item} from the basket` | Deletes that item | Optional |
+| Recommender | Empty action | Button | `Try cheeses` | Resets item selection | Fallback |
+| Recommender | Empty action | Button | `Try dry noodles and beef` | Seeds the canonical basket | One-click demo |
+| Recommender | Empty action | Button | `Clear the basket` | Empties the basket | Reset |
+| Rules | Search | Input | `Filter by item` | Substring filter, case-insensitive | Type `cheeses` |
+| Rules | Confidence | Range | `Minimum confidence`, 10–100 step 5 | Filters by confidence | Optional |
+| Rules | Lift | Range | `Minimum lift`, 1–9 step 0.5 | Filters by lift | Drag to 8.5 |
+| Rules | Reset | Button | `Reset filters` | Restores defaults | Reset before leaving |
+| Rules | Sort × 4 | Header buttons | `Rule`, `Support`, `Confidence`, `Lift` | Sort asc/desc | Optional |
+| Rules | Page back | Button | `Previous` | Previous 20 rows | Optional |
+| Rules | Page forward | Button | `Next` | Next 20 rows | Optional |
+| Insights | Charts × 4 | SVG hover | Tooltips | Show exact values | Hover one bar |
+| Notebook | TOC × 9 | Anchor links | Section names | Jump within the page | Optional |
+| Notebook | GitHub | Link | `Open the notebook on GitHub` | Opens the notebook | Closing proof |
+
+There are no other buttons. There is no login, no cart, no checkout, no settings page and no
+search across the whole site.
+
+---
+
+### 19.9 Every number on the site and where it comes from
+
+Use this table to answer “where does that number come from?” without opening the code.
+
+| Number | Where it appears | Source field |
+| --- | --- | --- |
+| **25,431** | Home “Baskets”; Insights “Transactions”; Notebook prose | `stats.total_transactions` |
+| **294** | Home “Items in the data”; Insights “Distinct items”; Notebook prose | `stats.total_items` |
+| **500** | Home “Members”; Notebook prose | `stats.total_members` |
+| **500** | Home “Exported rules”; Rules total; rules summary | `rules.length` |
+| **67** | Recommender helper “67 items have recommendations”; Notebook tables and limits | `recommendations.json` keys / `items.length` |
+| **3** | item-mode sub-line for `cheeses` | `recommendations.json["cheeses"].length` |
+| **2.25% / 2.3%** | Insights “Minimum support”; recommender footnote show 2.25%; notebook shows 2.3% | `stats.parameters.min_support` |
+| **10% / 10.0%** | Insights “Minimum confidence”; recommender footnote | `stats.parameters.min_confidence` |
+| **63.5%** | Home slip and statement; recommender card; rules row; notebook worked rule | `rules[0].confidence` |
+| **8.78** | Home slip and statement meta; recommender card; rules row; notebook | `rules[0].lift` |
+| **2.9%** | Rules support column; notebook worked rule | `rules[0].support = 0.0291`, displayed to one decimal |
+| **739 / 740** | Notebook “about 740 of the 25,431 baskets” | True count is 739; the page renders 740 by multiplying the rounded `support × total_transactions` |
+| **2.36** | Recommender second card for `cheeses` | `recommendations.json` |
+| **2.02** | Recommender third card for `cheeses` | `recommendations.json` |
+| **44.7%** | Basket-mode top card for pasta sauce | matching rule confidence |
+| **8.75** | Basket-mode top card lift | matching rule lift |
+| **763** | Insights chart 4; Notebook algorithm section | `stats.algorithm_comparison.*.itemsets` |
+| **2.04 s** | Insights chart 4; Notebook table | `stats.algorithm_comparison.apriori.runtime_sec` |
+| **24.57 s** | Insights chart 4; Notebook table | `stats.algorithm_comparison.fpgrowth.runtime_sec` |
+| **3,923** | Insights basket-size chart, size 1 | `stats.basket_size_distribution` |
+| **73** | Insights basket-size caption | max size in `stats.basket_size_distribution` |
+| **7,753** | Insights top-items chart, first bar | `stats.top_items[0]` |
+| **1** (rows) | Notebook exports table, `stats.json` | Static fact |
+| **25** (pages) | Rules summary “Page 1 of 25” | `ceil(500 / 20)` |
+
+No page formats a raw float directly. `formatPercent` multiplies by 100 and fixes one
+decimal; `formatLift` fixes two; `formatSeconds` fixes two and appends `s`; `formatInteger`
+adds thousands separators.
+
+---
+
+### 19.10 The 10-minute presentation script
+
+#### 19.10.1 Timing budget
+
+| Clock | Segment | Length |
+| --- | --- | --- |
+| 0:00–0:45 | Slide 1 — Title and hook | 0:45 |
+| 0:45–1:40 | Slide 2 — Real baskets, real signal | 0:55 |
+| 1:40–2:35 | Slide 3 — One pipeline, one source of truth | 0:55 |
+| 2:35–3:45 | Slide 4 — What the baskets revealed | 1:10 |
+| 3:45–4:30 | Slide 5 — From notebook to live product | 0:45 |
+| 4:30–5:15 | Demo — Home | 0:45 |
+| 5:15–6:15 | Demo — Recommender, one item | 1:00 |
+| 6:15–7:05 | Demo — Recommender, basket | 0:50 |
+| 7:05–7:55 | Demo — Rules | 0:50 |
+| 7:55–8:35 | Demo — Insights | 0:40 |
+| 8:35–9:00 | Demo — Notebook | 0:25 |
+| 9:00–9:30 | Close and thank you | 0:30 |
+| 9:30–10:00 | Buffer for clicks, laughter, a slow load | 0:30 |
+
+The spoken text below is about 1,270 words. At a measured 135–140 words per minute it runs
+9:00–9:25; the clicks and natural pauses bring it to about 9:30, leaving the last 30 seconds
+as buffer. Do not rush the numbers; the pauses are what make them land.
+
+#### 19.10.2 Before you start
+
+1. Open **https://basketwise-ten.vercel.app/** in a browser window, not a tab you will
+   accidentally close.
+2. Use **light mode**, 100% zoom, full screen. The dark palette is attractive but projects
+   worse in a bright room.
+3. Open the deck in presenter view on the other display.
+4. Pre-load the recommender page once, then go back to home, so the JSON is warm in cache.
+5. Have a local fallback ready: `cd web && npx serve out`, then open the printed
+   `localhost` URL. The build is already in `web/out`.
+6. Keep this guide open at section 19.10 on a phone or second screen.
+7. Say the numbers slowly. “Twenty-five thousand four hundred and thirty-one” is hard to
+   follow; “about twenty-five thousand baskets” is not. Use the rounded form when speaking
+   and the exact form on screen.
+
+---
+
+#### Slide 1 — Title (0:00–0:45)
+
+**On screen:** `BasketWise`, subtitle “From grocery receipts to recommendations people can
+explain”, the receipt visual, three product chips, and the rule chip
+`cheeses → deli meats · lift 8.78`.
+
+**Say:**
+
+> “Good morning. Every grocery receipt is a small puzzle. One basket tells you what one
+> household bought on one day. But across twenty-five thousand baskets, patterns start to
+> repeat. BasketWise mines those patterns and turns them into a recommendation you can
+> explain in one sentence: customers who bought cheeses also bought deli meats, sixty-three
+> point five percent of the time — eight point seven eight times more often than chance.
+>
+> I'm Shahriar, and this is my CSE 426 project. I'll spend the first half on the method and
+> the evidence, then demo the live site.”
+
+**Transition:** “The first question was not which algorithm. It was which data.”
+
+**Why this works:** it states the product, the strongest result and the structure of the
+talk in under a minute, without a slide full of agenda bullets.
+
+---
+
+#### Slide 2 — Real baskets, real signal (0:45–1:40)
+
+**On screen:** four stat cards — **500** households, **289,425** receipt lines, **25,431**
+baskets, **294** product categories — plus the source line and the callout “Product
+categories, not SKUs”.
+
+**Say:**
+
+> “I started with the supplied Kaggle grocery file. At half a percent support it produced
+> exactly one positive item-to-item rule, and the maximum lift was one point one two. That is
+> barely better than guessing.
+>
+> I switched to Complete Journey, the 84.51° and Dunnhumby household study. I sampled five
+> hundred households with a fixed seed, kept two hundred eighty-nine thousand receipt lines,
+> and grouped them into twenty-five thousand four hundred and thirty-one baskets across two
+> hundred ninety-four product categories.
+>
+> Two deliberate reductions: five hundred households, and categories instead of SKUs. The
+> categories keep the rules readable and the matrix small enough to mine on a laptop.”
+
+**Transition:** “Once the data was settled, the pipeline had to be reproducible.”
+
+**If asked about the Kaggle file:** the switch is documented in `ASSUMPTIONS.md`; the Kaggle
+run was not discarded silently, it was measured and rejected for lack of signal.
+
+---
+
+#### Slide 3 — One pipeline, one source of truth (1:40–2:35)
+
+**On screen:** six-step pipeline Clean → Basket → Encode → Mine → Rank → Export; the formula
+strip; the callout “The website reads JSON only. No mining in the browser.”
+
+**Say:**
+
+> “There is one source of truth: the notebook. It reads the CSV and cleans it — hidden
+> missing values, exact duplicates, name variants, day-first dates. It groups one member and
+> one date into one basket and one-hot encodes the result.
+>
+> Apriori and FP-Growth then mine the same matrix at the same support threshold. The rules
+> are ranked by support, confidence and lift, and four JSON files are exported.
+>
+> Support is how common the combination is. Confidence is how often the consequent appears
+> when the antecedent is there. Lift compares that with the consequent's normal popularity:
+> is this a relationship, or just a popular item?
+>
+> The website reads only those four files. There is no mining in the browser, no database,
+> and no hard-coded number on any page.”
+
+**Transition:** “So what did the baskets actually reveal?”
+
+**Demo tie-in:** the formula strip is the same arithmetic you will point at on the rules
+page.
+
+---
+
+#### Slide 4 — What the baskets revealed (2:35–3:45)
+
+**On screen:** three rule cards, the stat row, and the algorithm footnote.
+
+**Say:**
+
+> “These are the results. The strongest rule is cheeses to deli meats: two point nine one
+> percent support, sixty-three point five percent confidence, lift eight point seven eight.
+> In plain terms, deli meats are already popular, but they are almost nine times more likely
+> when cheese is in the basket.
+>
+> The second rule is pasta sauce to dry noodles, lift eight point seven five. The third card
+> shows the method goes beyond pairs: bread and beef together point to vegetables and milk.
+>
+> At two point two five percent support and ten percent confidence, the notebook produced
+> seven hundred sixty-three frequent itemsets and two thousand four hundred fifty-one rules.
+> Two thousand four hundred forty-nine are positive associations; I export a readable five
+> hundred, keeping each recommendable item's best rules.
+>
+> Both algorithms returned exactly the same seven hundred sixty-three itemsets. That is the
+> correctness check. Apriori took two point zero one seconds; FP-Growth took twenty-seven
+> point zero nine. On two hundred ninety-four categories, Apriori's simple counting wins —
+> the honest result.”
+
+**Transition:** “A notebook alone is not a product. Here is what makes it usable.”
+
+**Do not say:** “FP-Growth is always faster.” It is not, on this data. The measured result
+is the interesting part.
+
+---
+
+#### Slide 5 — From notebook to live product (3:45–4:30)
+
+**On screen:** three proof points (Reproducible, Validated, Live), the limits line, the next
+steps, and the green `Live demo →` band with the URL.
+
+**Say:**
+
+> “So this is more than a notebook. It is reproducible: one seeded notebook writes every
+> number. It is validated: four JSON contracts are checked before anything is published —
+> keys, rounding, ordering, and lift above one. And it is live: five pages, four charts, light
+> and dark, and every figure on screen comes from the JSON.
+>
+> The limits are real: five hundred households, category-level items, no quantity or time
+> awareness, and correlation is not causation. The next step is time-aware rules and a
+> precision-at-k evaluation.
+>
+> The best way to see it is to use it. Let me switch to the live site.”
+
+**Transition:** click the browser. Do not read the URL aloud; point at it and move.
+
+---
+
+#### Demo — Home (4:30–5:15)
+
+**Action:** switch to the browser, already on `/`. Scroll once so the figures and the slip are
+both visible.
+
+**Say:**
+
+> “This is the home page. Every number here is read at runtime from the JSON: twenty-five
+> thousand four hundred and thirty-one baskets, two hundred ninety-four items, five hundred
+> members, five hundred exported rules.
+>
+> The slip on the right is not a mock-up. It is the first recommendation for cheeses in
+> recommendations.json: deli meats, lift eight point seven eight, and the sentence reads
+> ‘sixty-three point five percent of baskets with cheeses also had deli meats.’
+>
+> Below, the six-step pipeline is the same one from the slides, and this band repeats the
+> strongest rule in plain English.”
+
+**Click:** `Find a recommendation`.
+
+**Timing note:** if the network is slow, the card shows “Reading the recommendation sheet”
+with skeleton lines. Keep talking; it resolves in under a second on a warm cache.
+
+---
+
+#### Demo — Recommender, one item (5:15–6:15)
+
+**Action:** the page opens in **One item** mode with `cheeses` selected. Point at the three
+cards in order.
+
+**Say:**
+
+> “This is the recommender. One-item mode is selected by default, and cheeses is already
+> chosen. The cards are ranked by lift, then confidence.
+>
+> Deli meats is first: sixty-three point five percent confidence, lift eight point seven
+> eight. Baked bread is second: sixty-two point nine percent confidence — almost the same
+> reliability — but lift is only two point three six. Fluid milk is third: sixty point four
+> percent confidence, lift two point zero two.
+>
+> That gap is the whole reason the site ranks on lift and never on confidence alone. If I
+> ranked by confidence, I would recommend the most popular staple to everyone, and the
+> recommendation would stop being interesting.
+>
+> The bar is confidence; the number on the right is lift; the sentence under each item is the
+> rule in plain English.”
+
+**Optional 10-second beat:** type a rare item, show the empty state (“No recommendations for
+this item” + `Try cheeses`), then click `Try cheeses`. This proves the page handles failure
+without a blank screen. Skip it if you are behind.
+
+**Click:** `Basket`.
+
+---
+
+#### Demo — Recommender, basket (6:15–7:05)
+
+**Action:** click `Try dry noodles and beef` in the empty state. If the basket is not empty,
+add the two items through the combobox instead.
+
+**Say:**
+
+> “Basket mode answers a harder question. I add two items — dry noodles and beef — and every
+> rule whose whole antecedent fits the basket gets to vote. Items already in the basket are
+> never recommended back.
+>
+> Five rules match. Pasta sauce is first: forty-four point seven percent confidence, lift
+> eight point seven five. Vegetables shelf stable is second at forty-two point two percent,
+> lift three point nine seven. Then bread, milk and bag snacks.
+>
+> Notice the confidence is lower than the one-item case because a two-item antecedent is more
+> specific, but lift is still high.
+>
+> And this is a lookup over the exported rules, not new mining. The browser filters five
+> hundred rules; it does not run Apriori.”
+
+**Click:** `Rules` in the top nav.
+
+---
+
+#### Demo — Rules (7:05–7:55)
+
+**Action:** the page opens at the default: 500 of 500, sorted by lift descending, page 1 of
+25.
+
+**Say:**
+
+> “The rule ledger shows all five hundred exported rules, twenty per page, twenty-five pages.
+> By default they are sorted by lift, descending. Every row gives support, confidence and
+> lift.
+>
+> I can type ‘cheeses’ — five rules match, including both directions of the strongest pair.
+> Look at the two rows together: cheeses to deli meats is sixty-three point five percent
+> confidence, but deli meats to cheeses is forty point two. Same support, same lift, different
+> confidence. That is the clearest proof that confidence is directional and lift is not.
+>
+> The two sliders add constraints. If I raise minimum lift to eight point five, only those
+> two directions survive. Reset filters puts everything back.”
+
+**Actions:** type `cheeses`; drag lift to 8.5; pause; click `Reset filters`.
+
+**Optional:** click the `Support` header once to show sorting, then reset again.
+
+**Click:** `Insights`.
+
+---
+
+#### Demo — Insights (7:55–8:35)
+
+**Action:** scroll slowly through the four figures and four charts. Hover one bar in chart 1
+if the projector is bright.
+
+**Say:**
+
+> “Insights is the data behind the rules: twenty-five thousand four hundred and thirty-one
+> transactions, two hundred ninety-four items, two point two five percent minimum support,
+> ten percent minimum confidence.
+>
+> The first chart is the top fifteen items. The second is a year of shopping — steady rather
+> than seasonal, which is one reason the rules ignore time. The third is basket size: most
+> trips carry one to five categories, and the longest has seventy-three.
+>
+> The fourth is the algorithm comparison: seven hundred sixty-three itemsets each, two point
+> zero one seconds versus twenty-seven point zero nine, identical results.”
+
+**Click:** `Notebook`.
+
+---
+
+#### Demo — Notebook (8:35–9:00)
+
+**Action:** the page opens at the top. Scroll to “A worked rule”; do not read the whole page.
+
+**Say:**
+
+> “The last page is the method without the plots: cleaning, thresholds, one worked rule, the
+> algorithms, the exports, and the limits.
+>
+> The worked rule is the one from the slides, with the arithmetic spelled out: about seven
+> hundred forty of the twenty-five thousand baskets contain both sides.
+>
+> Everything here is generated from the same four JSON files. Nothing is retyped.”
+
+**Optional:** click `Open the notebook on GitHub` to show the executed notebook, then go back.
+Only if you have spare time.
+
+---
+
+#### Close (9:00–9:30)
+
+**Action:** return to the home page or leave the notebook page. Face the room.
+
+**Say:**
+
+> “To close: the notebook explains it, the exports validate it, and the site makes it usable.
+>
+> One sentence to remember: customers who bought cheeses also bought deli meats sixty-three
+> point five percent of the time — eight point seven eight times more often than chance.
+>
+> Thank you. I'm happy to take questions.”
+
+**Then stop talking.** Do not fill the buffer. The silence invites the first question and
+keeps you inside 10:00.
+
+---
+
+### 19.11 If something breaks during the demo
+
+| Problem | What to do | What to say |
+| --- | --- | --- |
+| Vercel is slow or offline | Switch to the local build: `cd web`, `npx serve out`, open the printed localhost URL | “The site is a static export, so the local copy is identical.” |
+| A JSON file 404s | The page shows “The data did not load.” Click **Try again** once, then switch to the local copy | “This is the error state, which is also part of the design — no silent blank pages.” |
+| The combobox will not accept a typed word | Click the suggestion in the dropdown; Enter only selects when the list is open | “I'll pick it from the list.” |
+| A filter returns nothing | Click **Reset filters** | “The filters are cumulative, so I'll reset them.” |
+| The projector washes out the green | Switch to dark mode with the header button | “The site ships both palettes.” |
+| You are running over time | Skip the Notebook page and the optional empty-state beat; close after Insights | “The notebook is linked from every page; let me close on the result.” |
+| You are under time | Add the empty-state beat in the recommender and open the GitHub notebook | — |
+
+Keep a PDF or screenshots of the five pages on the desktop as a last resort. A live demo is
+better, but a calm fallback is better than dead air.
+
+---
+
+### 19.12 Likely questions and short answers
+
+**“Why is support 2.25% and not 0.5%?”**
+Category-level baskets are dense. At `0.005`, Apriori tried to allocate roughly 40 GB and ran
+out of memory. At `0.01` it produced 39,858 rules, which is unreadable. The notebook's safety
+loop raised support until the rule count was useful; it settled at `0.0225`, which still
+requires about 572 supporting baskets per itemset.
+
+**“Why was Apriori faster than FP-Growth?”**
+FP-Growth's advantage appears on larger, denser databases. Here there are only 294 columns
+and about 25k baskets; Python's tree construction costs more than Apriori's counting. Both
+returned identical itemsets, so the comparison is fair.
+
+**“Why product categories instead of SKUs?”**
+`product_type` has 2,242 labels, many unreadable and extremely sparse. `product_category`
+has about 300 readable labels. Categories produce interpretable rules and a matrix small
+enough to mine. The trade-off is recorded in `ASSUMPTIONS.md`.
+
+**“Why do only 67 items have recommendations?”**
+The recommender needs a rule whose antecedent is exactly that one item and whose consequent
+is a single item. Many categories never clear support as an antecedent, so they have no
+single-item follow-up. The site says so explicitly instead of inventing one.
+
+**“What is the difference between the two recommender modes?”**
+Item mode uses `recommendations.json` and requires the antecedent to be exactly the chosen
+item. Basket mode filters `rules.json` and requires the rule's entire antecedent to be a
+subset of the basket, then removes items already in the basket.
+
+**“Is lift 8.78 causal?”**
+No. It means the pair appears together 8.78 times more often than independence would predict.
+It does not mean cheese causes deli-meat purchases.
+
+**“Why does `coupon/misc items` show a lift below 1?”**
+It has fewer than five positive single-item follow-ups, so `recommend()` fills the list with
+the remaining rules, and two of those are below chance. The site displays the lift honestly
+rather than hiding it. A future fix is a lift floor inside `recommend()`.
+
+**“Does the website mine anything?”**
+No. It fetches four static JSON files. `recommendForBasket()` is a filter and sort over the
+500 exported rules.
+
+**“Can it handle new data?”**
+Yes. Re-run `scripts/fetch_completejourney.py`, execute the notebook, run
+`scripts/validate_exports.py`, copy the four JSON files into `web/public/data/`, and rebuild.
+No page code changes.
+
+**“What would you do with more time or data?”**
+Time-aware rules, quantity-weighted support, SKU-level mining on a larger sample, and a
+hold-out evaluation using precision@k and recall@k instead of ranking by lift alone.
+
+---
+
+### 19.13 One-page cue card
+
+Print this and keep it beside the keyboard.
+
+```
+0:00  S1  Receipt → 25k baskets → cheeses/deli 63.5%, lift 8.78
+0:45  S2  Kaggle too weak (1 rule, lift 1.12) → Complete Journey
+          500 households · 289,425 lines · 25,431 baskets · 294 categories
+1:40  S3  Clean → Basket → Encode → Mine → Rank → Export
+          support · confidence · lift; no mining in the browser
+2:35  S4  cheeses → deli meats 63.5% / 8.78
+          pasta sauce → dry noodles 52.7% / 8.75
+          763 itemsets · 2,451 rules · 500 exported
+          Apriori 2.04 s · FP-Growth 24.57 s · identical
+3:45  S5  Reproducible · Validated · Live → switch to browser
+
+4:30  HOME     25,431 / 294 / 500 / 500; slip = deli meats 63.5%
+5:15  ITEM     cheeses → deli 8.78, bread 2.36, milk 2.02
+6:15  BASKET   dry noodles + beef → pasta sauce 44.7% / 8.75
+7:05  RULES    500 of 500, page 1 of 25; filter cheeses → 5;
+                lift 8.5 → 2; reset
+7:55  INSIGHTS 4 figures, 4 charts; 763 each; 2.04 vs 24.57
+8:35  NOTEBOOK worked rule = 740 shown (exact 739) of 25,431 baskets
+9:00  CLOSE    notebook explains · exports validate · site uses
+```
+
+---
+
+That is the full site and the full talk. The walkthrough is accurate to the deployed build;
+if the data changes, the sentences and numbers update themselves, but the layout, controls
+and script structure stay the same.
