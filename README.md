@@ -10,6 +10,9 @@ exported results.
 > The Jupyter/Colab notebook is the core deliverable. The website only displays what the
 > notebook exports. No data mining logic lives in the web app.
 
+**New here?** [`PROJECT_GUIDE.md`](PROJECT_GUIDE.md) explains the full pipeline, every
+data-mining technique and function used, and how the notebook, exports and site connect.
+
 ## Results at a glance
 
 | Measure | Value |
@@ -33,6 +36,7 @@ with grocery product categories as the mined item. The raw data is not redistrib
 BasketWise/
 ├── README.md
 ├── ASSUMPTIONS.md
+├── PROJECT_GUIDE.md        # full step-by-step walkthrough
 ├── prd.md
 ├── data/                  # Groceries_dataset.csv + raw/ (both git-ignored)
 ├── scripts/
