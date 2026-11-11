@@ -47,17 +47,20 @@ md("""
 **CSE 426 — Data Mining and Warehouse Lab | Solo project**
 
 Every grocery receipt hides patterns: people who buy pasta often buy tomato sauce, and people
-who buy coffee often buy sugar. This notebook takes ~38,000 raw grocery purchase records,
-cleans them, turns them into shopping baskets, mines **association rules** with **Apriori** and
-**FP-Growth**, and builds a small **recommender system** ("customers who buy X also buy Y").
+who buy cheese often buy deli meats. This notebook takes ~289,000 receipt lines from 500
+households, cleans them, turns them into shopping baskets, mines **association rules** with
+**Apriori** and **FP-Growth**, and builds a small **recommender system** ("customers who buy X
+also buy Y").
 
 The cleaned results are exported as four JSON files that a companion Next.js website displays.
 **No mining happens in the website** — the notebook is the source of truth.
 
-**Dataset:** `data/Groceries_dataset.csv` (Kaggle *Groceries Dataset*), with three columns:
+**Dataset:** `data/Groceries_dataset.csv`, derived from the **Complete Journey** study
+(84.51° / Dunnhumby) by `scripts/fetch_completejourney.py`. It has three columns:
 `Member_number`, `Date`, and `itemDescription`. One row is one item bought by one member on one
-date. If the real file is missing, the notebook automatically creates a clearly-labelled
-synthetic stand-in.
+date, and the item is a grocery **product category** (SKU detail is collapsed to keep the basket
+matrix tractable). If the real file is missing, the notebook automatically creates a
+clearly-labelled synthetic stand-in with ordinary item names.
 
 **Lab topics used:** data preprocessing, association rule mining (support, confidence, lift),
 Apriori vs FP-Growth, and recommendation systems.
@@ -131,8 +134,8 @@ print("Data source:", DATA_SOURCE)
 if DATA_SOURCE == "synthetic":
     print("=" * 76)
     print("WARNING: SYNTHETIC DEMO DATA IS IN USE.")
-    print("For the real analysis, replace data/Groceries_dataset.csv with the Kaggle")
-    print("file and delete data/DATA_SOURCE.txt, then re-run this notebook.")
+    print("For the real analysis, run scripts/fetch_completejourney.py and delete")
+    print("data/DATA_SOURCE.txt, then re-run this notebook.")
     print("=" * 76)
 """)
 
@@ -160,10 +163,10 @@ print(df_raw.nunique())
 """)
 
 md("""
-**What to notice:** the file has three columns and around 38,000 rows. `Member_number` is an ID,
+**What to notice:** the file has three columns and around 289,000 rows. `Member_number` is an ID,
 not a quantity, so its `describe()` values are not meaningful. `Date` is still text at this
-stage. The item names are inconsistent: the same product appears with different capitalisation
-and extra spaces, which is why preprocessing matters.
+stage, and a few hundred lines have no product category. Those rows are why preprocessing
+matters.
 """)
 
 code(r"""
@@ -173,9 +176,9 @@ display(top15_raw.to_frame("purchase_lines"))
 """)
 
 md("""
-The list is dominated by everyday staples (whole milk, vegetables, rolls/buns). Because the
-names are not normalised yet, one product can appear more than once under different spellings.
-Part 2 fixes that.
+The list is dominated by everyday grocery categories (fluid milk products, soft drinks, yogurt,
+bananas). The derived file is already lower-case, so the cleaning steps below focus on missing
+categories, duplicates, whitespace and dates rather than on repair work.
 """)
 
 # ---------------------------------------------------------------- Part 2 ----
@@ -356,7 +359,7 @@ plt.show()
 """)
 
 md("""
-**Insight:** the monthly series shows how shopping activity moves over the two years. Spikes can
+**Insight:** the monthly series shows how shopping activity moves over the year. Spikes can
 come from holidays or from particular members shopping more; this project does not model time,
 but the chart is useful context for the recommendation limits discussed at the end.
 """)
@@ -445,7 +448,7 @@ We mine with both Apriori and FP-Growth at the same support threshold and compar
 
 code(r"""
 # Apriori with timing.
-MIN_SUPPORT = 0.005       # an itemset must appear in at least 0.5% of baskets
+MIN_SUPPORT = 0.01        # 1% of baskets; category-level data is dense, and 0.5% exhausts memory
 MIN_CONFIDENCE = 0.1      # a rule must be right at least 10% of the time
 
 start = time.perf_counter()
@@ -486,11 +489,11 @@ display(frequent_itemsets["length"].value_counts().sort_index().to_frame("itemse
 
 md("""
 **What to notice:** both implementations return exactly the same sets, which is expected because
-they solve the same problem. On this dataset FP-Growth is actually the slower of the two: its
-FP-tree construction and per-itemset Python overhead outweigh the saved candidate generation at
-this size, where Apriori has only 158 items to count. The textbook advantage of FP-Growth shows
-up on much larger, denser transaction databases, not on a few thousand small baskets. The measured
-numbers are exported as they are rather than smoothed to fit the usual story.
+they solve the same problem. On this dataset Apriori is far faster (roughly 2 s against 26 s for
+FP-Growth): with 294 categories and about 25,000 baskets, FP-Growth's Python-level tree
+bookkeeping costs more than the candidate generation it avoids. The textbook advantage of
+FP-Growth needs larger, denser transaction databases to appear. The measured numbers are exported
+as they are rather than smoothed to fit the usual story.
 """)
 
 code(r"""
@@ -528,7 +531,7 @@ print(f"  Lift       : {example['lift']:.4f}  ({example['lift']:.2f}x more likel
 code(r"""
 # Parameter tuning: how does min_support change the number of itemsets and rules?
 tuning_rows = []
-for support in [0.003, 0.005, 0.008, 0.010, 0.015, 0.020]:
+for support in [0.01, 0.015, 0.02, 0.03, 0.05]:
     fi = apriori(basket_df, min_support=support, use_colnames=True)
     rr = (
         association_rules(fi, metric="confidence", min_threshold=MIN_CONFIDENCE, num_itemsets=len(fi))
@@ -585,10 +588,12 @@ else:
 
 md("""
 The tuning table shows the usual trade-off: lowering support finds more itemsets and more rules,
-but they become weaker and noisier; raising support keeps only very common patterns. At the
-textbook default `0.005` this dataset produced more than 5,000 rules — unreadable for a rule
-explorer — so the safety net stepped support up through `0.0075` to `0.0112`, where 612 itemsets
-remain and the rule set is small enough to inspect. The chosen value is reported in `stats.json`.
+but they become weaker and noisier; raising support keeps only very common patterns. This
+category-level data is too dense for the textbook default: `0.005` produced more than 400,000
+candidate itemsets and exhausted memory before any rules were generated. Starting at `0.01`
+gives roughly 40,000 rules — unreadable for a rule explorer — so the safety net stepped support up
+through `0.015` to `0.0225`, where 763 itemsets and 2,451 rules remain. The chosen value is
+reported in `stats.json`.
 """)
 
 # ---------------------------------------------------------------- Part 6 ----
@@ -711,8 +716,8 @@ _ = recommend("a product that does not exist", top_n=5)
 """)
 
 md("""
-The top recommendations are mostly the planted/latent grocery pairings: dairy with dairy, bread
-with butter, coffee with sugar. The empty-case demo shows that an unknown item returns a helpful
+The top recommendations recover real grocery behaviour: pasta with pasta sauce, cheese with deli
+meats, milk with cereal. The empty-case demo shows that an unknown item returns a helpful
 message and an empty table, not a crash.
 """)
 
@@ -740,9 +745,9 @@ def recommend_for_basket(items, top_n=5):
 
 
 example_baskets = [
-    ["whole milk", "yogurt"],
-    ["rolls/buns", "butter"],
-    ["coffee", "sugar"],
+    ["dry noodles/pasta", "beef"],
+    ["fluid milk products", "bananas"],
+    ["cheeses", "baked bread/buns/rolls"],
 ]
 for basket in example_baskets:
     print(f"\nExample basket: {basket}")
@@ -965,38 +970,39 @@ All four files passed the shape checks in `scripts/validate_exports.py`. Copy th
 md("""
 ## Part 9: Conclusion
 
-This notebook turned raw, messy grocery records into a working recommendation engine.
+This notebook turned raw grocery receipts into a working recommendation engine.
 
-**What was cleaned:** hidden missing values (`?`, `n/a`, empty strings), exact duplicates,
-inconsistent capitalisation, stray whitespace and unparsed day-first dates. Rows are now one
-shopping basket per member per date, and repeated items inside a basket are collapsed.
+**What was cleaned:** rows with no product category, exact duplicates, stray whitespace and
+unparsed day-first dates. Rows are now one shopping basket per member per date, and repeated
+items inside a basket are collapsed.
 
 **What was mined:** Apriori and FP-Growth produced the same frequent itemsets at
-`min_support = 0.0112` (the safety net raised it from 0.005 to keep the rule set readable); the
-exported file keeps the 500 strongest rules. The strongest lift belongs to *spices → chicken*
-(lift 23.11), followed by *sugar → coffee* (13.86), with everyday pairs such as *whole milk →
-yogurt* and *rolls/buns → butter* further down. Support, confidence and lift were used together,
-never confidence alone, because a high-confidence rule can still be trivial if the consequent
-is simply very popular.
+`min_support = 0.0225` (the safety net raised it from 0.01, and 0.005 exhausted memory on this
+dense category-level data); the exported file keeps the 500 strongest rules. The strongest lifts
+are *cheeses → deli meats* (8.78) and *pasta sauce → dry noodles/pasta* (8.75), followed by
+four-category combinations such as *baked bread + beef → vegetables + fluid milk* (4.68).
+Support, confidence and lift were used together, never confidence alone, because a
+high-confidence rule can still be trivial if the consequent is simply very popular.
 
 **Apriori vs FP-Growth:** both algorithms agree exactly. Apriori generates candidates and
 counts them; FP-Growth compresses the transactions into an FP-tree and avoids candidate
-generation. Here Apriori was faster (roughly 0.16 s against 7.7 s for FP-Growth), because at
-158 items and a few thousand baskets the tree bookkeeping costs more than it saves. FP-Growth's
-asymptotic advantage needs larger, denser data to appear, and that is the honest result of this
-experiment rather than the expected one.
+generation. Here Apriori was much faster (roughly 2 s against 26 s for FP-Growth), because at
+294 categories and about 25,000 baskets the Python-level tree bookkeeping costs more than it
+saves. FP-Growth's asymptotic advantage needs larger, denser data to appear, and that is the
+honest result of this experiment rather than the expected one.
 
 **Limitations**
 
-- No ratings or quantities: we know *that* an item was bought, not how much the customer liked it.
-- No time awareness: a rule learned from two years of data may not hold this week.
-- Small data: only a few thousand baskets, so rare items never reach the support threshold.
+- No ratings or basket totals: we know *that* a category was bought, not how much the shopper liked it.
+- No time awareness: a rule learned from one year of data may not hold this week.
+- Sampled and coarse: 500 households and product categories, not individual SKUs, so rare
+  products never reach the support threshold and recommendations stay at category level.
 - Rules are correlational, not causal: "bought together" does not mean "causes".
 
-**Future work:** add time-aware rules, quantity-aware weighting, category-level generalisation,
-and a properly evaluated recommender using hold-out baskets. The current system is a clean,
-explainable baseline that connects preprocessing, association rule mining and recommendation in
-one reproducible pipeline.
+**Future work:** add time-aware rules, quantity-aware weighting, SKU-level rules on a larger
+sample, and a properly evaluated recommender using hold-out baskets. The current system is a
+clean, explainable baseline that connects preprocessing, association rule mining and
+recommendation in one reproducible pipeline.
 """)
 
 nb.cells = cells

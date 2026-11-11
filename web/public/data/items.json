@@ -1,174 +1,270 @@
 [
   {
-    "item": "whole milk",
-    "count": 4355
+    "item": "soft drinks",
+    "count": 7753
   },
   {
-    "item": "other vegetables",
-    "count": 2732
+    "item": "fluid milk products",
+    "count": 7622
   },
   {
-    "item": "yogurt",
-    "count": 2640
-  },
-  {
-    "item": "rolls/buns",
-    "count": 1891
-  },
-  {
-    "item": "whipped/sour cream",
-    "count": 1572
-  },
-  {
-    "item": "tropical fruit",
-    "count": 1517
-  },
-  {
-    "item": "root vegetables",
-    "count": 1493
-  },
-  {
-    "item": "soda",
-    "count": 1458
-  },
-  {
-    "item": "brown bread",
-    "count": 1320
-  },
-  {
-    "item": "sausage",
-    "count": 1079
-  },
-  {
-    "item": "bottled water",
-    "count": 969
-  },
-  {
-    "item": "butter",
-    "count": 962
-  },
-  {
-    "item": "citrus fruit",
-    "count": 700
-  },
-  {
-    "item": "shopping bags",
-    "count": 645
-  },
-  {
-    "item": "chips",
-    "count": 522
-  },
-  {
-    "item": "pastry",
-    "count": 508
-  },
-  {
-    "item": "white bread",
-    "count": 446
-  },
-  {
-    "item": "bottled beer",
-    "count": 438
-  },
-  {
-    "item": "newspapers",
-    "count": 437
-  },
-  {
-    "item": "domestic eggs",
-    "count": 367
-  },
-  {
-    "item": "canned beer",
-    "count": 346
-  },
-  {
-    "item": "pip fruit",
-    "count": 335
-  },
-  {
-    "item": "coffee",
-    "count": 286
-  },
-  {
-    "item": "margarine",
-    "count": 270
-  },
-  {
-    "item": "beef",
-    "count": 261
-  },
-  {
-    "item": "chicken",
-    "count": 250
-  },
-  {
-    "item": "sugar",
-    "count": 249
-  },
-  {
-    "item": "fruit/vegetable juice",
-    "count": 233
-  },
-  {
-    "item": "pork",
-    "count": 222
-  },
-  {
-    "item": "frozen vegetables",
-    "count": 216
-  },
-  {
-    "item": "specialty bar",
-    "count": 205
-  },
-  {
-    "item": "cream cheese",
-    "count": 196
-  },
-  {
-    "item": "curd",
-    "count": 188
-  },
-  {
-    "item": "napkins",
-    "count": 184
-  },
-  {
-    "item": "candy",
-    "count": 169
-  },
-  {
-    "item": "buns",
-    "count": 168
-  },
-  {
-    "item": "tea",
-    "count": 168
-  },
-  {
-    "item": "hygiene articles",
-    "count": 152
-  },
-  {
-    "item": "waffles",
-    "count": 151
-  },
-  {
-    "item": "long life bakery product",
-    "count": 146
-  },
-  {
-    "item": "berries",
-    "count": 145
+    "item": "baked bread/buns/rolls",
+    "count": 6763
   },
   {
     "item": "cheese",
-    "count": 132
+    "count": 5514
   },
   {
-    "item": "spices",
-    "count": 122
+    "item": "bag snacks",
+    "count": 4673
+  },
+  {
+    "item": "beef",
+    "count": 4221
+  },
+  {
+    "item": "tropical fruit",
+    "count": 3540
+  },
+  {
+    "item": "eggs",
+    "count": 3234
+  },
+  {
+    "item": "coupon/misc items",
+    "count": 2899
+  },
+  {
+    "item": "refrgratd juices/drnks",
+    "count": 2778
+  },
+  {
+    "item": "cold cereal",
+    "count": 2719
+  },
+  {
+    "item": "vegetables - shelf stable",
+    "count": 2705
+  },
+  {
+    "item": "soup",
+    "count": 2651
+  },
+  {
+    "item": "frzn meat/meat dinners",
+    "count": 2628
+  },
+  {
+    "item": "lunchmeat",
+    "count": 2622
+  },
+  {
+    "item": "frozen pizza",
+    "count": 2508
+  },
+  {
+    "item": "ice cream/milk/sherbts",
+    "count": 2422
+  },
+  {
+    "item": "crackers/misc bkd fd",
+    "count": 2401
+  },
+  {
+    "item": "candy - checklane",
+    "count": 2325
+  },
+  {
+    "item": "yogurt",
+    "count": 2182
+  },
+  {
+    "item": "candy - packaged",
+    "count": 2161
+  },
+  {
+    "item": "milk by-products",
+    "count": 2144
+  },
+  {
+    "item": "condiments/sauces",
+    "count": 2118
+  },
+  {
+    "item": "canned juices",
+    "count": 2039
+  },
+  {
+    "item": "water - carbonated/flvrd drink",
+    "count": 2030
+  },
+  {
+    "item": "baked sweet goods",
+    "count": 1977
+  },
+  {
+    "item": "sald drsng/sndwch sprd",
+    "count": 1936
+  },
+  {
+    "item": "beers/ales",
+    "count": 1930
+  },
+  {
+    "item": "deli meats",
+    "count": 1839
+  },
+  {
+    "item": "vegetables - all others",
+    "count": 1832
+  },
+  {
+    "item": "potatoes",
+    "count": 1810
+  },
+  {
+    "item": "salad mix",
+    "count": 1786
+  },
+  {
+    "item": "onions",
+    "count": 1777
+  },
+  {
+    "item": "chicken",
+    "count": 1739
+  },
+  {
+    "item": "tomatoes",
+    "count": 1696
+  },
+  {
+    "item": "cookies/cones",
+    "count": 1692
+  },
+  {
+    "item": "dry bn/veg/potato/rice",
+    "count": 1664
+  },
+  {
+    "item": "margarines",
+    "count": 1592
+  },
+  {
+    "item": "refrgratd dough products",
+    "count": 1573
+  },
+  {
+    "item": "meat - shelf stable",
+    "count": 1567
+  },
+  {
+    "item": "dry noodles/pasta",
+    "count": 1532
+  },
+  {
+    "item": "frzn vegetable/veg dsh",
+    "count": 1511
+  },
+  {
+    "item": "hispanic",
+    "count": 1489
+  },
+  {
+    "item": "dinner mxs:dry",
+    "count": 1459
+  },
+  {
+    "item": "convenient brkfst/whlsm snacks",
+    "count": 1458
+  },
+  {
+    "item": "fruit - shelf stable",
+    "count": 1443
+  },
+  {
+    "item": "apples",
+    "count": 1436
+  },
+  {
+    "item": "pork",
+    "count": 1410
+  },
+  {
+    "item": "bath tissues",
+    "count": 1381
+  },
+  {
+    "item": "coffee",
+    "count": 1325
+  },
+  {
+    "item": "pasta sauce",
+    "count": 1299
+  },
+  {
+    "item": "hot dogs",
+    "count": 1297
+  },
+  {
+    "item": "breakfast sausage/sandwiches",
+    "count": 1255
+  },
+  {
+    "item": "fd wraps/bags/trsh bg",
+    "count": 1228
+  },
+  {
+    "item": "pnt btr/jelly/jams",
+    "count": 1190
+  },
+  {
+    "item": "citrus",
+    "count": 1188
+  },
+  {
+    "item": "cheeses",
+    "count": 1164
+  },
+  {
+    "item": "baking mixes",
+    "count": 1162
+  },
+  {
+    "item": "paper towels",
+    "count": 1157
+  },
+  {
+    "item": "frzn novelties/wtr ice",
+    "count": 1148
+  },
+  {
+    "item": "baking needs",
+    "count": 1147
+  },
+  {
+    "item": "bacon",
+    "count": 1142
+  },
+  {
+    "item": "vegetables salad",
+    "count": 1132
+  },
+  {
+    "item": "dinner sausage",
+    "count": 1129
+  },
+  {
+    "item": "meat - misc",
+    "count": 1123
+  },
+  {
+    "item": "grapes",
+    "count": 1110
+  },
+  {
+    "item": "beans - canned glass & mw",
+    "count": 1064
   }
 ]

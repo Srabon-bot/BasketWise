@@ -73,6 +73,9 @@ export function InsightsClient() {
   if (!data) return null;
 
   const topItems = data.top_items;
+  const basketSizes = data.basket_size_distribution.filter(
+    (row) => row.size <= 20,
+  );
   const algorithmRows = [
     { name: "Apriori", seconds: data.algorithm_comparison.apriori.runtime_sec },
     {
@@ -150,7 +153,7 @@ export function InsightsClient() {
         </section>
 
         <section className="insight">
-          <h2>Two years of shopping</h2>
+          <h2>A year of shopping</h2>
           <p className="lead">
             Purchase lines per month. The series is steady rather than seasonal,
             which is one reason the rules ignore time.
@@ -190,21 +193,21 @@ export function InsightsClient() {
             </ResponsiveContainer>
           </div>
           <p className="chart-caption">
-            Axis labels shorten 2014-01 to 14-01. Every month from January 2014 to
-            December 2015 is present.
+            Axis labels shorten 2017-01 to 17-01. Every month from January 2017 to
+            January 2018 is present.
           </p>
         </section>
 
         <section className="insight">
           <h2>How big is a basket?</h2>
           <p className="lead">
-            Most trips carry two to five distinct items. Baskets are counted once
-            repeated items collapse into a set.
+            Most trips carry one to five distinct categories. Baskets are counted
+            once and repeated items collapse into a set.
           </p>
           <div className="chart-frame">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
-                data={data.basket_size_distribution}
+                data={basketSizes}
                 margin={{ top: 12, right: 16, bottom: 8, left: 0 }}
               >
                 <CartesianGrid
@@ -232,15 +235,15 @@ export function InsightsClient() {
             </ResponsiveContainer>
           </div>
           <p className="chart-caption">
-            The tail runs to 16 items; sizes past the chart hold only a handful of
-            baskets each.
+            The chart shows baskets up to 20 categories. Longer visits exist (the
+            longest is 73) but hold only a handful of baskets each.
           </p>
         </section>
 
         <section className="insight">
           <h2>Two algorithms, one answer</h2>
           <p className="lead">
-            Apriori and FP-Growth returned identical itemsets. On 158 items,
+            Apriori and FP-Growth returned identical itemsets. On 294 categories,
             Apriori&rsquo;s simpler counting won on time.
           </p>
           <div className="chart-frame">

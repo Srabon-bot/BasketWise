@@ -45,11 +45,11 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                href="https://www.kaggle.com/datasets/heeraldedhia/groceries-dataset"
+                href="https://github.com/bradleyboehmke/completejourney"
                 target="_blank"
                 rel="noreferrer"
               >
-                Kaggle Groceries Dataset
+                Complete Journey (84.51°)
               </a>
             </li>
           </ul>

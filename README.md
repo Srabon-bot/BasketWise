@@ -14,17 +14,18 @@ exported results.
 
 | Measure | Value |
 | --- | --- |
-| Baskets after cleaning | 7,831 |
-| Distinct items | 158 |
-| Members | 2,482 |
-| Frequent itemsets (support 0.0112) | 612 |
+| Baskets after cleaning | 25,431 |
+| Distinct items | 294 |
+| Members | 500 |
+| Frequent itemsets (support 0.0225) | 763 |
 | Rules exported | 500 |
-| Items with recommendations | 43 |
-| Strongest rule by lift | `spices → chicken`, confidence 73.8%, lift 23.11 |
-| Apriori / FP-Growth runtime | 0.13 s / 6.51 s, identical itemsets |
+| Items with recommendations | 67 |
+| Strongest rule by lift | `cheeses → deli meats`, confidence 63.5%, lift 8.78 |
+| Apriori / FP-Growth runtime | 2.01 s / 27.09 s, identical itemsets |
 
-The run uses the synthetic demo dataset (`data/DATA_SOURCE.txt` present). Replacing it with the
-Kaggle CSV and re-running the notebook changes these numbers; nothing in the site is hard-coded.
+The run uses a fixed 500-household sample of the **Complete Journey** study (84.51° / Dunnhumby),
+with grocery product categories as the mined item. The raw data is not redistributed;
+`scripts/fetch_completejourney.py` rebuilds the CSV. Nothing in the site is hard-coded.
 
 ## Project layout
 
@@ -33,8 +34,9 @@ BasketWise/
 ├── README.md
 ├── ASSUMPTIONS.md
 ├── prd.md
-├── data/                  # Groceries_dataset.csv (real or synthetic) + DATA_SOURCE.txt
+├── data/                  # Groceries_dataset.csv + raw/ (both git-ignored)
 ├── scripts/
+│   ├── fetch_completejourney.py
 │   ├── make_synthetic_data.py
 │   ├── build_notebook.py
 │   └── validate_exports.py
@@ -59,8 +61,8 @@ BasketWise/
 # 1. Install Python dependencies
 pip install -r requirements.txt
 
-# 2. (Optional) create the synthetic demo dataset if data/Groceries_dataset.csv is missing
-python scripts/make_synthetic_data.py
+# 2. Download and derive the dataset (~290k receipt lines from 500 households)
+python scripts/fetch_completejourney.py
 
 # 3. Build and run the notebook
 python scripts/build_notebook.py
@@ -75,14 +77,19 @@ anything. Open it in Jupyter, VS Code, or upload it to Google Colab.
 
 ### Real vs synthetic data
 
+`scripts/fetch_completejourney.py` downloads the raw Complete Journey files once (into the
+git-ignored `data/raw/`) and writes `data/Groceries_dataset.csv`: 500 households sampled with
+seed 42, one row per purchased product category. The dataset is for academic use and is not
+committed to the repository.
+
 If `data/Groceries_dataset.csv` is missing, `scripts/make_synthetic_data.py` creates a realistic
 demo file (seed 42) plus `data/DATA_SOURCE.txt`. That marker tells the notebook and the website to
-label the run as **synthetic/demo**. To use the real Kaggle file, replace
-`data/Groceries_dataset.csv`, delete `data/DATA_SOURCE.txt`, and re-run the notebook.
+label the run as **synthetic/demo**. To return to the real data, run the fetch script, delete
+`data/DATA_SOURCE.txt`, and re-run the notebook.
 
 ## Quick start: website
 
-Requires Node.js 20 or newer.
+Requires Node.js 20.9 or newer.
 
 ```bash
 cd web
@@ -122,8 +129,11 @@ required environment variable.
 ### Deploying
 
 **Vercel (recommended).** Import the repository, set the project root to `web`, and keep the
-default build command `npm run build`. Vercel detects the static export; no environment variables
-are needed. Add a `vercel.json` only if you add redirects later.
+detected Next.js framework, `npm run build` and the default output directory. No environment
+variables are needed.
+
+Step-by-step instructions for both the dashboard and the CLI, a verification checklist and fixes
+for the usual 404s are in [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md).
 
 **GitHub Pages.** Push the repository, then publish `web/out`:
 
@@ -148,7 +158,7 @@ requests `/data/*.json` by absolute path. The simplest free deployment is Vercel
 | `stats.json` | home, insights, methodology | counts, top items, monthly series, basket sizes, Apriori/FP-Growth timing, parameters, data-source flag |
 | `rules.json` | rules, recommender basket mode | 500 rules (antecedents, consequents, support, confidence, lift), sorted by lift, with each recommendable item's five best item-to-item rules guaranteed |
 | `recommendations.json` | recommender item mode | each item mapped to its five best single-item follow-ups |
-| `items.json` | recommender search | the 43 items that have recommendations, ordered by purchase count |
+| `items.json` | recommender search | the 67 items that have recommendations, ordered by purchase count |
 
 `scripts/validate_exports.py` checks the four files against their contracts (keys, types, value
 ranges, ordering, and that `items.json` and `recommendations.json` describe the same item set)
@@ -187,8 +197,8 @@ including the raised support threshold, the curated rule export and the recommen
 
 AI assistance (OpenCode) was used to draft the notebook prose, build scripts and the website.
 Every number shown in the site is read from the exports, not written by hand; the notebook is the
-source of truth and its committed outputs are the evidence. The demo dataset is synthetic and is
-labelled as such in the UI. No paid services, API keys or secrets are involved.
+source of truth and its committed outputs are the evidence. The raw dataset is not redistributed;
+the site reads only the aggregate exports. No paid services, API keys or secrets are involved.
 
 ## Notes
 

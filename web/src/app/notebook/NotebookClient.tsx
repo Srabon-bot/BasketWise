@@ -94,8 +94,8 @@ export function NotebookClient() {
         <section id="cleaning">
           <h2>Cleaning before counting</h2>
           <p>
-            The raw file has one row per item on a receipt, with messy product
-            names and the usual hidden missing values. The notebook:
+            The raw file has one row per item on a receipt. The notebook applies
+            the same cleaning it would use on a raw retail export:
           </p>
           <ul>
             <li>
@@ -106,8 +106,8 @@ export function NotebookClient() {
             </li>
             <li>removes exact duplicate rows, but keeps genuine repeat purchases;</li>
             <li>
-              trims, lowercases and collapses whitespace in item names, and fixes
-              the known <span className="num">uht milk</span> variant;
+              trims, lowercases and collapses whitespace in item names so
+              near-duplicates do not split the counts;
             </li>
             <li>
               parses dates day-first, then adds <span className="num">Year</span>{" "}
@@ -139,7 +139,7 @@ export function NotebookClient() {
           </p>
           <p>
             Support and confidence are the two filters. The notebook starts at
-            support <span className="num">0.005</span> and confidence{" "}
+            support <span className="num">0.01</span> and confidence{" "}
             <span className="num">0.1</span>; if the rule set is empty or larger
             than 5,000 rows, a safety loop moves support until it is readable. This
             run settled at{" "}
@@ -180,7 +180,8 @@ export function NotebookClient() {
                   </strong>{" "}
                   confidence: when the basket has{" "}
                   {ruleSide(example.antecedents)}, it also has{" "}
-                  {ruleSide(example.consequents)} nearly three times in four.
+                  {ruleSide(example.consequents)} about{" "}
+                  {formatPercent(example.confidence)} of the time.
                 </p>
                 <p>
                   <strong className="num">{formatLift(example.lift)}</strong> lift.
@@ -251,10 +252,10 @@ export function NotebookClient() {
             </tbody>
           </table>
           <p>
-            FP-Growth was slower here, not faster. With only 158 item columns and a
-            few thousand baskets, Apriori&rsquo;s counting is cheaper than building
-            and walking the tree in Python. The textbook advantage needs larger,
-            denser data; the measured numbers are reported as they came out.
+            FP-Growth was slower here, not faster. With only 294 category columns
+            and about 25,000 baskets, Apriori&rsquo;s counting is cheaper than
+            building and walking the tree in Python. The textbook advantage needs
+            larger, denser data; the measured numbers are reported as they came out.
           </p>
         </section>
 
@@ -279,8 +280,8 @@ export function NotebookClient() {
               <tr>
                 <td className="num">rules.json</td>
                 <td>
-                  The 500 strongest rules by lift, with each item&rsquo;s best five
-                  item-to-item rules guaranteed.
+                  The strongest rules by lift, capped at 500, with each
+                  item&rsquo;s best five item-to-item rules guaranteed.
                 </td>
                 <td className="num">
                   {rules ? formatInteger(rules.length) : "…"}
@@ -324,11 +325,13 @@ export function NotebookClient() {
         <section id="data-source">
           <h2>Real or demo data</h2>
           <p>
-            The notebook prefers <span className="num">data/Groceries_dataset.csv</span>{" "}
-            from the Kaggle Groceries Dataset. If that file is absent,{" "}
-            <span className="num">scripts/make_synthetic_data.py</span> builds a
-            seeded stand-in with realistic popularity, basket sizes and planted
-            co-purchases, and writes{" "}
+            The notebook prefers <span className="num">data/Groceries_dataset.csv</span>,
+            a product-category extract of the Complete Journey study (84.51° /
+            Dunnhumby) built by{" "}
+            <span className="num">scripts/fetch_completejourney.py</span>. If that
+            file is absent, <span className="num">scripts/make_synthetic_data.py</span>{" "}
+            builds a seeded stand-in with realistic popularity, basket sizes and
+            planted co-purchases, and writes{" "}
             <span className="num">data/DATA_SOURCE.txt</span>.
           </p>
           <p>
@@ -350,12 +353,14 @@ export function NotebookClient() {
               not how much it was liked.
             </li>
             <li>
-              No time awareness: a rule learned across two years may not hold this
+              No time awareness: a rule learned across one year may not hold this
               week.
             </li>
             <li>
-              Small data: rare items never reach the support threshold, which is why
-              only {recs ? formatInteger(Object.keys(recs).length) : "…"} items have
+              Sampled and coarse: 500 households and product categories, not
+              individual SKUs, so rare products never reach the support threshold.
+              That is why only{" "}
+              {recs ? formatInteger(Object.keys(recs).length) : "…"} items have
               recommendations.
             </li>
             <li>

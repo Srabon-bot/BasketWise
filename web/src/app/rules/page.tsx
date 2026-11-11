@@ -4,7 +4,7 @@ import { RulesClient } from "./RulesClient";
 export const metadata: Metadata = {
   title: "Rules",
   description:
-    "Sort and filter the 500 association rules the notebook exported: antecedent, consequent, support, confidence and lift.",
+    "Sort and filter the association rules the notebook exported: antecedent, consequent, support, confidence and lift.",
 };
 
 export default function Page() {

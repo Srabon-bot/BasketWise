@@ -47,7 +47,7 @@ export function HomeClient() {
   const recs = recsState.data;
 
   const sheetItem =
-    recs && recs["whole milk"] ? "whole milk" : recs ? Object.keys(recs)[0] : null;
+    recs && recs["cheeses"] ? "cheeses" : recs ? Object.keys(recs)[0] : null;
   const sheetRec = sheetItem && recs ? recs[sheetItem]?.[0] : undefined;
   const strongest = rules?.[0];
 

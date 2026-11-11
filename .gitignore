@@ -18,6 +18,10 @@ pnpm-debug.log*
 # Build artifacts
 export.zip
 
+# Dataset (download from Kaggle; not redistributed)
+data/Groceries_dataset.csv
+data/raw/
+
 # Design tooling scratch
 .hallmark/
 

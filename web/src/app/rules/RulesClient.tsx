@@ -68,6 +68,11 @@ export function RulesClient() {
   const start = (currentPage - 1) * PAGE_SIZE;
   const visible = filtered.slice(start, start + PAGE_SIZE);
 
+  const maxLift = useMemo(() => {
+    if (!data?.length) return 24;
+    return Math.max(1, Math.ceil(Math.max(...data.map((rule) => rule.lift))));
+  }, [data]);
+
   function applySort(key: SortKey) {
     if (key === sort) {
       setDirection((current) => (current === "asc" ? "desc" : "asc"));
@@ -90,7 +95,7 @@ export function RulesClient() {
   if (loading) {
     return (
       <div className="container">
-        <LoadingState label="Reading the 500 exported rules" />
+        <LoadingState label="Reading the exported rules" />
       </div>
     );
   }
@@ -112,7 +117,7 @@ export function RulesClient() {
             id="rule-search"
             type="search"
             value={query}
-            placeholder="milk, coffee, chips…"
+            placeholder="cheese, pasta, milk…"
             onChange={(event) => {
               setQuery(event.target.value);
               setPage(1);
@@ -152,7 +157,7 @@ export function RulesClient() {
               id="rule-lift"
               type="range"
               min={DEFAULT_LIFT}
-              max={24}
+              max={maxLift}
               step={0.5}
               value={minLift}
               aria-valuetext={`${minLift.toFixed(1)}`}

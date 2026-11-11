@@ -14,7 +14,8 @@ export function DataBanner() {
       <div className="container">
         <strong>Demo data.</strong>
         <span>
-          This site is showing the synthetic stand-in, not the Kaggle file.
+          This site is showing the synthetic stand-in, not the Complete Journey
+          sample.
         </span>
         <Link href="/notebook#data-source" prefetch={false}>
           How to run the real data

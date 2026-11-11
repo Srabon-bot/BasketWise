@@ -32,7 +32,7 @@ export function RecommendClient() {
   const statsState = useJson<Stats>("/data/stats.json");
 
   const [mode, setMode] = useState<Mode>("item");
-  const [item, setItem] = useState("whole milk");
+  const [item, setItem] = useState("cheeses");
   const [basket, setBasket] = useState<string[]>([]);
 
   const recs = recsState.data;
@@ -110,7 +110,7 @@ export function RecommendClient() {
             onSelect={setItem}
             label="Find an item"
             initialValue={item}
-            placeholder="whole milk, coffee, yogurt…"
+            placeholder="cheeses, pasta sauce, milk…"
           />
         ) : (
           <>
@@ -122,7 +122,7 @@ export function RecommendClient() {
               placeholder={
                 basket.length >= MAX_BASKET
                   ? "Basket is full"
-                  : "whole milk, coffee, yogurt…"
+                  : "cheeses, pasta sauce, milk…"
               }
             />
             {basket.length > 0 ? (
@@ -188,9 +188,9 @@ export function RecommendClient() {
                   <button
                     type="button"
                     className="btn"
-                    onClick={() => setItem("whole milk")}
+                    onClick={() => setItem("cheeses")}
                   >
-                    Try whole milk
+                    Try cheeses
                   </button>
                 }
               >
@@ -236,16 +236,18 @@ export function RecommendClient() {
                     <button
                       type="button"
                       className="btn btn--primary"
-                      onClick={() => setBasket(["whole milk", "yogurt"])}
+                      onClick={() =>
+                        setBasket(["dry noodles/pasta", "beef"])
+                      }
                     >
-                      Try whole milk and yogurt
+                      Try dry noodles and beef
                     </button>
                   )
                 }
               >
                 {basket.length === 0
-                  ? "Whole milk, rolls/buns and coffee sit at the top of the data; small baskets around them match the most rules."
-                  : "The rules need every antecedent item present. Remove one and try a more common combination, or start from whole milk."}
+                  ? "Cheeses, pasta sauce and fluid milk sit at the top of the data; small baskets around them match the most rules."
+                  : "The rules need every antecedent item present. Remove one and try a more common combination, or start from cheeses."}
               </EmptyState>
             )}
           </>
