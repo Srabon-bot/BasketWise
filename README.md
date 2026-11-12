@@ -192,3 +192,89 @@ A **"Demo data"** banner appears on every page when `stats.json` reports `data_s
 | `/notebook/` | The method in short sections: cleaning, thresholds, a worked rule, exports, and limits |
 
 There is no login, database, or server runtime. Every route is a static page that fetches its JSON from `/data` in the browser.
+
+---
+
+## Local Development
+
+**Prerequisites:** Python 3.10+, Node.js 20.9+, and a free local environment for Jupyter. The real dataset is downloaded automatically by the fetch script.
+
+### 1. Build the dataset and run the notebook
+
+```bash
+python -m venv .venv
+
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+
+# macOS / Linux
+source .venv/bin/activate
+
+pip install -r requirements.txt
+python scripts/fetch_completejourney.py
+python scripts/build_notebook.py
+python -m nbconvert --to notebook --execute --inplace notebooks/grocery_basket_recommender.ipynb
+python scripts/validate_exports.py
+```
+
+The executed notebook is committed with its outputs and plots, so you can read it without running anything. Open it in Jupyter, VS Code, or Google Colab.
+
+If `data/Groceries_dataset.csv` is missing, the notebook falls back to `scripts/make_synthetic_data.py`, writes a labelled demo dataset, and the site shows the **Demo data** banner. To return to the real run, rebuild the CSV, delete `data/DATA_SOURCE.txt`, and execute the notebook again.
+
+### 2. Publish the exports to the site
+
+```bash
+# macOS / Linux
+cp export/*.json web/public/data/
+
+# Windows PowerShell
+Copy-Item export\*.json web\public\data\ -Force
+```
+
+### 3. Run the website
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+The production build is a fully static export:
+
+```bash
+cd web
+npm run lint
+npm run build     # writes web/out/
+npx serve out
+```
+
+The site fetches its four JSON files from `/data/*.json` at runtime. There is no server code, no database, and no required environment variable.
+
+### Updating the data
+
+1. Re-run the notebook as shown above.
+2. Run `python scripts/validate_exports.py` and confirm it passes.
+3. Copy the new exports into `web/public/data/`.
+4. Reload the site. The counts, rule ledger, charts, and recommendations all follow the files automatically.
+
+---
+
+## Deployment
+
+**Vercel (recommended).** Import the repository, set the project root to `web`, keep the detected Next.js framework and `npm run build`, and leave the output directory on its default. No environment variables are needed.
+
+A step-by-step dashboard and CLI walkthrough, a verification checklist, and fixes for the usual 404s are in [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md).
+
+**GitHub Pages.** Push the repository, then publish `web/out`:
+
+```bash
+cd web
+npm run build
+npx gh-pages -d out
+```
+
+This works when the site is served from a domain root. A project site served from `username.github.io/BasketWise/` needs `basePath: "/BasketWise"` in `next.config.ts` **and** the data URLs prefixed with the same base path, because the browser requests `/data/*.json` by absolute path. The simplest free deployment is Vercel.
+
+**Netlify.** Build command `npm run build`, publish directory `web/out`.
