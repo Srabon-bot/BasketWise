@@ -129,3 +129,66 @@ Four JSON files  ──►  Static Next.js site
 | **Lift** | `confidence / support(Y)` | Is this a real relationship, or just a popular item? |
 
 A rule can have high confidence and almost no lift when the consequent is a staple that appears in most baskets. That is why the recommender ranks on **lift first**, never confidence alone.
+
+---
+
+## Results at a Glance
+
+| Measure | Value |
+| --- | --- |
+| Raw receipt lines | 289,425 |
+| Baskets after cleaning | 25,431 |
+| Households | 500 |
+| Product categories | 294 |
+| Frequent itemsets | 763 |
+| Rules generated | 2,451 |
+| Positive rules (`lift > 1`) | 2,449 |
+| Exported rules | 500 |
+| Items with recommendations | 67 |
+| Strongest rule by lift | `cheeses → deli meats` — 63.5% confidence, lift 8.78 |
+| Apriori / FP-Growth runtime | 2.04 s / 24.57 s, identical itemsets |
+
+### Strongest Rules
+
+| Rule | Support | Confidence | Lift |
+| --- | --- | --- | --- |
+| `cheeses → deli meats` | 2.91% | 63.49% | 8.78 |
+| `pasta sauce → dry noodles/pasta` | 2.69% | 52.73% | 8.75 |
+| `baked bread/buns/rolls + beef → vegetables - shelf stable + fluid milk products` | 2.35% | 40.0% | 4.68 |
+
+> **cheeses → deli meats** — deli meats are popular on their own, but they are still **8.78× more likely** when cheeses are in the basket. That is a real association, not just popularity.
+
+Both algorithms returned the same **763** itemsets, which is the correctness check. Apriori was faster here because 294 category columns and roughly 25,000 baskets are not large enough for FP-Growth's tree overhead to pay off. The measured numbers are reported as they came out.
+
+---
+
+## Data & Exports
+
+The mined "item" is a **product category** such as `cheeses` or `deli meats`, not an SKU. The CSV is rebuilt from the public **Complete Journey** study (84.51° / Dunnhumby) with a fixed sample of 500 households (seed 42); neither the raw files nor the derived CSV are committed to git.
+
+After mining, the notebook writes four JSON files. These are the only data the site ever sees:
+
+| File | Used by | Contents |
+| --- | --- | --- |
+| `rules.json` | rule ledger, basket mode | 500 positive rules with antecedents, consequents, support, confidence, and lift, sorted by lift |
+| `recommendations.json` | item mode | each item mapped to its five best single-item follow-ups |
+| `items.json` | recommender search | the 67 items that have recommendations, ordered by purchase count |
+| `stats.json` | home, insights, methodology | counts, chart series, parameters, algorithm timing, and the data-source flag |
+
+`scripts/validate_exports.py` checks all four files against their contracts — keys, types, ranges, ordering, four-decimal rounding, `lift > 1`, and that `items.json` and `recommendations.json` describe the same item set.
+
+A **"Demo data"** banner appears on every page when `stats.json` reports `data_source: "synthetic"`. With the current Complete Journey run, it is absent.
+
+---
+
+## Pages
+
+| Route | Page |
+| --- | --- |
+| `/` | Hero, headline counts, six-step pipeline, and a printed recommendation slip |
+| `/recommend/` | Searchable item combobox plus a six-item basket mode |
+| `/rules/` | Searchable, sortable ledger of all 500 rules with confidence and lift sliders |
+| `/insights/` | Four Recharts figures: top items, monthly purchases, basket sizes, algorithm comparison |
+| `/notebook/` | The method in short sections: cleaning, thresholds, a worked rule, exports, and limits |
+
+There is no login, database, or server runtime. Every route is a static page that fetches its JSON from `/data` in the browser.
