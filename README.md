@@ -1,213 +1,53 @@
+<div align="center">
+
 # BasketWise
 
-**Smart grocery recommendations from shopping data.**
+Market-basket analysis on real grocery receipts — frequent itemsets, association rules, and a rule-based recommender served as a fast static site.
 
-BasketWise is a solo CSE 426 (Data Mining and Warehouse Lab) project. It takes raw grocery
-transaction records, cleans them, mines frequent itemsets and association rules with Apriori
-and FP-Growth, and turns the rules into an item recommender. A small Next.js site presents the
-exported results.
+[![Live Site](https://img.shields.io/badge/Live%20Site-basketwise--ten.vercel.app-22c55e?style=for-the-badge&logo=vercel&logoColor=white)](https://basketwise-ten.vercel.app/)
+&nbsp;
+[![Notebook](https://img.shields.io/badge/Notebook-View%20on%20GitHub-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://github.com/Srabon-bot/BasketWise/blob/main/notebooks/grocery_basket_recommender.ipynb)
+&nbsp;
+[![Repository](https://img.shields.io/badge/Repository-BasketWise-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Srabon-bot/BasketWise)
 
-> The Jupyter/Colab notebook is the core deliverable. The website only displays what the
-> notebook exports. No data mining logic lives in the web app.
+</div>
 
-**New here?** [`PROJECT_GUIDE.md`](PROJECT_GUIDE.md) explains the full pipeline, every
-data-mining technique and function used, and how the notebook, exports and site connect.
+---
 
-## Results at a glance
+## Overview
 
-| Measure | Value |
-| --- | --- |
-| Baskets after cleaning | 25,431 |
-| Distinct items | 294 |
-| Members | 500 |
-| Frequent itemsets (support 0.0225) | 763 |
-| Rules exported | 500 |
-| Items with recommendations | 67 |
-| Strongest rule by lift | `cheeses → deli meats`, confidence 63.5%, lift 8.78 |
-| Apriori / FP-Growth runtime | 2.04 s / 24.57 s, identical itemsets |
+BasketWise takes the **Complete Journey** household grocery study, cleans 289,425 receipt lines, groups them into 25,431 shopping baskets, and mines what sells together with **Apriori** and **FP-Growth**. The strongest rules become a recommender that answers one practical question: *what leaves with this item?*
 
-The run uses a fixed 500-household sample of the **Complete Journey** study (84.51° / Dunnhumby),
-with grocery product categories as the mined item. The raw data is not redistributed;
-`scripts/fetch_completejourney.py` rebuilds the CSV. Nothing in the site is hard-coded.
+This is a solo **CSE 426 — Data Mining and Warehouse Lab** project. The executed Jupyter notebook is the source of truth; the website is a thin presentation layer that does no mining at all.
 
-## Project layout
+**Live site:** [https://basketwise-ten.vercel.app](https://basketwise-ten.vercel.app/)
 
-```
-BasketWise/
-├── README.md
-├── ASSUMPTIONS.md
-├── PROJECT_GUIDE.md        # full step-by-step walkthrough
-├── prd.md
-├── data/                  # Groceries_dataset.csv + raw/ (both git-ignored)
-├── scripts/
-│   ├── fetch_completejourney.py
-│   ├── make_synthetic_data.py
-│   ├── build_notebook.py
-│   └── validate_exports.py
-├── notebooks/             # grocery_basket_recommender.ipynb (executed, with outputs)
-├── export/                # rules, recommendations, items, stats (JSON)
-└── web/                   # Next.js static site
-```
+> The best rule says it in one sentence: customers who bought `cheeses` also bought `deli meats` **63.5%** of the time — **8.78×** more often than chance.
 
-## Roadmap
-
-- [x] Repository scaffold
-- [x] Synthetic data generator
-- [x] Notebook: preprocessing and baskets (Parts 0-4)
-- [x] Notebook: Apriori / FP-Growth / recommender (Parts 5-7)
-- [x] Notebook: exports and conclusion (Parts 8-9) + export validation
-- [x] Next.js website: home, recommender, rules, insights, methodology
-- [x] Deployment notes and screenshot placeholders
-
-## Quick start: data mining
-
-```bash
-# 1. Install Python dependencies
-pip install -r requirements.txt
-
-# 2. Download and derive the dataset (~290k receipt lines from 500 households)
-python scripts/fetch_completejourney.py
-
-# 3. Build and run the notebook
-python scripts/build_notebook.py
-python -m nbconvert --to notebook --execute --inplace notebooks/grocery_basket_recommender.ipynb
-
-# 4. Validate the exported JSON
-python scripts/validate_exports.py
-```
-
-The executed notebook is committed with outputs and plots, so you can read it without running
-anything. Open it in Jupyter, VS Code, or upload it to Google Colab.
-
-### Real vs synthetic data
-
-`scripts/fetch_completejourney.py` downloads the raw Complete Journey files once (into the
-git-ignored `data/raw/`) and writes `data/Groceries_dataset.csv`: 500 households sampled with
-seed 42, one row per purchased product category. The dataset is for academic use and is not
-committed to the repository.
-
-If `data/Groceries_dataset.csv` is missing, `scripts/make_synthetic_data.py` creates a realistic
-demo file (seed 42) plus `data/DATA_SOURCE.txt`. That marker tells the notebook and the website to
-label the run as **synthetic/demo**. To return to the real data, run the fetch script, delete
-`data/DATA_SOURCE.txt`, and re-run the notebook.
-
-## Quick start: website
-
-Requires Node.js 20.9 or newer.
-
-```bash
-cd web
-npm install
-npm run dev
-```
-
-Open <http://localhost:3000>. The production build is a fully static export:
-
-```bash
-cd web
-npm run build     # writes web/out/
-npx serve out     # or any static file server
-```
-
-The site fetches its four JSON files from `/data/*.json` at runtime. They live in
-`web/public/data/` and are copies of `export/*.json`. There is no server code, no database and no
-required environment variable.
-
-### Updating the data
-
-1. Re-run the notebook as shown above.
-2. Run `python scripts/validate_exports.py` and confirm it passes.
-3. Copy the new exports into the site:
-
-   ```bash
-   # macOS / Linux
-   cp export/*.json web/public/data/
-
-   # Windows PowerShell
-   Copy-Item export\*.json web\public\data\ -Force
-   ```
-
-4. Reload the site. The homepage counts, rule ledger, charts and recommendations all follow the
-   files automatically.
-
-### Deploying
-
-**Vercel (recommended).** Import the repository, set the project root to `web`, and keep the
-detected Next.js framework, `npm run build` and the default output directory. No environment
-variables are needed.
-
-Step-by-step instructions for both the dashboard and the CLI, a verification checklist and fixes
-for the usual 404s are in [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md).
-
-**GitHub Pages.** Push the repository, then publish `web/out`:
-
-```bash
-cd web
-npm run build
-npx gh-pages -d out
-```
-
-This works when the site is served from a domain root, for example a user site
-(`username.github.io`) or a custom domain. A project site served from
-`username.github.io/BasketWise/` needs `basePath: "/BasketWise"` in `next.config.ts` **and** the
-data URLs in `src/lib/useJson.ts` calls prefixed with the same base path, because the browser
-requests `/data/*.json` by absolute path. The simplest free deployment is Vercel.
-
-**Netlify.** Build command `npm run build`, publish directory `web/out`.
-
-## What the site reads
-
-| File | Used by | Contents |
-| --- | --- | --- |
-| `stats.json` | home, insights, methodology | counts, top items, monthly series, basket sizes, Apriori/FP-Growth timing, parameters, data-source flag |
-| `rules.json` | rules, recommender basket mode | 500 rules (antecedents, consequents, support, confidence, lift), sorted by lift, with each recommendable item's five best item-to-item rules guaranteed |
-| `recommendations.json` | recommender item mode | each item mapped to its five best single-item follow-ups |
-| `items.json` | recommender search | the 67 items that have recommendations, ordered by purchase count |
-
-`scripts/validate_exports.py` checks the four files against their contracts (keys, types, value
-ranges, ordering, and that `items.json` and `recommendations.json` describe the same item set)
-before the site ever sees them.
-
-## Pages
-
-- `/` — hero, headline counts, the six-step pipeline and a printed recommendation slip.
-- `/recommend/` — searchable item combobox, plus a basket mode that matches rules whose whole
-  antecedent is present in the basket.
-- `/rules/` — sortable, filterable ledger of all 500 rules with confidence and lift sliders and
-  20-row pagination.
-- `/insights/` — four Recharts figures: top items, monthly purchases, basket sizes and the
-  algorithm comparison.
-- `/notebook/` — the method in short sections: cleaning, basket construction, thresholds, a worked
-  rule, the algorithm comparison, the exports and the data-source switch.
-
-A "Demo data" banner appears on every page while `stats.json` reports `data_source: "synthetic"`.
+---
 
 ## Screenshots
 
-Replace the placeholders below with captures from the deployed site or a local production build.
+<div align="center">
 
-| Page | Light | Dark |
-| --- | --- | --- |
-| Home | `docs screenshots/home-light.png` | `docs screenshots/home-dark.png` |
-| Recommender | `docs screenshots/recommend-light.png` | `docs screenshots/recommend-dark.png` |
-| Rules | `docs screenshots/rules-light.png` | `docs screenshots/rules-dark.png` |
-| Insights | `docs screenshots/insights-light.png` | `docs screenshots/insights-dark.png` |
-| Methodology | `docs screenshots/notebook-light.png` | `docs screenshots/notebook-dark.png` |
+### Home & Recommendation Slip
 
-## Assumptions and AI use
+![Homepage](./docs/screenshots/home.png)
 
-Every data, threshold and export decision is recorded in [`ASSUMPTIONS.md`](ASSUMPTIONS.md),
-including the raised support threshold, the curated rule export and the recommendation shape.
+### Recommender — One Item
 
-AI assistance (OpenCode) was used to draft the notebook prose, build scripts and the website.
-Every number shown in the site is read from the exports, not written by hand; the notebook is the
-source of truth and its committed outputs are the evidence. The raw dataset is not redistributed;
-the site reads only the aggregate exports. No paid services, API keys or secrets are involved.
+![Recommender](./docs/screenshots/recommend.png)
 
-## Notes
+### Rule Ledger & Insights
 
-- Python dependencies are pinned in `requirements.txt`; Node dependencies in `web/package.json`.
-- `web/` has its own `.gitignore` for `node_modules`, `.next` and `out`.
-- The design tokens use a green grocery accent in light and dark mode; the site is responsive at
-  375 px and up.
-- Full requirements are in [`prd.md`](prd.md).
+<br />
+
+| Rule Ledger | Insights |
+|:---:|:---:|
+| <img src="./docs/screenshots/rules.png" width="480" alt="Rule Ledger" /> | <img src="./docs/screenshots/insights.png" width="480" alt="Insights" /> |
+
+### Methodology
+
+![Notebook Guide](./docs/screenshots/notebook.png)
+
+</div>
