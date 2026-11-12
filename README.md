@@ -278,3 +278,69 @@ npx gh-pages -d out
 This works when the site is served from a domain root. A project site served from `username.github.io/BasketWise/` needs `basePath: "/BasketWise"` in `next.config.ts` **and** the data URLs prefixed with the same base path, because the browser requests `/data/*.json` by absolute path. The simplest free deployment is Vercel.
 
 **Netlify.** Build command `npm run build`, publish directory `web/out`.
+
+---
+
+## Assumptions & Limitations
+
+Every data, threshold, and export decision is recorded in [`ASSUMPTIONS.md`](ASSUMPTIONS.md), including the switch away from the original Kaggle file, the raised support threshold, and the curated rule export.
+
+- **Sampled data:** 500 of the households in Complete Journey. Patterns may not generalise to every shopper.
+- **Category granularity:** rules describe product groups such as `cheeses → deli meats`, not individual SKUs.
+- **No quantities:** buying one unit or ten counts the same.
+- **No time awareness:** a rule learned across 2017 may not hold this week.
+- **Correlation, not causation:** "bought together" does not mean one product causes the other.
+- **Rare items are excluded:** only 67 items clear the support threshold often enough to have recommendations.
+
+AI assistance (OpenCode) was used to draft the notebook prose, build scripts, and website. Every number shown in the site is read from the exports, not written by hand; the notebook is the source of truth and its committed outputs are the evidence. The raw dataset is not redistributed, and no paid services, API keys, or secrets are involved.
+
+---
+
+## Repository Map
+
+```text
+BasketWise/
+├── README.md
+├── ASSUMPTIONS.md                  # every judgement call
+├── PROJECT_GUIDE.md                # full step-by-step walkthrough
+├── prd.md                          # original assignment spec
+├── requirements.txt                # Python dependencies
+├── data/                           # derived CSV + raw files (git-ignored)
+├── scripts/
+│   ├── fetch_completejourney.py    # raw data → CSV
+│   ├── build_notebook.py           # generates the notebook source
+│   ├── make_synthetic_data.py      # labelled demo fallback
+│   └── validate_exports.py         # JSON contract tests
+├── notebooks/                      # executed notebook with outputs
+├── export/                         # rules, recommendations, items, stats
+├── docs/
+│   ├── DEPLOY_VERCEL.md
+│   └── screenshots/
+└── web/                            # Next.js static site
+```
+
+---
+
+## Documentation
+
+| Document | What it covers |
+| --- | --- |
+| [`PROJECT_GUIDE.md`](PROJECT_GUIDE.md) | The whole pipeline, every technique and function, the site walkthrough, and a 10-minute presentation script |
+| [`ASSUMPTIONS.md`](ASSUMPTIONS.md) | Data, threshold, export, and website decisions |
+| [`docs/DEPLOY_VERCEL.md`](docs/DEPLOY_VERCEL.md) | Vercel deployment, verification checklist, and common 404 fixes |
+| [`prd.md`](prd.md) | The original project requirements |
+| [`web/README.md`](web/README.md) | Site-specific notes for running, rebuilding, and deploying |
+
+---
+
+## Credits
+
+Built by **Md. Shahriar Hossain Srabon** for **CSE 426 — Data Mining and Warehouse Lab**.
+
+Data: **Complete Journey** by 84.51° / Dunnhumby, distributed through the public `completejourney` R package. Used for academic purposes; the raw files and derived CSV are not redistributed.
+
+<div align="center">
+
+<sub>Notebook in Python · Site in Next.js · Every number read from the exports</sub>
+
+</div>
